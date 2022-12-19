@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import {useEffect} from "react";
+import { getSessions } from "../../api/session";
 
 function SessionLists() {
-  return (
-    <div>SessionLists</div>
-  )
+  useEffect (() => {
+    getSessions().then((response) => {
+        console.log(response.data);
+    })
+  })
+  return <div>SessionLists</div>;
 }
 
-export default SessionLists
+export default SessionLists;

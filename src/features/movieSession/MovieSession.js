@@ -1,13 +1,14 @@
 import React from 'react'
 import MovieInfo from './MovieInfo'
+import SessionLists from './SessionLists'
 
-function movieSession() {
+function MovieSession() {
   return (
     <>
     <MovieInfo/>
-    <movieSession/>
+    <SessionLists/>
     </>
   )
 }
 
-export default movieSession
+export default MovieSession

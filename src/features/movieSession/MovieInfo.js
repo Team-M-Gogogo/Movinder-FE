@@ -2,7 +2,7 @@ import React from 'react'
 
 function MovieInfo() {
   return (
-    <div>MovieInfo</div>
+    <div>MovieInfo page</div>
   )
 }
 

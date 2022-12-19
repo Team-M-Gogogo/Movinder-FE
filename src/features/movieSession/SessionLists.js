@@ -17,12 +17,6 @@ function SessionLists() {
       setSessions(response.data);
     });
   }, []);
-//   const toDate = (session) => {
-//     const date = new Date(session.datetime);
-//     return date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
-//   };
-//   const uniqueDate = new Set(sessions.map((session) => toDate(session)));
-//   console.log(sessions.filter((session) => toDate(session) == uniqueDate[0]));
   return sessions.map((session) => {
     return <Session session={session} key={session.sessionId} />;
   });

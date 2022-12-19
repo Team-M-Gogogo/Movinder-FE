@@ -7,3 +7,7 @@ const api = axios.create({
 export const getMovies = () => {
   return api.get("/movie/films");
 };
+
+export const getMovieById = (movieId) => {
+  return api.get("/movie/films/" + movieId);
+}

@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 
 export default function CinemaListPage() {
     const dispatch = useDispatch();
-    const [movieId, setMovieId] = useState("63a0100399e65b544dc8e14a");
+    const [movieId] = useState("63a0100399e65b544dc8e14a");
 
     useEffect(() => {
         getMovieById(movieId).then((response) => {

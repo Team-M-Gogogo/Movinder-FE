@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
+import MovieList from "../features/MovieList";
 
 export default function HomePage() {
-  return (
-    <div>HomePage</div>
-  )
+  return <MovieList />;
 }

@@ -1,11 +1,11 @@
 import React from 'react'
-import MovieInfo from './MovieInfo'
+import DisplayMovie from '../DisplayMovie'
 import SessionLists from './SessionLists'
 
 function MovieSession() {
   return (
     <>
-    <MovieInfo/>
+    <DisplayMovie/>
     <SessionLists/>
     </>
   )

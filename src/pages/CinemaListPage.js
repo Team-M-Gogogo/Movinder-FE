@@ -13,7 +13,7 @@ const { Footer, Content } = Layout;
 
 export default function CinemaListPage() {
     const dispatch = useDispatch();
-    const [movieId] = useState("63a0100399e65b544dc8e14a");
+    const [movieId] = useState("63a03d05a8c97353fa8cb52f");
 
     useEffect(() => {
         getMovieById(movieId).then((response) => {

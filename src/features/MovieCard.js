@@ -1,4 +1,5 @@
 import React from "react";
+import { ClockCircleOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import "./MovieCard.css";
 
@@ -14,7 +15,15 @@ export default function MovieCard(props) {
         <img alt="poster" src={movie.thumbnailUrl} onClick={onClickMovie} />
       }
     >
-      <Card.Meta title={movie.movieName} description={movie.description} />
+      <Card.Meta
+        avatar={
+          <pre className="movieDuration">
+            <ClockCircleOutlined /> {movie.duration}{" "}
+          </pre>
+        }
+        title={movie.movieName}
+        description={movie.description}
+      />
     </Card>
   );
 }

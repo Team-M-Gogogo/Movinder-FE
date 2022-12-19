@@ -3,3 +3,7 @@
   width: 300px;
   margin: 10px auto;
 }
+.movieDuration {
+  color: grey;
+  font-size: smaller;
+}

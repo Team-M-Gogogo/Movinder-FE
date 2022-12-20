@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { getSessions } from "../../api/session";
+import { useSelector } from "react-redux";
 import Session from "./Session";
 
-function SessionLists() {
+function SessionLists(props) {
+  const cinema = props.cinema;
   const [sessions, setSessions] = useState([]);
+  const movie = useSelector((state) => {
+    return state.movie.selectedMovie;
+  });
+  console.log(movie);
+  console.log(cinema);
   useEffect(() => {
     getSessions(
-      /*movieId*/ "63a03d05a8c97353fa8cb52f",
-      /*cinemaId*/ "63a03cdca8c97353fa8cb52e"
+      /*movieId*/ movie.movieId,
+      /*cinemaId*/ cinema.cinemaId
     ).then((response) => {
       setSessions(response.data);
     });
-  }, []);
+  }, [movie.movieId, cinema.cinemaId]);
   return sessions.map((session) => {
     return <Session session={session} key={session.sessionId} />;
   });

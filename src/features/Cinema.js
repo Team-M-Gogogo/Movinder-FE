@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button, Collapse } from 'antd';
+import { Collapse } from 'antd';
+import SessionLists from './movieSession/SessionLists';
 
 const { Panel } = Collapse;
 
@@ -17,10 +18,11 @@ export default function Cinema(props) {
             <Collapse defaultActiveKey={['1']} onChange={onChange}>
             <Panel header={cinema.cinemaName} key="1">
                 <div>
-                    <span>{cinema.address}</span>
+                    {/* <span>{cinema.address}</span>
                     <span style={{float:"right"}}>
                         <Button>Movie Section</Button>
-                    </span>
+                    </span> */}
+                    <SessionLists cinema={cinema}/>
                 </div>
             </Panel>
             </Collapse>

@@ -44,7 +44,6 @@ const initMovies = [
 ];
 const initSelectedMovie = [];
 const initCinemas = [];
-const initSessions = [];
 const initSelectedSession = [];
 export const movieSlice = createSlice({
   name: "movie",
@@ -66,6 +65,7 @@ export const movieSlice = createSlice({
     },
     addSelectedSession: (state, action) => {
       state.selectedSession = action.payload;
+      console.log(state.selectedSession);
     },
   },
 });

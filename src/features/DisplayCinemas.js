@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { getCinemas } from "../api/movies";
+import { getCinemas, getCinemasByMovieId } from "../api/movies";
 import Cinema from "./Cinema";
 
-const DisplayCinemas = () => {
+const DisplayCinemas = (props) => {
   const [cinemas, setCinemas] = useState([]);
+
+  const movie = props.selectedMovie;
+
   useEffect(() => {
-    getCinemas().then((response) => {
+    console.log(movie);
+    getCinemasByMovieId(movie.movieId).then((response) => {
       setCinemas(response.data);
     });
-  }, []);
+  }, [movie.movieId]);
   const cinemaList =
     cinemas.length > 0 &&
     cinemas.map((cinema) => {

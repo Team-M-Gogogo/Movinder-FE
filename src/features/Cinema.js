@@ -18,10 +18,6 @@ export default function Cinema(props) {
             <Collapse defaultActiveKey={['1']} onChange={onChange}>
             <Panel header={cinema.cinemaName} key="1">
                 <div>
-                    {/* <span>{cinema.address}</span>
-                    <span style={{float:"right"}}>
-                        <Button>Movie Section</Button>
-                    </span> */}
                     <SessionLists cinema={cinema}/>
                 </div>
             </Panel>

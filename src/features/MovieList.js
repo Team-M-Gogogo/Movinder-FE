@@ -15,7 +15,7 @@ export default function MovieList() {
       .catch((error) => console.log(error));
   }, [dispatch]);
 
-  const movieCards = movies.map((movie) => {
+  const movieCards = movies.length>0 && movies.map((movie) => {
     return <MovieCard movie={movie} key={movie.movieId} />;
   });
   return <div className="movieList">{movieCards}</div>;

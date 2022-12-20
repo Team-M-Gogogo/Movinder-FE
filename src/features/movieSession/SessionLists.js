@@ -15,6 +15,7 @@ function SessionLists(props) {
     getSessions(/*movieId*/ movie.movieId, /*cinemaId*/ cinema.cinemaId).then(
       (response) => {
         setSessions(response.data);
+        console.log(response.data);
       }
     );
   }, [movie.movieId, cinema.cinemaId]);

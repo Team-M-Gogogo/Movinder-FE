@@ -7,7 +7,7 @@ function MovieSession() {
   return (
     <>
     <DisplayMovie/>
-    <Cinema cinema={"63a03cdca8c97353fa8cb52e"}/>
+    {/* <Cinema cinema={cinema}/> */}
     <div> Available Session</div>
     <SessionLists/>
     </>

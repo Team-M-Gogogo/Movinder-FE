@@ -52,7 +52,6 @@ export const movieSlice = createSlice({
     movies: initMovies,
     selectedMovie: initSelectedMovie,
     cinemas: initCinemas,
-    sessions: initSessions,
     selectedSession: initSelectedSession,
   },
   reducers: {
@@ -64,9 +63,6 @@ export const movieSlice = createSlice({
     },
     addCinemas: (state, action) => {
       state.cinemas = action.payload;
-    },
-    addSessions: (state, action) => {
-      state.sessions = action.payload;
     },
     addSelectedSession: (state, action) => {
       state.selectedSession = action.payload;

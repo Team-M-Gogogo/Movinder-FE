@@ -17,7 +17,6 @@ function App() {
           {/* <Route path="/cinema" element={<CinemaListpage/>}/> */}
           <Route path="/:movieId" element={<CinemaListpage/>}/>
           <Route path="/:movieId/:sessionId" element={<BookingPage/>}/>
-          <Route path="/booking" element={<BookingPage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
         </Route>
       </Routes>

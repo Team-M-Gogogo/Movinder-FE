@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCinemas, getCinemasByMovieId } from "../api/movies";
+import { getCinemasByMovieId } from "../api/movies";
 import Cinema from "./Cinema";
 
 const DisplayCinemas = (props) => {
@@ -8,7 +8,6 @@ const DisplayCinemas = (props) => {
   const movie = props.selectedMovie;
 
   useEffect(() => {
-    console.log(movie);
     getCinemasByMovieId(movie.movieId).then((response) => {
       setCinemas(response.data);
     });

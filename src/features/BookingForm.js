@@ -1,14 +1,15 @@
 import React from 'react'
 import { Breadcrumb, Button, Divider, Input} from 'antd'
-import { useSelector } from 'react-redux'
 
-export default function BookingForm() {
+export default function BookingForm(props) {
 
-    const movie = useSelector((state) => {
-        return state.movie.selectedMovie;
-    });
+    const {movie, cinema, session} = props;
 
+    // const pricing = session.pricing.map((priceItem) => {
+    //     return {key: priceItem.price, label: priceItem.item}
+    // })
 
+    const date = new Date(session.datetime);
     return (
         <>
             <div>
@@ -27,15 +28,15 @@ export default function BookingForm() {
                             <tbody>
                             <tr>
                                 <td><h3>Movie Title: </h3></td>
-                                <td><h4>jytjjtyjytjy</h4></td>
+                                <td><h4>{movie.movieName}</h4></td>
                             </tr>
                             <tr>
                                 <td><h3>Cinema: </h3></td>
-                                <td><h4>jytjjtyjytjy</h4></td>
+                                <td><h4>{cinema.cinemaName}</h4></td>
                             </tr>
                             <tr>
                                 <td><h3>Selected Date & Time: </h3></td>
-                                <td><h4>jytjjtyjytjy</h4></td>
+                                <td><h4>{date.getMonth()}/{date.getDate()}-{date.getHours()}:{date.getMinutes()}</h4></td>
                             </tr>
                             <tr>
                                 <td><h3>Status: </h3></td>
@@ -43,6 +44,16 @@ export default function BookingForm() {
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <Divider></Divider>
+                    <div style={{ textAlign: "left"}}>
+                        <h2>Ticket Price</h2>
+                        {/* <Dropdown menu={{
+                            pricing,
+                            selectable: true,
+
+                        }}></Dropdown> */}
+
                     </div>
                     <Divider></Divider>
                     <div style={{ textAlign: "left", margin:"10px"}}>

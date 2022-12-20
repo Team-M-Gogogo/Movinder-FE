@@ -15,7 +15,7 @@ const DisplayCinemas = (props) => {
   const cinemaList =
     cinemas.length > 0 &&
     cinemas.map((cinema) => {
-      return <Cinema cinema={cinema} key={cinema.cinemaId} />;
+      return <Cinema cinema={cinema} movie={movie} key={cinema.cinemaId} />;
     });
   return (
     <>

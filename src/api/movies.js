@@ -29,6 +29,10 @@ export const getSessions = (movieId, cinemaId) => {
   return api.get("/movie/sessions?filmID=" + movieId + "&cinemaID=" + cinemaId);
 };
 
+export const getSessionById = (sessionId) => {
+  return api.get("/movie/sessions/" + sessionId);
+}
+
 export const postLogin = (loginInfo) => {
   return api.post("/customers/authenticate", loginInfo);
 }

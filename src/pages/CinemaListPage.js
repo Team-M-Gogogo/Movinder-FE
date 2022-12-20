@@ -2,15 +2,29 @@ import DisplayMovie from "../features/DisplayMovie";
 import DisplyaCinemas from "../features/DisplayCinemas";
 import { Divider } from "antd";
 import { Layout } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useParams} from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { getMovieById } from "../api/movies";
 
 const { Footer, Content } = Layout;
 
 export default function CinemaListPage() {
+    const [movie, setMovie] = useState([]);
+    const movieId = useParams().movieId;
+    const dispatch = useDispatch();
 
-    const movie = useSelector((state) => {
-        return state.movie.selectedMovie;
-    });
+    console.log("CInemaId: "+ movieId);
+
+    useEffect(() => {
+        getMovieById(movieId).then((response) => {
+            console.log(response.data);
+            setMovie(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, [dispatch, movieId]);
 
     return (
         <div>

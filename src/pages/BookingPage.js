@@ -12,18 +12,21 @@ export default function BookingPage() {
     const [cinema, setCinema] = useState();
     const [session, setSession] = useState();
 
-    const { movieId, sessionId } = useParams();
+    const { movieId, cinemaId, sessionId } = useParams();
 
     useEffect(() => {
         getMovieById(movieId).then((response) => {
+            console.log(response.data);
             setMovie(response.data);
         })
         .catch((error) => {
             console.log(error);
         });
         getSessionById(sessionId).then((response) => {
+            console.log(response.data);
             setSession(response.data);
-            getCinemasById(session.cinemaId).then((response) =>{
+            getCinemasById(cinemaId).then((response) =>{
+                console.log(response.data);
                 setCinema(response.data);
             })
             .catch((error) => {
@@ -33,7 +36,8 @@ export default function BookingPage() {
         .catch((error) => {
             console.log(error);
         });
-    }, [movieId, sessionId, session.cinemaId]);
+        
+    }, [movieId, sessionId, cinemaId]);
 
     return (
         <Layout style={{ padding: "0 50px" }}>

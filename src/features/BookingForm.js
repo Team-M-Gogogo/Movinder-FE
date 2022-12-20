@@ -5,9 +5,7 @@ export default function BookingForm(props) {
 
     const {movie, cinema, session} = props;
 
-    // const pricing = session.pricing.map((priceItem) => {
-    //     return {key: priceItem.price, label: priceItem.item}
-    // })
+    // console.log(movie);
 
     const date = new Date(session.datetime);
     return (

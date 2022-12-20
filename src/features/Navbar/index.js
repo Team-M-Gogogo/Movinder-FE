@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import LeftMenu from './LeftMenu'
 import RightMenu from './RightMenu'
-import { Drawer, Button } from 'antd';
 import logo from './image/logo.png'
 
 class Navbar extends Component {

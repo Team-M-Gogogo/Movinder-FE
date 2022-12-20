@@ -6,7 +6,6 @@ import CinemaListpage from "./pages/CinemaListPage";
 import LoginPage from "./pages/LoginPage";
 import {Route, Routes } from "react-router-dom";
 import BookingPage from "./pages/BookingPage";
-import Navbar from './features/Navbar'
 
 function App() {
   return (

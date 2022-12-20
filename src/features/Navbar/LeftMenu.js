@@ -1,6 +1,6 @@
 import React from 'react';
-import { Menu, Grid } from 'antd';
-import cinema from './image/cinema.png'
+import { Menu} from 'antd';
+//import cinema from './image/cinema.png'
 
 
 

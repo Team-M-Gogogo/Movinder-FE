@@ -44,12 +44,16 @@ const initMovies = [
 ];
 const initSelectedMovie = [];
 const initCinemas = [];
+const initSessions = [];
+const initSelectedSession = [];
 export const movieSlice = createSlice({
   name: "movie",
   initialState: {
     movies: initMovies,
     selectedMovie: initSelectedMovie,
     cinemas: initCinemas,
+    sessions: initSessions,
+    selectedSession: initSelectedSession,
   },
   reducers: {
     addMovies: (state, action) => {
@@ -61,9 +65,15 @@ export const movieSlice = createSlice({
     addCinemas: (state, action) => {
       state.cinemas = action.payload;
     },
+    addSessions: (state, action) => {
+      state.sessions = action.payload;
+    },
+    addSelectedSession: (state, action) => {
+      state.selectedSession = action.payload;
+    },
   },
 });
 
-export const { addMovies, addSelectedMovie, addCinemas } = movieSlice.actions;
+export const { addMovies, addSelectedMovie, addCinemas, addSessions, addSelectedSession } = movieSlice.actions;
 
 export default movieSlice.reducer;

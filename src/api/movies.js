@@ -2,10 +2,11 @@ import axios from "axios";
 
 const api = axios.create({
   // baseURL: "http://localhost:8888/",
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: process.env.BASE_URL,
 });
 
 export const getMovies = () => {
+  console.log(process.env);
   return api.get("/movie/films");
 };
 

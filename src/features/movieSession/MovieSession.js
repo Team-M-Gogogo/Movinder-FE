@@ -7,7 +7,7 @@ function MovieSession() {
   return (
     <>
     <DisplayMovie/>
-    {/* <Cinema cinema={cinema}/> */}
+    {/* <Cinema cinema={"cinema"}/> */}
     <div> Available Session</div>
     <SessionLists/>
     </>

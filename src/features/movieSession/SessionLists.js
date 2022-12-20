@@ -21,7 +21,9 @@ function SessionLists(props) {
   return (
     sessions.length > 0 &&
     sessions.map((session) => {
-      return <Session session={session} key={session.sessionId} />;
+      return (
+        <Session cinema={cinema} session={session} key={session.sessionId} />
+      );
     })
   );
 }

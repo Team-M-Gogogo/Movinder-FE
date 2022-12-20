@@ -18,9 +18,12 @@ function SessionLists(props) {
       }
     );
   }, [movie.movieId, cinema.cinemaId]);
-  return sessions.map((session) => {
-    return <Session session={session} key={session.sessionId} />;
-  });
+  return (
+    sessions.length > 0 &&
+    sessions.map((session) => {
+      return <Session session={session} key={session.sessionId} />;
+    })
+  );
 }
 
 export default SessionLists;

@@ -1,20 +1,32 @@
-import React from 'react';
-import { useSelector } from "react-redux";
-import CinemaGroup from './CinemaGroup';
+import React, { useEffect, useState } from "react";
+import { getCinemas } from "../api/movies";
+import Cinema from "./Cinema";
 
 const DisplayCinemas = () => {
-    const cinemas = useSelector((state) => {
-        return state.movie.cinemas;
+  const [cinemas, setCinemas] = useState([]);
+  useEffect(() => {
+    getCinemas().then((response) => {
+      setCinemas(response.data);
     });
-
-    return (
-        <>  
-            <div style={{ padding: 24, minHeight: 380, background: "#ffffff", textAlign: "center" }}>
-                <h1>Available Cinemas</h1>
-                <CinemaGroup cinemas={cinemas}/>
-            </div>
-        </>
-    )
+  }, []);
+  const cinemaList = cinemas.map((cinema) => {
+    return <Cinema cinema={cinema} key={cinema.cinemaId} />;
+  });
+  return (
+    <>
+      <div
+        style={{
+          padding: 24,
+          minHeight: 380,
+          background: "#ffffff",
+          textAlign: "center",
+        }}
+      >
+        <h1>Available Cinemas</h1>
+        {cinemaList}
+      </div>
+    </>
+  );
 };
 
 export default DisplayCinemas;

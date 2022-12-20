@@ -6,7 +6,6 @@ const api = axios.create({
 });
 
 export const getMovies = () => {
-  console.log(process.env);
   return api.get("/movie/films");
 };
 
@@ -29,3 +28,7 @@ export const getCinemasByMovieId = (cinemaId) => {
 export const getSessions = (movieId, cinemaId) => {
   return api.get("/movie/sessions?filmID=" + movieId + "&cinemaID=" + cinemaId);
 };
+
+export const postLogin = (loginInfo) => {
+  return api.post("/customers/authenticate", loginInfo);
+}

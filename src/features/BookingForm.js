@@ -1,6 +1,7 @@
 import React from 'react'
 import { Breadcrumb, Button, Divider, Input} from 'antd'
 import { useSelector } from 'react-redux'
+import FoodInfo from './food/FoodInfo';
 
 export default function BookingForm() {
 
@@ -49,7 +50,8 @@ export default function BookingForm() {
                         <Button> Choose Your Seat </Button>
                     </div>
                     <div style={{ textAlign: "left", margin: "10px"}}>
-                        <Button> Food Info </Button>
+                        {/* <Button> Food Info </Button> */}
+                        <FoodInfo/>
                     </div>
                     <div style={{ textAlign: "right", margin:"10px"}}>
                         <h3>Net Total: 100,000,000,000</h3>

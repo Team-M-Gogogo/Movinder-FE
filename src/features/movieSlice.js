@@ -1,28 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initSelectedMovie = [];
-const initCinemas = [];
-const initSelectedSession = [];
+const initSelectedMovie = {};
+const initSelectedSession = {};
+const initSelectedCinema = {};
 export const movieSlice = createSlice({
   name: "movie",
   initialState: {
     selectedMovie: initSelectedMovie,
-    cinemas: initCinemas,
     selectedSession: initSelectedSession,
+    selectedCinema: initSelectedCinema,
   },
   reducers: {
     addSelectedMovie: (state, action) => {
       state.selectedMovie = action.payload;
     },
-    addCinemas: (state, action) => {
-      state.cinemas = action.payload;
+    addSelectedCinema: (state, action) => {
+      state.selectedCinema = action.payload;
     },
     addSelectedSession: (state, action) => {
+      console.log(action.payload);
       state.selectedSession = action.payload;
-      console.log(state.selectedSession);
     },
   },
 });
 
-export const { addSelectedMovie, addCinemas, addSessions, addSelectedSession } = movieSlice.actions;
+export const { addSelectedMovie, addSelectedCinema, addSelectedSession } =
+  movieSlice.actions;
 
 export default movieSlice.reducer;

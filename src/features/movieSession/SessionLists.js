@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { getSessions } from "../../api/session";
 import Session from "./Session";
 
 function SessionLists() {
-  const movie = useSelector((state) => {
-    return state.movie.selectedMovie;
-  });
+  // const movie = useSelector((state) => {
+  //   return state.movie.selectedMovie;
+  // });
   const [sessions, setSessions] = useState([]);
   useEffect(() => {
     getSessions(

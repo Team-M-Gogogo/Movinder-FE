@@ -9,9 +9,11 @@ const DisplayCinemas = () => {
       setCinemas(response.data);
     });
   }, []);
-  const cinemaList = cinemas.map((cinema) => {
-    return <Cinema cinema={cinema} key={cinema.cinemaId} />;
-  });
+  const cinemaList =
+    cinemas.length > 0 &&
+    cinemas.map((cinema) => {
+      return <Cinema cinema={cinema} key={cinema.cinemaId} />;
+    });
   return (
     <>
       <div

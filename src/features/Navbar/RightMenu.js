@@ -10,7 +10,7 @@ import User from './image/user.png'
 
 const RightMenu = () => {
   const localUser = localStorage.getItem("User");
-  const user = localUser === "" ? "" : JSON.parse(localStorage.getItem("User"));
+  const user = localUser === (null||"") ? "" : JSON.parse(localStorage.getItem("User"));
   
   return (
     <Menu mode="horizontal">

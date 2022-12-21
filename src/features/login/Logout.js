@@ -5,7 +5,7 @@ import { Button, Modal} from "antd";
 export default function Logout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const localUser = localStorage.getItem("User");
-    const user = localUser === "" ? "" : JSON.parse(localStorage.getItem("User"));
+    const user = localUser === (null||"") ? "" : JSON.parse(localStorage.getItem("User"));
     const success = () => {
         Modal.success({
           content: 'Logout successfully.',

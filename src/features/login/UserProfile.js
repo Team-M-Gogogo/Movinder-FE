@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function UserProfile() {
     const localUser = localStorage.getItem("User");
-    const user = localUser === "" ? "" : JSON.parse(localStorage.getItem("User"));
+    const user = localUser === (null||"") ? "" : JSON.parse(localStorage.getItem("User"));
 
   return (
     <div>

@@ -41,9 +41,17 @@ export const postLogin = (loginInfo) => {
   return api.post("/customers/authenticate", loginInfo);
 };
 
+export const updateUserInfo = (user) => {
+  return api.put("/customers", user);
+};
+
 export const getTicketById = (ticketId) => {
   return api.get("/booking/tickets/" + ticketId);
 };
+
+export const getCustomerBookings = (customerId) =>{
+  return api.get("/booking/orders/" + customerId);
+}
 
 export const sanityCheck = () => {
   return api.get("/customers");

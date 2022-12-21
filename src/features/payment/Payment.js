@@ -5,14 +5,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {  Image  } from "antd";
 import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 export default function Payment(props) {
   // const movie = props.selectedMovie;
     const location = useLocation();
     const {movie,cinema, date} = location.state;
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleClick = () => {
     //    navigate("/DisplayTickets" , {state: {booking} });

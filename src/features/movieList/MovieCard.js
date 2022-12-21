@@ -4,7 +4,7 @@ import { ClockCircleOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import "./MovieCard.css";
 import { useDispatch } from "react-redux";
-import { addSelectedMovie } from "./movieSlice";
+import { addSelectedMovie } from "../movieSlice";
 
 export default function MovieCard(props) {
   const { movie } = props;
@@ -12,7 +12,8 @@ export default function MovieCard(props) {
   const dispatch = useDispatch();
   const onClickMovie = () => {
     dispatch(addSelectedMovie(movie));
-    navigate("/cinemaList");
+    // navigate("/cinema");
+    navigate("/"+movie.movieId);
   };
   return (
     <Card

@@ -7,7 +7,6 @@ const api = axios.create({
 });
 
 export const getMovies = () => {
-  console.log(process.env);
   return api.get("/movie/films");
 };
 
@@ -20,11 +19,11 @@ export const getCinemas = () => {
 };
 
 export const getCinemasById = (cinemaId) => {
-  return api.get("/movie/cinemas" + cinemaId);
+  return api.get("/movie/cinemas/" + cinemaId);
 };
 
 export const getCinemasByMovieId = (cinemaId) => {
-  return api.get("/movie/cinemas" + cinemaId);
+  return api.get("/movie/films/" + cinemaId + "/cinemas");
 };
 
 export const getSessions = (movieId, cinemaId) => {
@@ -34,3 +33,11 @@ export const getSessions = (movieId, cinemaId) => {
 export const getFoods = () => {
   return api.get("/booking/foods");
 };
+
+export const getSessionById = (sessionId) => {
+  return api.get("/movie/sessions/" + sessionId);
+}
+
+export const postLogin = (loginInfo) => {
+  return api.post("/customers/authenticate", loginInfo);
+}

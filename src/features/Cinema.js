@@ -6,7 +6,8 @@ const { Panel } = Collapse;
 
 export default function Cinema(props) {
 
-    const { cinema } = props;
+    const  cinema  = props.cinema;
+    const  movie  = props.movie;
 
     const onChange = (key) => {
         console.log(key);
@@ -18,11 +19,7 @@ export default function Cinema(props) {
             <Collapse defaultActiveKey={['1']} onChange={onChange}>
             <Panel header={cinema.cinemaName} key="1">
                 <div>
-                    {/* <span>{cinema.address}</span>
-                    <span style={{float:"right"}}>
-                        <Button>Movie Section</Button>
-                    </span> */}
-                    <SessionLists cinema={cinema}/>
+                    <SessionLists cinema={cinema} movie={movie}/>
                 </div>
             </Panel>
             </Collapse>

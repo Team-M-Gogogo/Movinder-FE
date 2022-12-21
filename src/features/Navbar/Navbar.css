@@ -1,0 +1,64 @@
+.menuBar {
+  padding: 0 10px;
+  border-bottom: solid 1px #dbc4c4;
+  overflow: auto;
+  box-shadow: 0 0 15px #777070;
+  text-align: center;
+}
+
+.logo {
+  width: 150px;
+  float: left;
+}
+
+.logo a {
+  display: inline-block;
+  font-size: 18px;
+  padding: px 10px;
+  text-transform: capitalize;
+}
+
+
+
+
+
+.menuCon .ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.menuCon .leftMenu {
+  float: left;
+  width: 30%;
+}
+
+.menuCon .rightMenu {
+  float: right;
+  width: 40%; /* three boxes (use 25% for four, and 50% for two, etc) */
+}
+
+
+
+
+
+.barsMenu>span {
+  display: block;
+}
+
+
+
+@media (max-width: 767px) {
+  .barsMenu {
+    display: inline-block;
+  }
+
+  .leftMenu,
+  .rightMenu,
+
+
+
+
+
+  .logo a {
+    padding: 10px 20px;
+  }
+}

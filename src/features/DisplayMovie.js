@@ -1,12 +1,9 @@
 import React from 'react';
-import { useSelector } from "react-redux";
 import { Breadcrumb, Image, Col, Row, Card } from "antd";
 
-const DisplayMovie = () => {
+const DisplayMovie = (props) => {
 
-    const movie = useSelector((state) => {
-        return state.movie.selectedMovie;
-    });
+    const movie = props.selectedMovie;
 
     return (
         <>

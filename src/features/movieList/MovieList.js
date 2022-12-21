@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getMovies } from "../api/movies";
+import { getMovies } from "../../api/movies";
 import MovieCard from "./MovieCard";
 import "./MovieList.css";
 

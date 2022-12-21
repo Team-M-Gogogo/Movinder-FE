@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { List, Row, Col, Image } from "antd";
 import { useNavigate } from "react-router-dom";
+import {Notification} from "./Notification";
 
 import {
   getCustomerBookings,
@@ -38,6 +39,7 @@ export default function UserBookingList() {
       Promise.all(bookingTicketsPromise).then((responses) => {
         console.log(responses);
         setUserBookings(responses);
+
       });
     });
   }, []);
@@ -82,6 +84,17 @@ export default function UserBookingList() {
 
   return (
     <div>
+      <div className="box">
+      <Row justify="center">
+      <h1>Warm Reminder:</h1>
+      </Row>
+      <Row >
+      <p>Below are the start date of your movie tickets in this two days:</p>
+      </Row>
+      <Row>
+      <Notification bookings ={userBookings}/>
+      </Row>
+      </div>
       <Row justify="center">
         <h1>Booking History</h1>
       </Row>

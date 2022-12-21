@@ -1,4 +1,4 @@
-import { Button, InputNumber, Modal } from "antd";
+import { Button, InputNumber, Modal, Popover } from "antd";
 import React, { useState } from "react";
 import { SeatPicker } from "../../utils/SeatPicker/SeatPicker";
 
@@ -92,9 +92,18 @@ export default function SeatingPlan(props) {
         defaultValue={childQuantity}
         onChange={onChildQuantityChange}
       />
-      <Button disabled={calTotalQuantity() === 0} onClick={showModal}>
-        Choose your seat(s)
-      </Button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <Popover
+        content={
+          calTotalQuantity() > 0
+            ? "Click to choose seats"
+            : "Select number of tickets first"
+        }
+      >
+        <Button disabled={calTotalQuantity() === 0} onClick={showModal}>
+          Choose your seat(s)
+        </Button>
+      </Popover>
       <Modal
         title=""
         open={isModalOpen}

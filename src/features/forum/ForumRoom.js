@@ -8,9 +8,13 @@ export default function ForumRoom(props) {
     const [movie, setMovie] = useState();
     const [movieName, setMovieName] = useState();
     const [roomMessage, setRoomMessage] = useState();
+    const [timer, setTimer] = useState(0);
 
     const movieId = props.movieId;
-    const cinemaId = props.cinemaId;
+
+    async function check() {
+        setTimer(timer + 1);
+    }
 
     useEffect(() =>{
         getMovieById(movieId).then((response) => {
@@ -23,6 +27,16 @@ export default function ForumRoom(props) {
             setRoomMessage(response.data);
         })
     }, [movieId]);
+
+    useEffect(() => {
+        getRoomMessage(movieId).then((response) => {
+            setRoomMessage(response.data);
+        })
+    }, [timer, movieId]);
+
+    setTimeout(() => {
+        check();
+    }, 1000);
 
 
     return (

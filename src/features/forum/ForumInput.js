@@ -21,9 +21,10 @@ export default function ForumInput(props) {
         };
         console.log(messageBody);
         addMessage(messageBody).then((response) => {
+            setMessage("");
             console.log(response);
         })
-
+        
 
     }
 
@@ -31,7 +32,7 @@ export default function ForumInput(props) {
     return (
         <div style={{margin: "10px", textAlign:"center"}}>
             <Input.Group compact>
-                <Input style={{width: 'calc(100% - 200px)'}} placeholder='Your message' onChange={handleChange}></Input>
+                <Input style={{width: 'calc(100% - 200px)'}} placeholder='Your message' onChange={handleChange} value={message}></Input>
                 <Button type="primary" onClick={handleSubmit}>Submit</Button>
             </Input.Group>
         </div>

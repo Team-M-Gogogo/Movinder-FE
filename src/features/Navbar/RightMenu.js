@@ -7,26 +7,33 @@ import { Modal, Button } from "antd";
 import { postLogin } from "../../api/movies";
 import { useNavigate, useLocation } from "react-router-dom";
 import getUser from "../../utils/getUser";
+import { useDispatch, useSelector } from "react-redux";
+import { changeShowLogin } from "../movieSlice";
 
 const RightMenu = () => {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const user = getUser();
 
+  const dispatch = useDispatch();
+
+  const isModalOpen = useSelector((state) => {
+    return state.movie.showLogin;
+  });
+
   const showModal = () => {
-    setIsModalOpen(true);
+    dispatch(changeShowLogin(true));
   };
 
   const handleOk = () => {
     user === "" ? login() : logout();
-    setIsModalOpen(false);
+    dispatch(changeShowLogin(false));
   };
   const handleCancel = () => {
     if (user === "" ){
       setUserName("");
       setPassword("");
     }
-    setIsModalOpen(false);
+    dispatch(changeShowLogin(false));
   };
 
   const [username, setUserName] = useState();

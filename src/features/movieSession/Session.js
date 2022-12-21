@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addSelectedCinema, addSelectedSession } from "../movieSlice";
 import { useNavigate } from "react-router-dom";
-import {info} from "../infoModal";
+import { changeShowLogin } from "../movieSlice";
 import getUser from "../../utils/getUser";
 
 function Session(props) {
@@ -12,14 +12,15 @@ function Session(props) {
   const date = new Date(session.datetime);
   const dispatch = new useDispatch();
   const user = getUser();
-  
 
   const handleClick = () => {
     if (user){
     dispatch(addSelectedSession(session));
     dispatch(addSelectedCinema(cinema));
     navigate("/"+session.movieId+"/"+session.cinemaId+"/"+session.sessionId);
-    }else{info();}
+    }else{
+      dispatch(changeShowLogin(true));
+    }
 
   };
   return (

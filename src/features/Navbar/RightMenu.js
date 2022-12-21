@@ -68,6 +68,7 @@ const RightMenu = () => {
   };
   const location = useLocation();
   console.log("ff", location);
+
   const login = () => {
     const loginInfo = { username: username, password: password };
     postLogin(loginInfo)
@@ -85,6 +86,7 @@ const RightMenu = () => {
     setUserName("");
     setPassword("");
   };
+  
   const loginNav = (<><Button onClick={showModal}>
     {user === "" ? "Login" : "Logout"}
   </Button>

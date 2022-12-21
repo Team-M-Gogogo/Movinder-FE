@@ -1,8 +1,9 @@
-import { Button, Modal } from "antd";
+import { Button} from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addSelectedCinema, addSelectedSession } from "../movieSlice";
 import { useNavigate } from "react-router-dom";
+import {info} from "../infoModal";
 
 function Session(props) {
   const navigate = useNavigate();
@@ -15,17 +16,6 @@ function Session(props) {
       ? ""
       : JSON.parse(localStorage.getItem("User"));
   
-      const info = () => {
-        Modal.info({
-          title: 'Please login first before buying the ticket',
-          content: (
-            <div>
-              <p>You can click the top right login button on the navigation bar to login.</p>
-            </div>
-          ),
-          onOk() {},
-        });
-      };
 
   const handleClick = () => {
     if (user){

@@ -8,7 +8,8 @@ export const movieSlice = createSlice({
     selectedMovie: initSelectedMovie,
     selectedSession: initSelectedSession,
     selectedCinema: initSelectedCinema,
-    foodTotal: 0
+    foodTotal: 0,
+    showLogin: false
   },
   reducers: {
     addSelectedMovie: (state, action) => {
@@ -25,10 +26,13 @@ export const movieSlice = createSlice({
       state.foodTotal += action.payload;
       console.log(state.foodTotal);
     },
+    changeShowLogin: (state, action) =>{
+      state.showLogin = action.payload;
+    }
   },
 });
 
-export const { addSelectedMovie, addSelectedCinema, addSelectedSession, changeFoodTotal } =
+export const { addSelectedMovie, addSelectedCinema, addSelectedSession, changeFoodTotal, changeShowLogin } =
   movieSlice.actions;
 
 export default movieSlice.reducer;

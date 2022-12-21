@@ -7,14 +7,12 @@ import { useParams} from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { getMovieById } from "../api/movies";
 
-const { Footer, Content } = Layout;
+const {  Content } = Layout;
 
 export default function CinemaListPage() {
-    const [movie, setMovie] = useState([]);
+    const [movie, setMovie] = useState({});
     const movieId = useParams().movieId;
     const dispatch = useDispatch();
-
-    console.log("CInemaId: "+ movieId);
 
     useEffect(() => {
         getMovieById(movieId).then((response) => {
@@ -26,16 +24,14 @@ export default function CinemaListPage() {
         })
     }, [dispatch, movieId]);
 
-    return (
+    return movie.movieId && (
         <div>
         <Layout style={{ padding: "0 50px" }}>
             <Content className="site-layout" style={{ padding: "0 50px" }}>
             <DisplayMovie selectedMovie={movie}/>
             <Divider></Divider>
             <DisplyaCinemas selectedMovie={movie}/>
-            <Footer style={{ textAlign: "center" }}>
-                Team M Gogogo@2022 No time to die
-            </Footer>
+
             </Content>
         </Layout>
         </div>

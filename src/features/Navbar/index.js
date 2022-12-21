@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LeftMenu from './LeftMenu'
 import RightMenu from './RightMenu'
 import logo from './image/logo.png'
 
@@ -29,9 +28,6 @@ class Navbar extends Component {
 					> <img src={logo} style={{ width: "103%" }} alt="Logo" /> </a>
 				</div>
 				<div className="menuCon">
-					<div className="leftMenu">
-						<LeftMenu />
-					</div>
 					<div className="rightMenu">
 						<RightMenu />
 					</div>

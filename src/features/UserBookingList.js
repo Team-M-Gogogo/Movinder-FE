@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { List, Row, Col, Image, Space } from "antd";
+import { List, Row, Col, Image } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -62,7 +62,6 @@ export default function UserBookingList() {
   function BookingCard(booking) {
     return (
       <Row justify="center" align="middle">
-
         <Col span={6}>
           <Image src={booking.movie.thumbnailUrl} />
         </Col>
@@ -73,7 +72,9 @@ export default function UserBookingList() {
             <p>Cinema: {booking.cinema.cinemaName}</p>
           </div>
         </Col>
-        <Col span={3} color={"blue"}>Click to view Ticket</Col>
+        <Col span={3} color={"blue"}>
+          Click to view Ticket
+        </Col>
       </Row>
     );
   }

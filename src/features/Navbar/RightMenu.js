@@ -64,6 +64,7 @@ const RightMenu = () => {
 
   const logout = () => {
     localStorage.setItem("User", "");
+    navigate("/");
     success_logout();
   };
   const location = useLocation();
@@ -86,7 +87,7 @@ const RightMenu = () => {
     setUserName("");
     setPassword("");
   };
-  
+
   const loginNav = (<><Button onClick={showModal}>
     {user === "" ? "Login" : "Logout"}
   </Button>

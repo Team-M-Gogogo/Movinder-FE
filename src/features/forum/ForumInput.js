@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Input, Button, Modal } from 'antd'
 import { addMessage } from '../../api/movies';
+import { useDispatch } from "react-redux";
+import { changeShowLogin } from "../movieSlice";
+import getUser from "../../utils/getUser";
 
 export default function ForumInput(props) {
 
@@ -9,6 +12,7 @@ export default function ForumInput(props) {
 
     const [message, setMessage] = useState();
     const [isShown, setIsShown ] = useState(false);
+    const dispatch = useDispatch();
 
     function handleChange(event){
         setMessage(event.target.value);
@@ -26,7 +30,12 @@ export default function ForumInput(props) {
             console.log(response);
         })
         .catch((error) => {
-            setIsShown(true); 
+            if (getUser() === ""){
+                dispatch(changeShowLogin(true));
+            } else{
+                setIsShown(true);
+            }
+
         })
     
     }
@@ -46,7 +55,7 @@ export default function ForumInput(props) {
                 <Input style={{width: 'calc(100% - 200px)'}} placeholder='Your message' onChange={handleChange} value={message}></Input>
                 <Button type="primary" onClick={handleSubmit}>Submit</Button>
             </Input.Group>
-            <Modal title="Please login" open={isShown} onOk={handleOk} onCancel={handleCancel}></Modal>
+            <Modal title="Error occured" open={isShown} onOk={handleOk} onCancel={handleCancel}></Modal>
         </div>
     )
 }

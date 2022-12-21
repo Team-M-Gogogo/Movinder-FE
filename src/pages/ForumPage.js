@@ -3,14 +3,11 @@ import { useParams } from 'react-router-dom';
 import ForumInput from '../features/forum/ForumInput';
 import { Layout } from "antd";
 import ForumRoom from '../features/forum/ForumRoom';
+import getUser from '../utils/getUser';
 
 export default function ForumPage() {
 
-    const localUser = localStorage.getItem("User");
-    const user =
-    localUser === null || localUser === ""
-      ? ""
-      : JSON.parse(localStorage.getItem("User"));
+    const user = getUser();
 
     const { Footer, Content } = Layout;
     const movieId = useParams().movieId;

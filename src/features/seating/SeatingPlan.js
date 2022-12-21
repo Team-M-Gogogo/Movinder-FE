@@ -40,7 +40,6 @@ export default function SeatingPlan(props) {
   };
   const [childQuantity, setChildQuantity] = useState(0);
   const onChildQuantityChange = (value) => {
-    console.log("child", value);
     setChildQuantity(value);
   };
 

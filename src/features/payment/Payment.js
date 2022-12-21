@@ -7,15 +7,57 @@ import {  Image  } from "antd";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {changeFoodTotal} from '../movieSlice'
+import { useNavigate } from "react-router-dom";
+import { postBooking } from "../../api/movies";
+
 
 export default function Payment() {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const foodTotal = useSelector((state) => {
         // console.log("!#$#@!$" , state.movie.foodTotal);
         return state.movie.foodTotal;
     });
 
+    const handleClick = () => {
+        const booking = {
+            "customerId": "63a17b96630a66688ff94ac5",
+            "movieSessionId": "63a2becef3d6432b35f2c80a",
+            "ticketRequestItems": [
+                {
+                    "item": "adult",
+                    "quantity": 1
+                },
+                {
+                    "item": "student",
+                    "quantity": 1
+                }
+            ],
+            "foodRequestItems": [
+                {
+                    "item": "63a27f882f79dc66649c430b",
+                    "quantity": 1
+                }
+            ],
+            "seatingRequests":[
+                {
+                    "row": 2,
+                    "column": 1
+                },
+                {
+                    "row": 2,
+                    "column": 0
+                }
+            ]
+        };
+        
+        postBooking(booking).then(response =>{
+            console.log(response);
+        });
+        //navigate("/ticket" );
+    };
     //console.log({foodTotal});
 
     const location = useLocation();
@@ -39,7 +81,6 @@ export default function Payment() {
                 Total: {foodTotal}
             </Col>
             <Col id= "total">
-                <input type="radio" value="Apple" name="gender" /> Apple Pay
                 <input type="radio" value="Visa" name="gender" /> Visa Card
                 <input type="radio" value="Master" name="gender" /> Master Card
             </Col>
@@ -50,7 +91,7 @@ export default function Payment() {
                 <input type="text" placeholder='CVV'/>  <br/>
             </Col>
             <Col id= "total">
-                <input type="button" value='Submit'/>   <br/>
+                <input type="button" value='Submit' onClick={handleClick}/>   <br/>
             </Col>
             </Row>
             <Row className ="middle"> 

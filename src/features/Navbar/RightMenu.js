@@ -6,30 +6,34 @@ import { useState } from "react";
 import { Modal, Button } from "antd";
 import { postLogin } from "../../api/movies";
 import { useNavigate, useLocation } from "react-router-dom";
+import getUser from "../../utils/getUser";
+import { useDispatch, useSelector } from "react-redux";
+import { changeShowLogin } from "../movieSlice";
 
 const RightMenu = () => {
   const navigate = useNavigate();
-  const localUser = localStorage.getItem("User");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const user =
-    localUser === null || localUser === ""
-      ? ""
-      : JSON.parse(localStorage.getItem("User"));
+  const user = getUser();
+
+  const dispatch = useDispatch();
+
+  const isModalOpen = useSelector((state) => {
+    return state.movie.showLogin;
+  });
 
   const showModal = () => {
-    setIsModalOpen(true);
+    dispatch(changeShowLogin(true));
   };
 
   const handleOk = () => {
     user === "" ? login() : logout();
-    setIsModalOpen(false);
+    dispatch(changeShowLogin(false));
   };
   const handleCancel = () => {
-    if (user === "" ){
+    if (user === "") {
       setUserName("");
       setPassword("");
     }
-    setIsModalOpen(false);
+    dispatch(changeShowLogin(false));
   };
 
   const [username, setUserName] = useState();
@@ -68,7 +72,6 @@ const RightMenu = () => {
     success_logout();
   };
   const location = useLocation();
-  console.log("ff", location);
 
   const login = () => {
     const loginInfo = { username: username, password: password };
@@ -88,65 +91,74 @@ const RightMenu = () => {
     setPassword("");
   };
 
-  const loginNav = (<><Button onClick={showModal}>
-    {user === "" ? "Login" : "Logout"}
-  </Button>
+  const loginNav = (
+    <>
+      <Button onClick={showModal}>{user === "" ? "Login" : "Logout"}</Button>
 
-  <Modal
-    title=""
-    open={isModalOpen}
-    onOk={handleOk}
-    onCancel={handleCancel}
-  >
-    {user === "" ? (
-      <div className="login-wrapper">
-        <h1>Log In</h1>
-        <label>
-          <p>Username</p>
-          <input
-            type="text"
-            value={username || ""}
-            onChange={onUsernameChange}
-          />
-        </label>
-        <br />
-        <label>
-          <p>Password</p>
-          <input
-            type="password"
-            value={password || ""}
-            onChange={onPasswordChange}
-          />
-        </label>
-      </div>
-    ) : (
-      <h1>
-        Hi {user === "" ? "" : user.customerName}, Are you sure to logout?{" "}
-      </h1>
-    )}
-  </Modal></>)
-
-  const items=[
-    {
-      label: <a href="/"><img src={setting} style={{ width: "20%" }} alt="Logo" />Home</a>,
-      key: 'Home',
-    },
-    {
-      label: ( user && <a href="/userprofile"><img src={User} style={{ width: "20%" }} alt="Logo" />{user === "" ? "" : user.customerName}</a>),
-      key: 'User',
-    },
-    {
-      label: loginNav,
-      key: 'login',
-    },
-
-  ] 
-
-
-
-  return (
-    <Menu mode="horizontal" items={items}/>  
+      <Modal
+        title=""
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        {user === "" ? (
+          <div className="login-wrapper">
+            <h1>Log In</h1>
+            <label>
+              <p>Username</p>
+              <input
+                type="text"
+                value={username || ""}
+                onChange={onUsernameChange}
+              />
+            </label>
+            <br />
+            <label>
+              <p>Password</p>
+              <input
+                type="password"
+                value={password || ""}
+                onChange={onPasswordChange}
+              />
+            </label>
+          </div>
+        ) : (
+          <h1>
+            Hi {user === "" ? "" : user.customerName}, Are you sure to logout?{" "}
+          </h1>
+        )}
+      </Modal>
+    </>
   );
+
+  var items = [
+    {
+      label: (
+        <a href="/">
+          <img src={setting} style={{ width: "20%" }} alt="Logo" />
+          Home
+        </a>
+      ),
+      key: "Home",
+    },
+  ];
+  if (user) {
+    items.push({
+      label: user && (
+        <a href="/userprofile">
+          <img src={User} style={{ width: "20%" }} alt="Logo" />
+          {user === "" ? "" : user.customerName}
+        </a>
+      ),
+      key: "User",
+    });
+  }
+  items.push({
+    label: loginNav,
+    key: "login",
+  });
+
+  return <Menu mode="horizontal" items={items} />;
 };
 
 export default RightMenu;

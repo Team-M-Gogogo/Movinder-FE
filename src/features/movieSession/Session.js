@@ -3,26 +3,24 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addSelectedCinema, addSelectedSession } from "../movieSlice";
 import { useNavigate } from "react-router-dom";
-import {info} from "../infoModal";
+import { changeShowLogin } from "../movieSlice";
+import getUser from "../../utils/getUser";
 
 function Session(props) {
   const navigate = useNavigate();
   const { cinema, session } = props;
   const date = new Date(session.datetime);
   const dispatch = new useDispatch();
-  const localUser = localStorage.getItem("User");
-  const user =
-    localUser === null || localUser === ""
-      ? ""
-      : JSON.parse(localStorage.getItem("User"));
-  
+  const user = getUser();
 
   const handleClick = () => {
     if (user){
     dispatch(addSelectedSession(session));
     dispatch(addSelectedCinema(cinema));
     navigate("/createBooking/"+session.movieId+"/"+session.cinemaId+"/"+session.sessionId);
-    }else{info();}
+    }else{
+      dispatch(changeShowLogin(true));
+    }
 
   };
   return (

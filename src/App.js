@@ -6,7 +6,7 @@ import CinemaListpage from "./pages/CinemaListPage";
 import { Route, Routes } from "react-router-dom";
 import BookingPage from "./pages/BookingPage";
 import ForumPage from "./pages/ForumPage";
-import DisplayTickets from "./features/Booking/DisplayTicket";
+import DisplayTickets from "./features/tickets/DisplayTicket";
 import PaymentPage from "./pages/PaymentPage";
 import UserProfilePage from "./pages/UserProfilePage";
 
@@ -20,8 +20,8 @@ function App() {
           <Route path="/chooseCinema/:movieId" element={<CinemaListpage/>}/>
           <Route path="/createBooking/:movieId/:cinemaId/:sessionId" element={<BookingPage/>}/>
           <Route path="/userprofile" element={<UserProfilePage />} />
-          <Route path="/ticket" element={<DisplayTickets />} /> #temp test
           <Route path="/forum/:movieId" element={<ForumPage/>}/>
+          <Route path="/ticket" element={<DisplayTickets />} />
           <Route path="/payment" element={<PaymentPage />} />
         </Route>
       </Routes>

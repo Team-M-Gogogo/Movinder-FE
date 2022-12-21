@@ -6,15 +6,12 @@ import { useState } from "react";
 import { Modal, Button } from "antd";
 import { postLogin } from "../../api/movies";
 import { useNavigate, useLocation } from "react-router-dom";
+import getUser from "../../utils/getUser";
 
 const RightMenu = () => {
   const navigate = useNavigate();
-  const localUser = localStorage.getItem("User");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const user =
-    localUser === null || localUser === ""
-      ? ""
-      : JSON.parse(localStorage.getItem("User"));
+  const user = getUser();
 
   const showModal = () => {
     setIsModalOpen(true);

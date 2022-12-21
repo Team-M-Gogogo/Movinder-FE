@@ -8,8 +8,9 @@ import {
   getSessionById,
   getCinemasById,
 } from "../api/movies";
+import getUser from "../utils/getUser";
 export default function UserBookingList() {
-  const customerId = "639dab4f9370b716102e1294";
+  const customerId = getUser().customerId;
   const navigate = useNavigate();
 
   const [userBookings, setUserBookings] = useState([]);

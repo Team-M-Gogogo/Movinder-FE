@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { Select, Row, Col, Space, Form, Checkbox, Input, Button } from "antd";
 import { updateUserInfo } from "../api/movies";
+import getUser from "../utils/getUser";
+
+
 const { Option } = Select;
 
-function getUser(){
-  const localUser = localStorage.getItem("User");
-  const user =
-    localUser === null || localUser === ""
-      ? ""
-      : JSON.parse(localStorage.getItem("User"));
-    return user;
-}
 
 export default function UserProfile() {
 

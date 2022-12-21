@@ -41,3 +41,15 @@ export const getSessionById = (sessionId) => {
 export const postLogin = (loginInfo) => {
   return api.post("/customers/authenticate", loginInfo);
 };
+
+export const addMessage = (messageEntity) => {
+  return api.put("/forum/rooms", messageEntity);
+}
+
+export const getRoomMessage = (movieId) => {
+  return api.get("/forum/rooms?movieID="+movieId);
+}
+
+export const getCustomerActiveRooms = (customerId) => {
+  return api.get("/forum/rooms/" + customerId);
+}

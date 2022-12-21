@@ -59,7 +59,7 @@ export default function SeatingPlan(props) {
   const [selected, setSelected] = useState([]);
   const addSeatCallback = ({ row, number, id }, addCb) => {
     setSelected((ids) => [...ids, id]);
-    const newTooltip = `tooltip for id-${id} added by callback`;
+    const newTooltip = id;
     addCb(row, number, id, newTooltip);
   };
 

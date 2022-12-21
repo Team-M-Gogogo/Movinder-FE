@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input, Button } from 'antd'
+import { Input, Button, Modal } from 'antd'
 import { addMessage } from '../../api/movies';
 
 export default function ForumInput(props) {
@@ -8,6 +8,7 @@ export default function ForumInput(props) {
     const customerId = props.customerId;
 
     const [message, setMessage] = useState();
+    const [isShown, setIsShown ] = useState(false);
 
     function handleChange(event){
         setMessage(event.target.value);
@@ -24,9 +25,19 @@ export default function ForumInput(props) {
             setMessage("");
             console.log(response);
         })
-        
-
+        .catch((error) => {
+            setIsShown(true); 
+        })
+    
     }
+
+    const handleOk = () => {
+        setIsShown(false);
+      };
+    
+      const handleCancel = () => {
+        setIsShown(false);
+      };
 
 
     return (
@@ -35,6 +46,7 @@ export default function ForumInput(props) {
                 <Input style={{width: 'calc(100% - 200px)'}} placeholder='Your message' onChange={handleChange} value={message}></Input>
                 <Button type="primary" onClick={handleSubmit}>Submit</Button>
             </Input.Group>
+            <Modal title="Please login" open={isShown} onOk={handleOk} onCancel={handleCancel}></Modal>
         </div>
     )
 }

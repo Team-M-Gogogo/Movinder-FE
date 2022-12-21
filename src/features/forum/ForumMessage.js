@@ -6,6 +6,7 @@ const { Text } = Typography;
 export default function ForumMessage(props) {
     const message = props.message;
 
+
     return (
         <>
             <Card>

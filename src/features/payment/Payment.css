@@ -9,3 +9,17 @@
     height: 100vh;
     background-color: white;
   }
+
+.middle {
+    margin-top: 15%;
+    margin-left: 3%;
+}
+
+#total{
+    margin-top: 15%;
+
+}
+
+Image{
+    white-space: pre-line;
+}

@@ -215,7 +215,7 @@ export class SeatPicker extends Component {
         isSelected,
         selectedSeat: null,
         seats: row,
-        // key: `Row${rowNumber}`,
+        // key: rowNumber,
         selectSeat: this.selectSeat,
       };
 
@@ -245,17 +245,23 @@ export class SeatPicker extends Component {
       ) {
         tooltip = tooltipOverrides[rowNumber][seat.number];
       }
+      const seatId = rowNumber + (index + 1);
       const props = {
         isSelected,
         orientation: seat.orientation,
         isReserved: seat.isReserved,
         tooltip,
         isEnabled: size < maxReservableSeats || continuous,
-        selectSeat: this.selectSeat.bind(this, rowNumber, seat.number, seat.id),
+        selectSeat: this.selectSeat.bind(
+          this,
+          rowNumber,
+          seat.number,
+          seat.id ?? seatId
+        ),
         seatNumber: seat.number,
         tooltipProps: this.props.tooltipProps,
       };
-      return <Seat key={index} {...props} />;
+      return <Seat key={seatId} {...props} />;
     });
     if (blanks.length > 0) {
       blanks.forEach((blank, index) => {

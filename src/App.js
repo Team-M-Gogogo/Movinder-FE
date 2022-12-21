@@ -6,6 +6,7 @@ import CinemaListpage from "./pages/CinemaListPage";
 import LoginPage from "./pages/LoginPage";
 import {Route, Routes } from "react-router-dom";
 import BookingPage from "./pages/BookingPage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/:movieId" element={<CinemaListpage/>}/>
           <Route path="/:movieId/:cinemaId/:sessionId" element={<BookingPage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/userprofile" element={<UserProfilePage/>}/>
         </Route>
       </Routes>
 

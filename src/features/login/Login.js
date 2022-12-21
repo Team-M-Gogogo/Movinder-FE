@@ -1,13 +1,10 @@
 import React from "react";
 import "./Login.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addCustomer } from "../customerSlice";
 import { postLogin } from "../../api/movies";
 import { Button, Modal } from "antd";
 
 export default function Login() {
-  const dispatch = useDispatch();
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
@@ -31,13 +28,13 @@ export default function Login() {
       content: "Invalid username or password.",
     });
   };
-
+ 
   const onAdd = () => {
     const loginInfo = { username: username, password: password };
     postLogin(loginInfo)
       .then((response) => {
-        dispatch(addCustomer(response.data));
-        console.log(response.data);
+        localStorage.setItem('User',  JSON.stringify(response.data))
+        console.log( localStorage.getItem('User'));
         success();
       })
       .catch((error) => {
@@ -71,7 +68,7 @@ export default function Login() {
         </label>
         <div>
           <Button size="large" onClick={onAdd}>
-            Submit{" "}
+            Submit
           </Button>
         </div>
       </form>

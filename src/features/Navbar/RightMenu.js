@@ -86,7 +86,7 @@ const RightMenu = () => {
     setPassword("");
   };
   const loginNav = (<><Button onClick={showModal}>
-    {user === "" ? "Login" : user.customerName + " Logout"}
+    {user === "" ? "Login" : "Logout"}
   </Button>
 
   <Modal
@@ -129,7 +129,7 @@ const RightMenu = () => {
       key: 'Home',
     },
     {
-      label: ( user && <a href="/userprofile"><img src={User} style={{ width: "20%" }} alt="Logo" />User</a>),
+      label: ( user && <a href="/userprofile"><img src={User} style={{ width: "20%" }} alt="Logo" />{user === "" ? "" : user.customerName}</a>),
       key: 'User',
     },
     {

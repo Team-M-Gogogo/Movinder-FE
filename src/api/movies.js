@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-   baseURL: "http://localhost:8888/",
+  // baseURL: "http://localhost:8888/",
   // baseURL: process.env.REACT_APP_BASE_URL,
-  // baseURL: "https://movinder-be-qa.up.railway.app",
+  baseURL: "https://movinder-be-qa.up.railway.app",
 });
 
 export const getMovies = () => {
@@ -36,8 +36,8 @@ export const getFoods = () => {
 
 export const getSessionById = (sessionId) => {
   return api.get("/movie/sessions/" + sessionId);
-}
+};
 
 export const postLogin = (loginInfo) => {
   return api.post("/customers/authenticate", loginInfo);
-}
+};

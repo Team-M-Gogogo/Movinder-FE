@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 import { Card } from "antd";
+
 import TicketCard from "./TicketCard";
-import { getTicketById, getSessionById, getMovieById, getCinemasById } from "../../api/movies";
+import {
+  getTicketById,
+  getSessionById,
+  getMovieById,
+  getCinemasById,
+} from "../../api/movies";
 import MovieInfoBox from "./MovieInfoBox";
+import StepBar from "../booking/bookingData";
 
 const gridStyle = {
   width: 300,
@@ -24,11 +31,10 @@ export default function DisplayTickets(props) {
 
   const [tickets, setTickets] = useState([]);
   const [movie, setMovie] = useState();
-  const [session, setSession] = useState()
+  const [session, setSession] = useState();
   const [cinema, setCinema] = useState();
 
   useEffect(() => {
-
     const bookingTicketsPromise = booking.ticketIds.map((ticketId) => {
       return getTicketById(ticketId).then((response) => {
         return response.data;
@@ -42,14 +48,14 @@ export default function DisplayTickets(props) {
     getSessionById(booking.movieSessionId).then((sessionDataResponse) => {
       setSession(sessionDataResponse.data);
       getMovieById(sessionDataResponse.data.movieId).then((movieResponse) => {
-          setMovie(movieResponse.data);
-          
+        setMovie(movieResponse.data);
       });
-      getCinemasById(sessionDataResponse.data.cinemaId).then((cinemaDataResponse) => {
-        setCinema(cinemaDataResponse.data);
-      });
+      getCinemasById(sessionDataResponse.data.cinemaId).then(
+        (cinemaDataResponse) => {
+          setCinema(cinemaDataResponse.data);
+        }
+      );
     });
-    
   }, [booking.movieSessionId, booking.ticketIds]);
 
   const ticketCardGrid = tickets.map((ticket) => {
@@ -66,14 +72,19 @@ export default function DisplayTickets(props) {
     );
   });
 
-  if (movie && session && cinema){
+  if (movie && session && cinema) {
     return (
       <div>
-        <MovieInfoBox movie={movie} session={session} booking={booking} cinema={cinema}/>
+        <StepBar number={2}/>
+
+        <MovieInfoBox
+          movie={movie}
+          session={session}
+          booking={booking}
+          cinema={cinema}
+        />
         <Card title="Tickets">{ticketCardGrid}</Card>
       </div>
     );
   }
-
-
 }

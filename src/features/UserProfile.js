@@ -1,21 +1,19 @@
 import React, { useState } from "react";
-import { Select, Row, Col, Space, Form, Checkbox, Input, Button } from "antd";
+import { Select, Row, Col, Form, Input, Button } from "antd";
 import { updateUserInfo } from "../api/movies";
 const { Option } = Select;
 
-function getUser(){
+function getUser() {
   const localUser = localStorage.getItem("User");
   const user =
     localUser === null || localUser === ""
       ? ""
       : JSON.parse(localStorage.getItem("User"));
-    return user;
+  return user;
 }
 
 export default function UserProfile() {
-
   const [user, setuser] = useState(getUser());
-
 
   const [fields, setFields] = useState([
     {
@@ -48,8 +46,6 @@ export default function UserProfile() {
       setuser(response.data);
       window.location.reload(false);
     });
-
-  
   }
 
   return (
@@ -69,8 +65,6 @@ export default function UserProfile() {
     </Col>
   );
 }
-
-
 
 const CustomizedForm = ({ onChange, fields, updateLocalUser }) => (
   <Form
@@ -114,9 +108,7 @@ const CustomizedForm = ({ onChange, fields, updateLocalUser }) => (
         },
       ]}
     >
-      <Select
-        placeholder="Select a option and change input text above"
-      >
+      <Select placeholder="Select a option and change input text above">
         <Option value="single">Single</Option>
         <Option value="occupied">Occupied</Option>
       </Select>

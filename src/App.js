@@ -3,10 +3,13 @@ import "./features/Navbar/Navbar.css";
 import Layout from "./layout/Layout";
 import HomePage from "./pages/HomePage";
 import CinemaListpage from "./pages/CinemaListPage";
-import LoginPage from "./pages/LoginPage";
 import {Route, Routes } from "react-router-dom";
 import BookingPage from "./pages/BookingPage";
 import ForumPage from "./pages/ForumPage";
+import DisplayTickets from "./features/Booking/DisplayTicket";
+import PaymentPage from "./pages/PaymentPage";
+import UserProfilePage from "./pages/UserProfilePage";
+
 
 function App() {
   return (
@@ -18,8 +21,10 @@ function App() {
           {/* <Route path="/cinema" element={<CinemaListpage/>}/> */}
           <Route path="/chooseCinema/:movieId" element={<CinemaListpage/>}/>
           <Route path="/createBooking/:movieId/:cinemaId/:sessionId" element={<BookingPage/>}/>
+          <Route path="/userprofile" element={<UserProfilePage/>}/>
           <Route path="/forum/:movieId" element={<ForumPage/>}/>
-          <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/ticket" element={<DisplayTickets></DisplayTickets>}/> #temp test
+          <Route path="/payment" element={<PaymentPage/>}/>
         </Route>
       </Routes>
 

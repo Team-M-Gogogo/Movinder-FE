@@ -42,6 +42,14 @@ export const postLogin = (loginInfo) => {
   return api.post("/customers/authenticate", loginInfo);
 };
 
+export const getTicketById = (ticketId) => {
+  return api.get("/booking/tickets/" + ticketId);
+};
+
+export const sanityCheck = () => {
+  return api.get("/customers");
+};
+
 export const addMessage = (messageEntity) => {
   return api.put("/forum/rooms", messageEntity);
 }

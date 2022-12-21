@@ -4,12 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {  Image  } from "antd";
+import { useLocation } from "react-router-dom";
 
-export default function Payment(props) {
-    // const movie = props.selectedMovie;
+export default function Payment() {
 
-    const {movie, cinema, session, date} = props;
-    
+    const location = useLocation();
+    const {movie,cinema, date} = location.state;
+    console.log("***" , cinema);
     return (
 
         <Container className='centered-div'>
@@ -20,9 +21,8 @@ export default function Payment(props) {
             </Col>       
             <Col>
                 <Image
-                    //src={movie.thumbnailUrl}
+                    src= {movie.thumbnailUrl}
                     width={200}
-                    src= "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
                 />
             </Col>
             <Col id= "total">
@@ -45,10 +45,13 @@ export default function Payment(props) {
             </Row>
             <Row className ="middle"> 
                     <Col>
-                        Move: 
+                        Move: {movie.movieName}
                     </Col>
                     <Col>
-                        Date:
+                        Date: {date.getMonth()}/{date.getDate()}-{date.getHours()}:{date.getMinutes()}
+                    </Col>
+                    <Col>
+                        Cinema: {cinema.cinemaName}
                     </Col>
                     <Col>
                         Seat:
@@ -59,8 +62,6 @@ export default function Payment(props) {
             </Row> 
 
         </Container>
-
-         
 
     )
 }

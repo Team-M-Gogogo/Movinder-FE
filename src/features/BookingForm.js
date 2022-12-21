@@ -1,13 +1,20 @@
 import React from 'react'
 import { Breadcrumb, Button, Divider, Input} from 'antd'
+import PaymentPage from '../pages/PaymentPage';
+import { useNavigate } from "react-router-dom";
 
 export default function BookingForm(props) {
+    const navigate = useNavigate();
 
     const {movie, cinema, session} = props;
 
     // console.log(movie);
 
     const date = new Date(session.datetime);
+
+    const handleClick = () => {
+        navigate(PaymentPage);
+    };
     return (
         <>
             <div>
@@ -65,7 +72,7 @@ export default function BookingForm(props) {
                     </div>
                     <div style={{ textAlign: "right"}}>
                         <Button style={{ margin: "10px"}}> Cancel </Button>
-                        <Button style={{ margin: "10px", background:"#ffa07a"}}> Buy </Button>
+                        <Button  onClick={handleClick} movie={movie} session={session} date={date}  style={{ margin: "10px", background:"#ffa07a"}} > Buy </Button>
                     </div>
                 </div>
             </div>

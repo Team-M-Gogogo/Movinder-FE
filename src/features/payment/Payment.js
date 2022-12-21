@@ -8,7 +8,7 @@ import {  Image  } from "antd";
 export default function Payment(props) {
     // const movie = props.selectedMovie;
 
-    const {movie, cinema, session} = props;
+    const {movie, cinema, session, date} = props;
     
     return (
 

@@ -2,9 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   // baseURL: "http://localhost:8888/",
-  // baseURL: process.env.REACT_APP_BASE_URL,
-  baseURL: "https://movinder-be-qa.up.railway.app",
-  // baseURL: "http://localhost:8888",
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 export const getMovies = () => {
@@ -41,12 +39,12 @@ export const getSessionById = (sessionId) => {
 
 export const postLogin = (loginInfo) => {
   return api.post("/customers/authenticate", loginInfo);
-}
+};
 
-export const getTicketById = (ticketId) =>{
-  return api.get("/booking/tickets/"+ ticketId);
-}
+export const getTicketById = (ticketId) => {
+  return api.get("/booking/tickets/" + ticketId);
+};
 
-export const sanityCheck = () =>{
+export const sanityCheck = () => {
   return api.get("/customers");
-}
+};

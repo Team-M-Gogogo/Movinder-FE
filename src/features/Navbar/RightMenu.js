@@ -1,24 +1,120 @@
 import React from 'react';
 import { Menu} from 'antd';
 import setting from './image/setting.png'
-import logout from './image/Logout.png'
 import User from './image/user.png'
-
-
-
+import { useState } from "react";
+import {  Modal, Button} from "antd";
+import { postLogin } from "../../api/movies";
 
 
 const RightMenu = () => {
+  const localUser = localStorage.getItem("User");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = localUser === (null||"") ? "" : JSON.parse(localStorage.getItem("User"));   
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };  
+
+  const handleOk = () => {
+    user === "" ? login() : logout()
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
+
+  const onUsernameChange = (event) => {
+    setUserName(event.target.value);
+  };
+
+  const onPasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const success = () => {
+    Modal.success({
+      content: "Successfully Login.",
+    });
+  };
+
+  const success_logout = () => {
+    Modal.success({
+      content: "Successfully Logout.",
+    });
+  };
+
+  const warning = () => {
+    Modal.warning({
+      title: "Fail to login",
+      content: "Invalid username or password.",
+    });
+  };
+
+  const logout = () => {
+    localStorage.setItem('User', "");
+    success_logout();
+  };
+ 
+  const login = () => {
+    const loginInfo = { username: username, password: password };
+    postLogin(loginInfo)
+      .then((response) => {
+        localStorage.setItem('User',  JSON.stringify(response.data))
+        console.log( localStorage.getItem('User'));
+        success();
+      })
+      .catch((error) => {
+        console.error(error);
+        warning();
+      });
+
+    setUserName("");
+    setPassword("");
+  };
+  
   return (
     <Menu mode="horizontal">
       <Menu.Item >
-        <a href="/"><img src={setting} style={{ width: "20%" }} alt="Logo" />Setting</a>
+        <a href="/"><img src={setting} style={{ width: "20%" }} alt="Logo" />Home</a>
       </Menu.Item>
+
+      {user === "" ? "" : 
       <Menu.Item >
-        <a href="/"><img src={User} style={{ width: "20%" }} alt="Logo" />User</a>
-      </Menu.Item>
+        <a href="/userprofile"><img src={User} style={{ width: "20%" }} alt="Logo" />User</a>
+      </Menu.Item>}
+      
       <Menu.Item >
-        <a href="/login"><img src={logout} style={{ width: "20%" }} alt="Logo" />Login</a>
+        <Button onClick={showModal}>
+        {user === "" ? "Login" : user.customerName + " Logout"}</Button>
+
+      <Modal title="" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      {user === "" ?     
+      <div className="login-wrapper">
+      <h1>Log In</h1>
+      <label>
+          <p>Username</p>
+          <input
+            type="text"
+            value={username || ""}
+            onChange={onUsernameChange}
+          />
+       </label>
+       <br/>
+       <label>
+          <p>Password</p>
+          <input
+            type="password"
+            value={password || ""}
+            onChange={onPasswordChange}
+          />
+        </label>
+    </div> : <h1>Hi {user === "" ? "" : user.customerName }, Are you sure to logout? </h1>}
+          
+      </Modal>
       </Menu.Item>
 
     </Menu>

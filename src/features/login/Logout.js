@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from "react";
-import { Button, Modal, Input} from "antd";
+import { Button, Modal} from "antd";
 
 export default function Logout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const localUser = localStorage.getItem("User");
-    const user = localUser == "" ? "" : JSON.parse(localStorage.getItem("User"));
+    const user = localUser === "" ? "" : JSON.parse(localStorage.getItem("User"));
     const success = () => {
         Modal.success({
           content: 'Logout successfully.',
@@ -33,7 +33,7 @@ export default function Logout() {
          Logout
         </Button>
     <Modal title="Logout Message" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-    <p>Hi {user == "" ? "" : user.customerName}, Are you sure to logout? </p>
+    <p>Hi {user === "" ? "" : user.customerName}, Are you sure to logout? </p>
       </Modal>
       </div>
   </div>

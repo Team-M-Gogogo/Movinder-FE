@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+@import "abstracts/variables";
+
+@import "components/blank";
+@import "components/loader";
+@import "components/seat";
+@import "components/seat-content";
+@import "components/seat-picker";
+
+
+.screen{
+  background-color: black;
+  color: wheat;
+  width: 80%;
+  margin: 10%;
+  text-align: center;
+}
+
+div.blank {
+  display: none;
+}

@@ -37,6 +37,10 @@ export const getSessionById = (sessionId) => {
   return api.get("/movie/sessions/" + sessionId);
 };
 
+export const postBooking = (booking) => {
+  return api.post("/booking/orders", booking);
+};
+
 export const postLogin = (loginInfo) => {
   return api.post("/customers/authenticate", loginInfo);
 };

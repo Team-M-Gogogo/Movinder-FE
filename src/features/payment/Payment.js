@@ -5,12 +5,22 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {  Image  } from "antd";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {changeFoodTotal} from '../movieSlice'
 
 export default function Payment() {
 
+    const foodTotal = useSelector((state) => {
+        // console.log("!#$#@!$" , state.movie.foodTotal);
+        return state.movie.foodTotal;
+    });
+
+    //console.log({foodTotal});
+
     const location = useLocation();
     const {movie,cinema, date} = location.state;
-    console.log("***" , cinema);
+    //console.log("***" , cinema);
     return (
 
         <Container className='centered-div'>
@@ -26,7 +36,7 @@ export default function Payment() {
                 />
             </Col>
             <Col id= "total">
-                Total:
+                Total: {foodTotal}
             </Col>
             <Col id= "total">
                 <input type="radio" value="Apple" name="gender" /> Apple Pay

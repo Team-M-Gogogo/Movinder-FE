@@ -19,12 +19,13 @@ function Food(props) {
   };
   return (
     <>
-      <Card style={{margin:"15px"}} type="inner" title={food.foodName}>
+      <Card style={{ margin: "15px" }} type="inner" title={food.foodName}>
         <p>Description: {food.description}</p>
         <p>Price: ${food.price}</p>
         <Input.Group compact>
           <Button onClick={handleReduce}>-</Button>
           <Input
+            disabled
             placeholder={amount}
             style={{
               width: "30px",

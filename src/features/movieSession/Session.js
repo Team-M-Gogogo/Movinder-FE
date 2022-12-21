@@ -12,7 +12,7 @@ function Session(props) {
   const handleClick = () => {
     dispatch(addSelectedSession(session));
     dispatch(addSelectedCinema(cinema));
-    navigate("/"+session.movieId+"/"+session.cinemaId+"/"+session.sessionId);
+    navigate("/createBooking/"+session.movieId+"/"+session.cinemaId+"/"+session.sessionId);
 
   };
   return (

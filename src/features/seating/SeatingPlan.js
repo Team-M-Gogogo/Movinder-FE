@@ -1,4 +1,4 @@
-import { InputNumber } from "antd";
+import { Button, InputNumber, Modal } from "antd";
 import React, { useState } from "react";
 import { SeatPicker } from "../../utils/SeatPicker/SeatPicker";
 
@@ -42,6 +42,36 @@ export default function SeatingPlan(props) {
   const onChildQuantityChange = (value) => {
     setChildQuantity(value);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const [selected, setSelected] = useState([]);
+  const addSeatCallback = ({ row, number, id }, addCb) => {
+    setSelected((ids) => [...ids, id]);
+    const newTooltip = `tooltip for id-${id} added by callback`;
+    addCb(row, number, id, newTooltip);
+  };
+
+  const removeSeatCallback = ({ row, number, id }, removeCb) => {
+    setSelected((selectedIds) =>
+      selectedIds.filter((selectedId) => selectedId !== id)
+    );
+    removeCb(row, number);
+  };
+  const calTotalQuantity = () => {
+    return adultQuantity + childQuantity;
+  };
 
   return (
     <div>
@@ -62,13 +92,28 @@ export default function SeatingPlan(props) {
         defaultValue={childQuantity}
         onChange={onChildQuantityChange}
       />
-      <h1 className="screen">SCREEN</h1>
-      <SeatPicker
-        rows={rows}
-        maxReservableSeats={adultQuantity + childQuantity}
-        visible
-        alpha
-      />
+      <Button disabled={calTotalQuantity() === 0} onClick={showModal}>
+        Choose your seat(s)
+      </Button>
+      <Modal
+        title=""
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <h1 className="screen">SCREEN</h1>
+        <SeatPicker
+          addSeatCallback={addSeatCallback}
+          removeSeatCallback={removeSeatCallback}
+          rows={rows}
+          maxReservableSeats={calTotalQuantity()}
+          visible
+          alpha
+        />
+        No. of tickets: {selected.length}/{calTotalQuantity()}
+        <br />
+        Chosen seats: {selected.join()}
+      </Modal>
     </div>
   );
 }

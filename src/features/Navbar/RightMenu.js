@@ -25,6 +25,10 @@ const RightMenu = () => {
     setIsModalOpen(false);
   };
   const handleCancel = () => {
+    if (user === "" ){
+      setUserName("");
+      setPassword("");
+    }
     setIsModalOpen(false);
   };
 

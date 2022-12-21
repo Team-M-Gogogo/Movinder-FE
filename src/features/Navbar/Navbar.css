@@ -1,14 +1,20 @@
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .menuBar {
   padding: 0 10px;
   border-bottom: solid 1px #dbc4c4;
   overflow: auto;
-  box-shadow: 0 0 15px #777070;
   text-align: center;
 }
 
 .logo {
   width: 150px;
   float: left;
+  margin: 13px;
 }
 
 .logo a {
@@ -19,25 +25,23 @@
 }
 
 
-
-
-
 .menuCon .ant-menu-horizontal {
   border-bottom: none;
+  border-right: none;
 }
 
 .menuCon .leftMenu {
+  margin: 10px;
   float: left;
   width: 30%;
 }
 
 .menuCon .rightMenu {
-  float: right;
-  width: 40%; /* three boxes (use 25% for four, and 50% for two, etc) */
+    float: right;   
+    width: 25%; /*three boxes (use 25% for four, and 50% for two, etc) */
+    margin-top: 35px;
+
 }
-
-
-
 
 
 .barsMenu>span {
@@ -45,17 +49,18 @@
 }
 
 
-
 @media (max-width: 767px) {
   .barsMenu {
     display: inline-block;
   }
 
-  .leftMenu,
-  .rightMenu,
-
-
-
+  .leftMenu
+  {
+    padding: 15px;
+  }
+  .rightMenu{
+    padding: 15px;
+  }
 
 
   .logo a {

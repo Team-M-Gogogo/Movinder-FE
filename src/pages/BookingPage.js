@@ -25,13 +25,13 @@ export default function BookingPage() {
         getSessionById(sessionId).then((response) => {
             console.log(response.data);
             setSession(response.data);
-            getCinemasById(cinemaId).then((response) =>{
-                console.log(response.data);
-                setCinema(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+        getCinemasById(cinemaId).then((response) =>{
+            console.log(response.data);
+            setCinema(response.data);
         })
         .catch((error) => {
             console.log(error);
@@ -39,10 +39,13 @@ export default function BookingPage() {
         
     }, [movieId, sessionId, cinemaId]);
 
-    return (
+    console.log(movie, session, cinema);
+
+
+    return (    
         <Layout style={{ padding: "0 50px" }}>
             <Content className="site-layout" style={{ padding: "0 50px" }}>
-                <BookingForm movie={movie} cinema={cinema} session={session}/>
+                {movie && cinema && session && <BookingForm movie={movie} cinema={cinema} session={session}/>}
             <Footer style={{ textAlign: "center" }}>
                 Team M Gogogo@2022 No time to die
             </Footer>

@@ -82,7 +82,10 @@ export default function BookingForm(props) {
           </div>
           <Divider></Divider>
           <div style={{ textAlign: "left", margin: "10px" }}>
-            <SeatingPlan floorPlan={cinema.floorPlan} />
+            <SeatingPlan
+              floorPlan={cinema.floorPlan}
+              pricing={session.pricing}
+            />
           </div>
           <div style={{ textAlign: "left", margin: "10px" }}>
             <FoodInfo />

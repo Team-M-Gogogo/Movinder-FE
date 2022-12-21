@@ -21,7 +21,7 @@ function Session(props) {
     if (user){
     dispatch(addSelectedSession(session));
     dispatch(addSelectedCinema(cinema));
-    navigate("/"+session.movieId+"/"+session.cinemaId+"/"+session.sessionId);
+    navigate("/createBooking/"+session.movieId+"/"+session.cinemaId+"/"+session.sessionId);
     }else{info();}
 
   };

@@ -14,8 +14,6 @@ export default function CinemaListPage() {
     const movieId = useParams().movieId;
     const dispatch = useDispatch();
 
-    console.log("CInemaId: "+ movieId);
-
     useEffect(() => {
         getMovieById(movieId).then((response) => {
             console.log(response.data);

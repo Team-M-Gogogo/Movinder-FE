@@ -12,6 +12,8 @@ export const movieSlice = createSlice({
     selectedTickets: [],
     selectedTicketsPriceTotal: 0,
     foodTotal: 0,
+    selectedFood: [],
+    finalSelectedFood: [],
     showLogin: false,
   },
   reducers: {
@@ -26,6 +28,26 @@ export const movieSlice = createSlice({
     },
     changeFoodTotal: (state, action) => {
       state.foodTotal += action.payload;
+    },
+    addSelectedFood: (state, action) => {
+      state.selectedFood.push(action.payload);
+    },
+    removeSelectedFood: (state, action) => {
+      const index = state.selectedFood.indexOf(action.payload);
+      state.selectedFood.splice(index, 1);
+    },
+    handleFinalSelectedFood: (state, action) => {
+      var counts = {};
+      for (var i = 0; i < state.selectedFood.length; i++) {
+        counts[state.selectedFood[i]] = 1 + (counts[state.selectedFood[i]] || 0);
+      }
+      for (var foodId in counts){
+        state.finalSelectedFood.push({
+          "item": foodId,
+          "quantity": counts[foodId]
+        })
+      }
+      
     },
     changeShowLogin: (state, action) => {
       state.showLogin = action.payload;
@@ -47,6 +69,9 @@ export const {
   addSelectedCinema,
   addSelectedSession,
   changeFoodTotal,
+  addSelectedFood,
+  handleFinalSelectedFood,
+  removeSelectedFood,
   changeShowLogin,
   updateSelectedSeats,
   updateSelectedTickets,

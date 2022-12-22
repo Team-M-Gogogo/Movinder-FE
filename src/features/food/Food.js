@@ -1,7 +1,11 @@
 import { Card, Button, Input, Image } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeFoodTotal } from "../movieSlice";
+import {
+  changeFoodTotal,
+  addSelectedFood,
+  removeSelectedFood,
+} from "../movieSlice";
 import "./Food.css";
 
 function Food(props) {
@@ -12,12 +16,15 @@ function Food(props) {
     if (amount > 0) {
       setAmount(amount - 1);
       dispatch(changeFoodTotal(-food.price));
+      dispatch(removeSelectedFood(food.foodId));
     }
   };
   const handleAdd = () => {
     setAmount(amount + 1);
     dispatch(changeFoodTotal(food.price));
+    dispatch(addSelectedFood(food.foodId));
   };
+  console.log(food.foodId);
   return (
     <>
       <Card className="foodCard" type="inner" title={food.foodName}>

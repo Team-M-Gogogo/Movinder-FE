@@ -37,11 +37,24 @@ const DisplayMovie = (props) => {
                                     <div><h1>{movie.movieName}</h1></div>
                                     <div style={{textAlign: "left"}}>
                                         <div>
-                                            Description: {movie.description}
+                                            <h2>Description: </h2>{movie.description}
                                         </div>
                                         <div>
-                                            Duration: {movie.duration}
+                                            <h2>Duration: </h2>{movie.duration}
                                         </div>
+                                        {movie.trailerUrl &&
+                                            <div>
+                                                <div><h2>Movie Trailer</h2></div>
+                                                <iframe
+                                            width="500"
+                                            height="338"
+                                            src={`https://www.youtube.com/embed/${movie.trailerUrl}`}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                            title="Embedded youtube"
+                                        />
+                                            </div>}
                                     </div>
                                 </Card>
                                 <div style={{textAlign: "left", marginTop:"10px"}}>

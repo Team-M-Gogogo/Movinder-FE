@@ -69,7 +69,7 @@ export default function DisplayTickets(props) {
         }
       );
     });
-  }, [booking.movieSessionId, booking.ticketIds]);
+  });
 
   const ticketCardGrid = tickets.map((ticket) => {
     return (

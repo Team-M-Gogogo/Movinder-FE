@@ -1,9 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  // baseURL: "http://localhost:8888/",
-  // baseURL: process.env.REACT_APP_BASE_URL,
-  baseURL: "https://movinder-be-qa.up.railway.app",
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 export const getMovies = () => {
@@ -54,9 +52,9 @@ export const getTicketById = (ticketId) => {
   return api.get("/booking/tickets/" + ticketId);
 };
 
-export const getCustomerBookings = (customerId) =>{
+export const getCustomerBookings = (customerId) => {
   return api.get("/booking/orders/" + customerId);
-}
+};
 
 export const sanityCheck = () => {
   return api.get("/customers");
@@ -64,16 +62,16 @@ export const sanityCheck = () => {
 
 export const addMessage = (messageEntity) => {
   return api.put("/forum/rooms", messageEntity);
-}
+};
 
 export const getRoomMessage = (movieId) => {
-  return api.get("/forum/rooms?movieID="+movieId);
-}
+  return api.get("/forum/rooms?movieID=" + movieId);
+};
 
 export const getCustomerActiveRooms = (customerId) => {
   return api.get("/forum/rooms/" + customerId);
-}
+};
 
 export const getCustomerById = (customerId) => {
-  return api.get("/customers/"+customerId);
-}
+  return api.get("/customers/" + customerId);
+};

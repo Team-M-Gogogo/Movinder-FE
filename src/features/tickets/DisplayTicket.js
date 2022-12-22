@@ -24,7 +24,11 @@ export default function DisplayTickets(props) {
     customerId: "639dab4f9370b716102e1294",
     movieSessionId: "63a0543e73a0b344693a7a22",
     ticketIds: ["63a29d9fe6ca2164d8e4c5fc", "63a29d9fe6ca2164d8e4c5fd"],
-    foodIds: ["639dc14cb64fa559d6100d0c", "639dc14cb64fa559d6100d0c", "63a3cf34407860246eea0b74"],
+    foodIds: [
+      "639dc14cb64fa559d6100d0c",
+      "639dc14cb64fa559d6100d0c",
+      "63a3cf34407860246eea0b74",
+    ],
     bookingTime: "2022-12-21T13:46:07.908",
     total: 220,
   };
@@ -46,7 +50,6 @@ export default function DisplayTickets(props) {
       setTickets(responses);
     });
 
-
     getFoods().then((response) => {
       var result = response.data.reduce(function (map, obj) {
         map[obj.foodId] = obj;
@@ -66,6 +69,7 @@ export default function DisplayTickets(props) {
         }
       );
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ticketCardGrid = tickets.map((ticket) => {

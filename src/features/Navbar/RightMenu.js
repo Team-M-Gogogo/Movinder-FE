@@ -34,7 +34,9 @@ const RightMenu = () => {
 
   const filteredBooksTodayTmr = userBookings.filter(bookingTodayTmr);
 
+
   useEffect(() => {
+    if(customerId){
     getCustomerBookings(customerId).then((response) => {
       const bookingTicketsPromise = response.data.map((booking) => {
         return getSessionById(booking.movieSessionId).then(
@@ -59,6 +61,7 @@ const RightMenu = () => {
         setUserBookings(responses);
       });
     });
+  }
   }, [customerId]);
 
   

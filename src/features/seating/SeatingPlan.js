@@ -1,6 +1,8 @@
 import { Button, InputNumber, Modal, Popover } from "antd";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { SeatPicker } from "../../utils/SeatPicker/SeatPicker";
+import { updateSelectedSeats, updateSelectedTickets } from "../movieSlice";
 
 export default function SeatingPlan(props) {
   const { floorPlan, pricing } = props;
@@ -48,7 +50,15 @@ export default function SeatingPlan(props) {
     setIsModalOpen(true);
   };
 
+  const dispatch = useDispatch();
   const handleOk = () => {
+    dispatch(updateSelectedSeats(selected));
+    dispatch(
+      updateSelectedTickets({
+        adult: { quantity: adultQuantity, price: adultPrice },
+        child: { quantity: childQuantity, price: childPrice },
+      })
+    );
     setIsModalOpen(false);
   };
 

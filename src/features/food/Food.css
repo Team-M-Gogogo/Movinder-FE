@@ -1,0 +1,17 @@
+.foodCard {
+    margin: 15px;
+    width: 300px;
+
+}
+.quanButton {
+    vertical-align: text-top;
+}
+
+.foodQuantity {
+    width: 40px;
+    text-align: center;
+    font-size: 14px;
+    height: 32px;
+    padding: 4px 15px;
+    border: solid #d9d9d9 1px;
+}

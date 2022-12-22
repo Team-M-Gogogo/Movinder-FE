@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getFoods } from "../../api/movies";
 import Food from "./Food";
+import "./FoodList.css"
 
 function FoodList() {
   const [foods, setfoods] = useState({});
@@ -10,11 +11,12 @@ function FoodList() {
       setfoods(response.data);
     });
   }, []);
-  return (
+  const foodCards =
     foods.length > 0 &&
     foods.map((food) => {
-    return <Food food={food} key={food.foodId}/>;
-  }));
+      return <Food food={food} key={food.foodId} />;
+    });
+  return <div className="foodList">{foodCards}</div>;
 }
 
 export default FoodList;

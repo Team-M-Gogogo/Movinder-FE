@@ -69,3 +69,7 @@ export const getRoomMessage = (movieId) => {
 export const getCustomerActiveRooms = (customerId) => {
   return api.get("/forum/rooms/" + customerId);
 }
+
+export const getCustomerById = (customerId) => {
+  return api.get("/customers/"+customerId);
+}

@@ -42,7 +42,7 @@ export default function UserBookingList() {
 
       });
     });
-  }, []);
+  }, [customerId]);
 
   // find cinema and movie name and show time
 

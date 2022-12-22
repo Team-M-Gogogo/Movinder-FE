@@ -1,7 +1,8 @@
-import { Card, Button, Input } from "antd";
+import { Card, Button, Input, Image } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeFoodTotal } from "../movieSlice";
+import "./Food.css";
 
 function Food(props) {
   const food = props.food;
@@ -19,17 +20,14 @@ function Food(props) {
   };
   return (
     <>
-      <Card style={{ margin: "15px" }} type="inner" title={food.foodName}>
+      <Card className="foodCard" type="inner" title={food.foodName}>
+        <Image width="100px" src={food.thumbnailUrl} />
         <p>Description: {food.description}</p>
         <p>Price: ${food.price}</p>
-        <Input.Group compact>
+        <Input.Group compact className="quanButton">
           <Button onClick={handleReduce}>-</Button>
-          <Input
-            placeholder={amount}
-            style={{
-              width: "33px",
-            }}
-          />
+          {/* <Input disabled className="foodQuantity" placeholder={amount} /> */}
+          <p className="foodQuantity">{amount}</p>
           <Button onClick={handleAdd}>+</Button>
         </Input.Group>
       </Card>

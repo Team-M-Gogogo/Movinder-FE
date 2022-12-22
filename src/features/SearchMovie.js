@@ -10,6 +10,7 @@ export const SearchMovie = (props) => {
     const movies = props.movies;
     const [filteredList, setFilteredList] = new useState(movies);
     const [searchText, setSearchText] = useState("");
+    const [showSearchResult, setShowSearchResult] = useState(false);
 
     const onTextChange = (event) => {
         setSearchText(event.target.value);
@@ -24,6 +25,8 @@ export const SearchMovie = (props) => {
     });
 
     setFilteredList(updatedList);
+    setShowSearchResult(true);
+    setSearchText("");
   };
 
 
@@ -34,7 +37,7 @@ export const SearchMovie = (props) => {
     <input id="search-box" value={searchText} onChange={onTextChange} />
     <Button size="large" onClick={filterBySearch}>Search </Button>
   </div>
-  {searchText === "" ? (
+  {!showSearchResult  ? (
            <div className="movieList">
     
            {movies.map((item) => (

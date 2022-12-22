@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { List, Row, Col, Image } from "antd";
+import { List, Row, Col, Image, Button, Card, Divider } from "antd";
 import { useNavigate } from "react-router-dom";
 import {Notification} from "./Notification";
-import moment from 'moment';
 
 import {
   getCustomerBookings,
@@ -60,53 +59,55 @@ export default function UserBookingList() {
   };
 
   function goToTicketPage(booking) {
-    navigate("/ticket", {state: {booking} });
+    console.log(booking);
+    navigate("/ticket", {state: booking});
   }
 
-
-  
   function BookingCard(booking) {
-    var show = moment(booking.session.datetime).format('MMMM Do YYYY, h:mm a');
     return (
-      <Row justify="center" align="middle">
-        <Col span={6}>
-          <Image height={300} src={booking.movie.thumbnailUrl} />
-        </Col>
-        <Col span={11}>
-          <div>
-            <p>Movie name: {booking.movie.movieName}</p>
-            <p>Show time: {show}</p>
-            <p>Cinema: {booking.cinema.cinemaName}</p>
-          </div>
-        </Col>
-        <Col span={3} color={"blue"}>
-          Click to view Ticket
-        </Col>
-      </Row>
+      <Card title={"Movie Title: "+ booking.movie.movieName} extra={<Button onClick={() => goToTicketPage(booking.bookingObj)}>Click to view Ticket</Button>}>
+        <Row justify="center" align="middle">
+          <Col>
+            <Image src={booking.movie.thumbnailUrl} style={{height:"300px"}}/>
+          </Col>
+          <Col style={{margin:"10px"}}>
+            <div>
+              <p>Show time: {booking.session.datetime}</p>
+              <p>Cinema: {booking.cinema.cinemaName}</p>
+            </div>
+          </Col>
+          {/* <Col span={3} color={"blue"}>
+            <Button onClick={() => goToTicketPage(booking.bookingObj)}>Click to view Ticket</Button>
+          </Col> */}
+        </Row>
+      </Card>
+
     );
   }
 
   return (
     <div>
       <div className="box">
+      <Divider></Divider>
       <Row justify="center">
-      <h1>Warm Reminder</h1>
+      <h1>Warm Reminder:</h1>
       </Row>
       <Row >
       <p>Below are the start date of your movie tickets in this two days:</p>
       </Row>
-      
+      <Row>
       <Notification bookings ={userBookings}/>
-      
+      </Row>
       </div>
+      <Divider></Divider>
       <Row justify="center">
         <h1>Booking History</h1>
       </Row>
       <List
-        itemLayout="horizontal"
+        grid={{ gutter:16, column: 3 }}
         dataSource={userBookings}
         renderItem={(booking) => (
-          <List.Item onClick={() => goToTicketPage(booking.bookingObj)}>
+          <List.Item style={{margin:"20px"}}>
             <List.Item.Meta title={BookingCard(booking)} />
           </List.Item>
         )}

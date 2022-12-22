@@ -25,18 +25,21 @@ export default function BookingForm(props) {
     0
   );
   const handleClick = () => {
-    if (selectedSeats.length !== selectedTicketsQuantity) {
-      openNotification();
-      console.log("nooo");
+    if (selectedTicketsQuantity === 0) {
+      openNotification("Ticket quantity not selected!");
+    } else if (selectedSeats.length !== selectedTicketsQuantity) {
+      openNotification(
+        "Number of seats picked is not the same as ticket quantity!"
+      );
     } else {
       navigate("/payment");
     }
   };
   const [api, contextHolder] = notification.useNotification();
-  const openNotification = () => {
+  const openNotification = (description) => {
     api.info({
       message: "Missing information",
-      description: "Number of seats picked is not the same as ticket quantity!",
+      description: description,
       placement: "top",
       icon: <ExclamationCircleTwoTone twoToneColor={"red"} />,
       style: { width: "600px" },
@@ -82,7 +85,7 @@ export default function BookingForm(props) {
       value: moment(ticketDate).format("DD/MM/YY"),
     },
     {
-      key: "3",
+      key: "4",
       name: "Time",
       value: moment(ticketDate).format("HH:mm"),
     },
@@ -126,10 +129,9 @@ export default function BookingForm(props) {
           <div style={{ textAlign: "left", margin: "10px" }}>
             <FoodInfo />
           </div>
-          <div style={{ textAlign: "right", margin: "10px" }}>
-            <h3>Net Total: {totalPrice()}</h3>
-          </div>
+          <div style={{ textAlign: "right", margin: "10px" }}></div>
           <div style={{ textAlign: "right" }}>
+            <h3>Total Price: ${totalPrice()}</h3>
             <Button
               onClick={handleClick}
               movie={movie}

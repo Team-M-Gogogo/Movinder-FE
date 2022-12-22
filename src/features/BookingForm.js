@@ -21,9 +21,6 @@ export default function BookingForm(props) {
   const foodPriceTotal = useSelector((state) => {
     return state.movie.foodTotal;
   });
-  // const selectedTickets = useSelector((state) => {
-  //   return state.movie.selectedTickets;
-  // });
   const ticketPriceTotal = useSelector((state) => {
     return state.movie.selectedTicketsPriceTotal;
   });
@@ -103,7 +100,6 @@ export default function BookingForm(props) {
             <h3>Net Total: {totalPrice()}</h3>
           </div>
           <div style={{ textAlign: "right" }}>
-            <Button style={{ margin: "10px" }}> Cancel </Button>
             <Button
               onClick={handleClick}
               movie={movie}

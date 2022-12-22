@@ -43,13 +43,21 @@ export const SearchMovie = (props) => {
          
             </div>
         ) : (
+            (filteredList.length > 0) ? (
+
             <div className="movieList">
-    
-      {filteredList.map((item) => (
-        <MovieCard movie={item} key={item.movieId} />
-      ))}
-    
-       </div>
+          {filteredList.map((item) => (
+            <MovieCard movie={item} key={item.movieId} />
+          ))}
+           </div>
+
+            ) : (
+
+                <div >
+                <p>No Search Results can be found.</p>
+                </div>
+
+            )
         )}
 
   

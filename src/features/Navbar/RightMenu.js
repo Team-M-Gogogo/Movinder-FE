@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu } from "antd";
-import setting from "./image/setting.png";
+import logouts from "./image/Logout.png";
 import User from "./image/user.png";
 import { useState } from "react";
 import { Modal, Button, Input } from "antd";
@@ -93,8 +93,12 @@ const RightMenu = () => {
 
   const loginNav = (
     <>
-      <Button onClick={showModal}>{user === "" ? "Login" : "Logout"}</Button>
-
+      {/* <Button onClick={showModal}>{user === "" ? "Login" : "Logout"}</Button> */}
+      <a onClick={showModal}>
+          <img src={logouts} style={{ width: "20%" }} alt="Logo" />
+          {user === "" ? "Login" : "Logout"}
+      </a>
+      
       <Modal
         title=""
         open={isModalOpen}

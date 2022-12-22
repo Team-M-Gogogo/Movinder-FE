@@ -39,7 +39,7 @@
 
 .menuCon .rightMenu {
     float: right;   
-    width: 25%; /*three boxes (use 25% for four, and 50% for two, etc) */
+    width: 17%; /*three boxes (use 25% for four, and 50% for two, etc) */
     margin-top: 35px;
 
 }

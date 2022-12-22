@@ -11,7 +11,6 @@ export default function BookingForm(props) {
   const navigate = useNavigate();
 
   const { movie, cinema, session } = props;
-  // const description = "This is a description.";
 
   const date = new Date(session.datetime);
 
@@ -81,15 +80,6 @@ export default function BookingForm(props) {
                       {date.getMonth()}/{date.getDate()}-{date.getHours()}:
                       {date.getMinutes()}
                     </h4>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h3>Status: </h3>
-                  </td>
-                  <td>
-                    {" "}
-                    <Input></Input>
                   </td>
                 </tr>
               </tbody>

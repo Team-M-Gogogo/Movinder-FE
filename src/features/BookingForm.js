@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import FoodInfo from "./food/FoodInfo";
 import SeatingPlan from "./seating/SeatingPlan";
 import StepBar from "./booking/bookingData";
+import { useSelector } from "react-redux";
 
 export default function BookingForm(props) {
   const navigate = useNavigate();
@@ -17,6 +18,26 @@ export default function BookingForm(props) {
   const handleClick = () => {
     navigate(PaymentPage);
   };
+
+  const foodPriceTotal = useSelector((state) => {
+    return state.movie.foodTotal;
+  });
+  const selectedTickets = useSelector((state) => {
+    return state.movie.selectedTickets;
+  });
+
+  const ticketPriceTotal = () => {
+    var total = 0;
+    selectedTickets.forEach((ticket) => {
+      total += ticket.quantity * ticket.price;
+    });
+    return total;
+  };
+
+  const totalPrice = () => {
+    return ticketPriceTotal() + foodPriceTotal;
+  };
+
   return (
     <>
       <div>
@@ -95,7 +116,7 @@ export default function BookingForm(props) {
             <FoodInfo />
           </div>
           <div style={{ textAlign: "right", margin: "10px" }}>
-            <h3>Net Total: 100,000,000,000</h3>
+            <h3>Net Total: {totalPrice()}</h3>
           </div>
           <div style={{ textAlign: "right" }}>
             <Button style={{ margin: "10px" }}> Cancel </Button>

@@ -101,35 +101,37 @@ export default function SeatingPlan(props) {
 
   return (
     <div>
-      <span>Adult (${adultPrice})&nbsp;&nbsp;</span>
-      <InputNumber
-        className="seatQuantity"
-        min={0}
-        max={MAX_RESERVABLE_SEATS}
-        defaultValue={adultQuantity}
-        onChange={onAdultQuantityChange}
-      />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <span>Child (${childPrice})&nbsp;&nbsp;</span>
-      <InputNumber
-        className="seatQuantity"
-        min={0}
-        max={MAX_RESERVABLE_SEATS}
-        defaultValue={childQuantity}
-        onChange={onChildQuantityChange}
-      />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <Popover
-        content={
-          calTotalQuantity() > 0
-            ? "Click to choose seats"
-            : "Select number of tickets first"
-        }
-      >
-        <Button disabled={calTotalQuantity() === 0} onClick={showModal}>
-          Choose your seat(s)
-        </Button>
-      </Popover>
+      <div style={{ textAlign: "center" }}>
+        <span>Adult (${adultPrice})&nbsp;&nbsp;</span>
+        <InputNumber
+          className="seatQuantity"
+          min={0}
+          max={MAX_RESERVABLE_SEATS}
+          defaultValue={adultQuantity}
+          onChange={onAdultQuantityChange}
+        />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>Child (${childPrice})&nbsp;&nbsp;</span>
+        <InputNumber
+          className="seatQuantity"
+          min={0}
+          max={MAX_RESERVABLE_SEATS}
+          defaultValue={childQuantity}
+          onChange={onChildQuantityChange}
+        />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Popover
+          content={
+            calTotalQuantity() > 0
+              ? "Click to choose seats"
+              : "Select number of tickets first"
+          }
+        >
+          <Button disabled={calTotalQuantity() === 0} onClick={showModal}>
+            Choose your seat(s)
+          </Button>
+        </Popover>
+      </div>
       <Modal
         destroyOnClose={destroyModal}
         open={isModalOpen}
@@ -151,9 +153,9 @@ export default function SeatingPlan(props) {
       </Modal>
       <div>
         <br />
-        Total Ticket Price: ${ticketPriceTotal(adultQuantity, childQuantity)}
-        <br />
         Chosen seats: {selected.join()}
+        <br />
+        Total Ticket Price: ${ticketPriceTotal(adultQuantity, childQuantity)}
         <br />
       </div>
     </div>

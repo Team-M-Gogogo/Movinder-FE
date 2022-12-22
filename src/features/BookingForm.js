@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumb, Button, Divider, notification, Table } from "antd";
+import { Breadcrumb, Button, Card, Divider, notification, Table } from "antd";
 
 import { useNavigate } from "react-router-dom";
 import FoodInfo from "./food/FoodInfo";
@@ -116,16 +116,17 @@ export default function BookingForm(props) {
           />
 
           <Divider></Divider>
-          <div style={{ textAlign: "left" }}>
-            <h2>Ticket Price</h2>
-          </div>
+          <Card title="Ticket Price" style={{ margin: "10px" }}>
+            <div style={{ textAlign: "left" }}></div>
+            <div style={{ textAlign: "left", margin: "10px" }}>
+              <SeatingPlan
+                availableSeatings={session.availableSeatings}
+                pricing={session.pricing}
+              />
+            </div>
+          </Card>
           <Divider></Divider>
-          <div style={{ textAlign: "left", margin: "10px" }}>
-            <SeatingPlan
-              availableSeatings={session.availableSeatings}
-              pricing={session.pricing}
-            />
-          </div>
+
           <div style={{ textAlign: "left", margin: "10px" }}>
             <FoodInfo />
           </div>

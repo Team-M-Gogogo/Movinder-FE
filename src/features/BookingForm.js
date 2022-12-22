@@ -63,7 +63,6 @@ export default function BookingForm(props) {
       key: "name",
     },
     {
-      // title: "Age",
       dataIndex: "value",
       key: "value",
     },
@@ -113,6 +112,7 @@ export default function BookingForm(props) {
             columns={ticketDetailCols}
             dataSource={ticketDetailData}
             pagination={false}
+            boredered
           />
 
           <Divider></Divider>

@@ -1,4 +1,3 @@
-import MovieList from "../features/movieList/MovieList";
 import { SearchMovie } from "../features/SearchMovie";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -22,4 +21,3 @@ export default function HomePage() {
     </div>;
 }
 
-// <MovieList />

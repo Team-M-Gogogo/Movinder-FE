@@ -4,12 +4,13 @@ import PaymentPage from "../pages/PaymentPage";
 import { useNavigate } from "react-router-dom";
 import FoodInfo from "./food/FoodInfo";
 import SeatingPlan from "./seating/SeatingPlan";
+import StepBar from "./booking/bookingData";
 
 export default function BookingForm(props) {
   const navigate = useNavigate();
 
   const { movie, cinema, session } = props;
-
+  // const description = "This is a description.";
   // console.log(movie);
 
   const date = new Date(session.datetime);
@@ -33,6 +34,7 @@ export default function BookingForm(props) {
             <Breadcrumb.Item>{movie.movieName}</Breadcrumb.Item>
             <Breadcrumb.Item>Booking</Breadcrumb.Item>
           </Breadcrumb>
+          <StepBar number={0} />
           <h1>Buy Ticket</h1>
           <Divider></Divider>
           <div style={{ textAlign: "left" }}>

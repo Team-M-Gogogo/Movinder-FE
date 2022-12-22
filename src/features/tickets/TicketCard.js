@@ -6,6 +6,10 @@ export default function TicketCard(props) {
   const { ticketID, ticketType, price, row, col} = props;
 
 
+  var seatName = "";
+  seatName += String.fromCharCode(65 + row);
+  seatName += col;
+
 
   return (
     <Row>
@@ -17,7 +21,7 @@ export default function TicketCard(props) {
               <div><b>Ticket type: </b>{ticketType}</div>
               <div><b>Price: </b>{price}</div>
               <div>
-                <b>Seat:</b> <b>Row </b>{row}, <b>Column</b> {col}
+                <b>Seat:</b> {seatName}
               </div>
             </Space>
           </div>

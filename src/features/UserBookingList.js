@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { List, Row, Col, Image, Button, Card, Divider } from "antd";
 import { useNavigate } from "react-router-dom";
 import { Notification } from "./Reminder/Notification";
-
+import moment from "moment";
 import {
   getCustomerBookings,
   getMovieById,
@@ -62,16 +62,23 @@ export default function UserBookingList() {
     navigate("/ticket", { state: booking });
   }
 
+  function MovieTicketTitle(props) {
+    const { booking } = props;
+    return (
+      <div>
+        <Row justify="center">
+          <Button type="primary" block onClick={() => goToTicketPage(booking.bookingObj)}>Click to view Ticket</Button>
+        </Row>
+        <Row justify="center">
+          <div>{"Movie Title: " + booking.movie.movieName}</div>
+        </Row>
+      </div>
+    );
+  }
+
   function BookingCard(booking) {
     return (
-      <Card
-        title={"Movie Title: " + booking.movie.movieName}
-        extra={
-          <Button onClick={() => goToTicketPage(booking.bookingObj)}>
-            Click to view Ticket
-          </Button>
-        }
-      >
+      <Card title={<MovieTicketTitle booking={booking} />}>
         <Row justify="center" align="middle">
           <Col>
             <Image
@@ -81,7 +88,7 @@ export default function UserBookingList() {
           </Col>
           <Col style={{ margin: "10px" }}>
             <div>
-              <p>Show time: {booking.session.datetime}</p>
+              <p>Show time: {moment(booking.session.datetime).format("DD/MM/YY  HH:mm")} </p>
               <p>Cinema: {booking.cinema.cinemaName}</p>
             </div>
           </Col>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumb, Button, Divider, notification } from "antd";
+import { Breadcrumb, Button, Divider, notification, Table } from "antd";
 import PaymentPage from "../pages/PaymentPage";
 import { useNavigate } from "react-router-dom";
 import FoodInfo from "./food/FoodInfo";
@@ -7,6 +7,7 @@ import SeatingPlan from "./seating/SeatingPlan";
 import StepBar from "./booking/bookingData";
 import { useSelector } from "react-redux";
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
+import moment from "moment";
 
 export default function BookingForm(props) {
   const navigate = useNavigate();
@@ -51,6 +52,41 @@ export default function BookingForm(props) {
     return ticketPriceTotal + foodPriceTotal;
   };
 
+  const ticketDate = new Date(session.datetime);
+  const ticketDetailCols = [
+    {
+      title: "Ticket Details",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      // title: "Age",
+      dataIndex: "value",
+      key: "value",
+    },
+  ];
+  const ticketDetailData = [
+    {
+      key: "1",
+      name: "Movie",
+      value: movie.movieName,
+    },
+    {
+      key: "2",
+      name: "Cinema",
+      value: cinema.cinemaName,
+    },
+    {
+      key: "3",
+      name: "Date",
+      value: moment(ticketDate).format("DD/MM/YY"),
+    },
+    {
+      key: "3",
+      name: "Time",
+      value: moment(ticketDate).format("HH:mm"),
+    },
+  ];
   return (
     <>
       <div>
@@ -69,43 +105,13 @@ export default function BookingForm(props) {
             <Breadcrumb.Item>Booking</Breadcrumb.Item>
           </Breadcrumb>
           <StepBar number={0} />
-          <h1>Buy Ticket</h1>
-          <Divider></Divider>
-          <div style={{ textAlign: "left" }}>
-            <h2>Ticket Details</h2>
-            <table>
-              <thead></thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <h3>Movie Title: </h3>
-                  </td>
-                  <td>
-                    <h4>{movie.movieName}</h4>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h3>Cinema: </h3>
-                  </td>
-                  <td>
-                    <h4>{cinema.cinemaName}</h4>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h3>Selected Date & Time: </h3>
-                  </td>
-                  <td>
-                    <h4>
-                      {date.getMonth()}/{date.getDate()}-{date.getHours()}:
-                      {date.getMinutes()}
-                    </h4>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Table
+            style={{ width: "90%", margin: "5%" }}
+            columns={ticketDetailCols}
+            dataSource={ticketDetailData}
+            pagination={false}
+          />
+
           <Divider></Divider>
           <div style={{ textAlign: "left" }}>
             <h2>Ticket Price</h2>

@@ -2,16 +2,40 @@ import { Card, Image, Row, Col } from "antd";
 import React from "react";
 
 export default function MovieInfoBox(props) {
-  const { movie, session, booking, cinema } = props;
+  const { movie, session, booking, cinema, foodsMap, foodIds } = props;
+
+  const occurrences = foodIds.reduce(function (acc, curr) {
+    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+  }, {});
+
+  var foodListData = [];
+
+  for (const [key, value] of Object.entries(occurrences)) {
+    const foodItem = foodsMap[key];
+    console.log(foodItem);
+    console.log(key, value);
+
+    foodListData.push(
+      <div>
+        <b>{foodItem.foodName} </b>
+        {"x " + value}
+      </div>
+    );
+  }
 
   function MovieInfo() {
     return (
       <div>
         <h1>{movie.movieName}</h1>
-        <p>Show date: {session.datetime}</p>
-        <p>Cinema: {cinema.cinemaName}</p>
-        <p>Address: {cinema.address}</p>
-        <p>Price: {booking.total}</p>
+        <p><b>Show date:</b> {session.datetime}</p>
+        <p><b>Cinema</b>: {cinema.cinemaName}</p>
+        <p><b>Address</b>: {cinema.address}</p>
+        <p><b>Total</b>: {booking.total}</p>
+        <Card title="Food orders">
+          <Row justify="start">
+            <Col align="start">{foodListData}</Col>
+          </Row>
+        </Card>
       </div>
     );
   }

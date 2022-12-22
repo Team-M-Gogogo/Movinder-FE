@@ -16,7 +16,7 @@ export default function BookingForm(props) {
   const date = new Date(session.datetime);
 
     const handleClick = () => {
-        navigate("/payment" , {state: {movie, cinema, date} });
+        navigate("/payment" , {state: {movie, cinema, date, session} });
     };
     return (
         <>
@@ -76,7 +76,7 @@ export default function BookingForm(props) {
                     </div>
                     <div style={{ textAlign: "right"}}>
                         <Button style={{ margin: "10px"}}> Cancel </Button>
-                        <Button  onClick={handleClick} movie={movie} session={session} date={date}  style={{ margin: "10px", background:"#ffa07a"}} > Buy </Button>
+                        <Button  onClick={handleClick}  style={{ margin: "10px", background:"#ffa07a"}} > Buy </Button>
                     </div>
                 </div>
             </div>

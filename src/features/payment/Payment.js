@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postBooking } from "../../api/movies";
+import getUser from "../../utils/getUser";
 import App from './App';
 
 
@@ -22,10 +23,14 @@ export default function Payment() {
         return state.movie.foodTotal;
     });
 
+    const location = useLocation();
+    const {movie,cinema, date, session} = location.state;
+
+     console.log(getUser());
     const handleClick = () => {
         const booking = {
-            "customerId": "63a17b96630a66688ff94ac5",
-            "movieSessionId": "63a2becef3d6432b35f2c80a",
+            "customerId": getUser().customerId,
+            "movieSessionId": session.sessionId,
             "ticketRequestItems": [
                 {
                     "item": "adult",
@@ -44,12 +49,8 @@ export default function Payment() {
             ],
             "seatingRequests":[
                 {
-                    "row": 2,
+                    "row": 1,
                     "column": 1
-                },
-                {
-                    "row": 2,
-                    "column": 0
                 }
             ]
         };
@@ -57,13 +58,9 @@ export default function Payment() {
         postBooking(booking).then(response =>{
             console.log(response);
         });
-        //navigate("/ticket" );
+        navigate("/ticket" );
     };
-    //console.log({foodTotal});
 
-    const location = useLocation();
-    const {movie,cinema, date} = location.state;
-    //console.log("***" , cinema);
     return (
 
         <Container className='centered-div'>

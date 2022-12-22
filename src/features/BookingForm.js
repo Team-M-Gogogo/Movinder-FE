@@ -1,6 +1,5 @@
 import React from "react";
 import { Breadcrumb, Button, Divider, notification } from "antd";
-import PaymentPage from "../pages/PaymentPage";
 import { useNavigate } from "react-router-dom";
 import FoodInfo from "./food/FoodInfo";
 import SeatingPlan from "./seating/SeatingPlan";
@@ -28,7 +27,7 @@ export default function BookingForm(props) {
       openNotification();
       console.log("nooo");
     } else {
-      navigate(PaymentPage);
+      navigate("/payment");
     }
   };
   const [api, contextHolder] = notification.useNotification();

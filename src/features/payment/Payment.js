@@ -5,19 +5,62 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {  Image  } from "antd";
 import { useLocation } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { postBooking } from "../../api/movies";
+import getUser from "../../utils/getUser";
+import App from './App';
 
 
-export default function Payment(props) {
-  // const movie = props.selectedMovie;
+export default function Payment() {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const foodTotal = useSelector((state) => {
+        // console.log("!#$#@!$" , state.movie.foodTotal);
+        return state.movie.foodTotal;
+    });
+
     const location = useLocation();
-    const {movie,cinema, date} = location.state;
-    // const navigate = useNavigate();
+    const {movie,cinema, date, session} = location.state;
 
+     console.log(getUser());
     const handleClick = () => {
-    //    navigate("/DisplayTickets" , {state: {booking} });
+        const booking = {
+            "customerId": getUser().customerId,
+            "movieSessionId": session.sessionId,
+            "ticketRequestItems": [
+                {
+                    "item": "adult",
+                    "quantity": 1
+                },
+                {
+                    "item": "student",
+                    "quantity": 1
+                }
+            ],
+            "foodRequestItems": [
+                {
+                    "item": "63a27f882f79dc66649c430b",
+                    "quantity": 1
+                }
+            ],
+            "seatingRequests":[
+                {
+                    "row": 1,
+                    "column": 1
+                }
+            ]
+        };
+        
+        postBooking(booking).then(response =>{
+            console.log(response);
+        });
+        navigate("/ticket" );
     };
-    //console.log("***" , cinema);
+
     return (
 
         <Container className='centered-div'>
@@ -33,21 +76,13 @@ export default function Payment(props) {
                 />
             </Col>
             <Col id= "total">
-                Total:
+                Total: {foodTotal}
             </Col>
             <Col id= "total">
-                <input type="radio" value="Apple" name="gender" /> Apple Pay
-                <input type="radio" value="Visa" name="gender" /> Visa Card
-                <input type="radio" value="Master" name="gender" /> Master Card
+                <App/>
             </Col>
             <Col id= "total">
-                Pay by credit Card <br/>
-                <input type="date" id="valid" name="valid"/> <br/>
-                <input type="text" placeholder='(MM-YYY)'/> <br/>
-                <input type="text" placeholder='CVV'/>  <br/>
-            </Col>
-            <Col id= "total">
-                <input type="button" value='Submit'  onClick={handleClick}/>   <br/>
+                <input type="button" value='Submit' onClick={handleClick}/>   <br/>
             </Col>
             </Row>
             <Row className ="middle"> 
@@ -71,5 +106,4 @@ export default function Payment(props) {
         </Container>
 
     )
-
 }

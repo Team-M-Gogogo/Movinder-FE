@@ -21,23 +21,19 @@ export const movieSlice = createSlice({
       state.selectedCinema = action.payload;
     },
     addSelectedSession: (state, action) => {
-      console.log(action.payload);
       state.selectedSession = action.payload;
     },
     changeFoodTotal: (state, action) => {
       state.foodTotal += action.payload;
-      console.log(state.foodTotal);
     },
     changeShowLogin: (state, action) => {
       state.showLogin = action.payload;
     },
     updateSelectedSeats: (state, action) => {
       state.selectedSeats = action.payload;
-      console.log("selectedSeats", state.selectedSeats);
     },
     updateSelectedTickets: (state, action) => {
       state.selectedTickets = action.payload;
-      console.log("selectedTickets", state.selectedTickets);
     },
   },
 });

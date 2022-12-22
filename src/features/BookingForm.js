@@ -11,7 +11,6 @@ export default function BookingForm(props) {
 
   const { movie, cinema, session } = props;
   // const description = "This is a description.";
-  // console.log(movie);
 
   const date = new Date(session.datetime);
 
@@ -84,11 +83,6 @@ export default function BookingForm(props) {
           <Divider></Divider>
           <div style={{ textAlign: "left" }}>
             <h2>Ticket Price</h2>
-            {/* <Dropdown menu={{
-                            pricing,
-                            selectable: true,
-
-                        }}></Dropdown> */}
           </div>
           <Divider></Divider>
           <div style={{ textAlign: "left", margin: "10px" }}>
@@ -98,7 +92,6 @@ export default function BookingForm(props) {
             />
           </div>
           <div style={{ textAlign: "left", margin: "10px" }}>
-            {/* <Button> Food Info </Button> */}
             <FoodInfo />
           </div>
           <div style={{ textAlign: "right", margin: "10px" }}>

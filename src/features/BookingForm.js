@@ -1,11 +1,12 @@
 import React from "react";
-import { Breadcrumb, Button, Divider } from "antd";
+import { Breadcrumb, Button, Divider, notification } from "antd";
 import PaymentPage from "../pages/PaymentPage";
 import { useNavigate } from "react-router-dom";
 import FoodInfo from "./food/FoodInfo";
 import SeatingPlan from "./seating/SeatingPlan";
 import StepBar from "./booking/bookingData";
 import { useSelector } from "react-redux";
+import { ExclamationCircleTwoTone } from "@ant-design/icons";
 
 export default function BookingForm(props) {
   const navigate = useNavigate();
@@ -14,16 +15,35 @@ export default function BookingForm(props) {
 
   const date = new Date(session.datetime);
 
+  const selectedSeats = useSelector((state) => state.movie.selectedSeats);
+  const selectedTickets = useSelector((state) => state.movie.selectedTickets);
+  const selectedTicketsQuantity = selectedTickets.reduce(
+    (accumulator, ticket) => {
+      return accumulator + ticket.quantity;
+    },
+    0
+  );
   const handleClick = () => {
-    navigate(PaymentPage);
+    if (selectedSeats.length !== selectedTicketsQuantity) {
+      openNotification();
+      console.log("nooo");
+    } else {
+      navigate(PaymentPage);
+    }
   };
-
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = () => {
+    api.info({
+      message: "Missing information",
+      description: "Number of seats picked is not the same as ticket quantity!",
+      placement: "top",
+      icon: <ExclamationCircleTwoTone twoToneColor={"red"} />,
+      style: { width: "600px" },
+    });
+  };
   const foodPriceTotal = useSelector((state) => {
     return state.movie.foodTotal;
   });
-  // const selectedTickets = useSelector((state) => {
-  //   return state.movie.selectedTickets;
-  // });
   const ticketPriceTotal = useSelector((state) => {
     return state.movie.selectedTicketsPriceTotal;
   });
@@ -34,6 +54,7 @@ export default function BookingForm(props) {
   return (
     <>
       <div>
+        {contextHolder}
         <div
           style={{
             padding: 24,
@@ -103,7 +124,6 @@ export default function BookingForm(props) {
             <h3>Net Total: {totalPrice()}</h3>
           </div>
           <div style={{ textAlign: "right" }}>
-            <Button style={{ margin: "10px" }}> Cancel </Button>
             <Button
               onClick={handleClick}
               movie={movie}

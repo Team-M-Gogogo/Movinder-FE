@@ -92,22 +92,22 @@ const RightMenu = () => {
   };
 
   const loginNav = (
-    <>  
-        <span onClick={showModal}>
-        <img src={user === "" ?  User : logouts} style={{ width: "30%" }} alt="Logo" />
+    <>
+      <span onClick={showModal}>
+        <img
+          src={user === "" ? User : logouts}
+          style={{ width: "30%" }}
+          alt="Logo"
+        />
         {user === "" ? "Login" : "Logout"}
-          </span>
+      </span>
 
-
-
-     
-      
       <Modal
         title=""
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        width="400px"
+        width="600px"
       >
         {user === "" ? (
           <div className="login-wrapper">
@@ -139,8 +139,7 @@ const RightMenu = () => {
     </>
   );
 
-  var items = [
-  ];
+  var items = [];
   if (user) {
     items.push({
       label: user && (

@@ -34,14 +34,25 @@ export default function SeatingPlan(props) {
   const [adultQuantity, setAdultQuantity] = useState(0);
   const onAdultQuantityChange = (value) => {
     setAdultQuantity(value);
-    const total = ticketPriceTotal(value, childQuantity);
-    dispatch(updateSelectedTicketsPriceTotal(total));
+    handleQuantityChange(value, childQuantity);
   };
   const [childQuantity, setChildQuantity] = useState(0);
   const onChildQuantityChange = (value) => {
     setChildQuantity(value);
-    const total = ticketPriceTotal(adultQuantity, value);
+    handleQuantityChange(adultQuantity, value);
+  };
+
+  const handleQuantityChange = (adultQuantity, childQuantity) => {
+    setDestroyModal(true);
+    setSelected([]);
+    const total = ticketPriceTotal(adultQuantity, childQuantity);
     dispatch(updateSelectedTicketsPriceTotal(total));
+    dispatch(
+      updateSelectedTickets([
+        { item: "adult", quantity: adultQuantity, price: adultPrice },
+        { item: "child", quantity: childQuantity, price: childPrice },
+      ])
+    );
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -50,26 +61,17 @@ export default function SeatingPlan(props) {
   };
 
   const dispatch = useDispatch();
-  const handleOk = () => {
-    dispatch(updateSelectedSeats(selected));
-    dispatch(
-      updateSelectedTickets([
-        { item: "adult", quantity: adultQuantity, price: adultPrice },
-        { item: "child", quantity: childQuantity, price: childPrice },
-      ])
-    );
-    setIsModalOpen(false);
-  };
 
   const handleCancel = () => {
+    setDestroyModal(false);
     setIsModalOpen(false);
+    dispatch(updateSelectedSeats(selected));
   };
 
   const [selected, setSelected] = useState([]);
   const addSeatCallback = ({ row, number, id }, addCb) => {
     setSelected((ids) => [...ids, id]);
-    const newTooltip = id;
-    addCb(row, number, id, newTooltip);
+    addCb(row, number, id);
   };
 
   const removeSeatCallback = ({ row, number, id }, removeCb) => {
@@ -94,6 +96,8 @@ export default function SeatingPlan(props) {
     });
     return total;
   };
+
+  const [destroyModal, setDestroyModal] = useState(false);
 
   return (
     <div>
@@ -127,10 +131,10 @@ export default function SeatingPlan(props) {
         </Button>
       </Popover>
       <Modal
-        title=""
+        destroyOnClose={destroyModal}
         open={isModalOpen}
-        onOk={handleOk}
         onCancel={handleCancel}
+        footer={[]}
       >
         <h1 className="screen">SCREEN</h1>
         <SeatPicker
@@ -148,6 +152,8 @@ export default function SeatingPlan(props) {
       <div>
         <br />
         Total Ticket Price: ${ticketPriceTotal(adultQuantity, childQuantity)}
+        <br />
+        Chosen seats: {selected.join()}
         <br />
       </div>
     </div>

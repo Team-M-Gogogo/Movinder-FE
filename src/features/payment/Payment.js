@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postBooking } from "../../api/movies";
+import App from './App';
 
 
 export default function Payment() {
@@ -81,14 +82,7 @@ export default function Payment() {
                 Total: {foodTotal}
             </Col>
             <Col id= "total">
-                <input type="radio" value="Visa" name="gender" /> Visa Card
-                <input type="radio" value="Master" name="gender" /> Master Card
-            </Col>
-            <Col id= "total">
-                Pay by credit Card <br/>
-                <input type="date" id="valid" name="valid"/> <br/>
-                <input type="text" placeholder='(MM-YYY)'/> <br/>
-                <input type="text" placeholder='CVV'/>  <br/>
+                <App/>
             </Col>
             <Col id= "total">
                 <input type="button" value='Submit' onClick={handleClick}/>   <br/>

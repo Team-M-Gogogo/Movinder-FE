@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import {  Image  } from "antd";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postBooking } from "../../api/movies";
 import getUser from "../../utils/getUser";
@@ -15,7 +14,6 @@ import App from './App';
 
 export default function Payment() {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const foodTotal = useSelector((state) => {

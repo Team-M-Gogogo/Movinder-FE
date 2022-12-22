@@ -2,7 +2,11 @@ import { Button, InputNumber, Modal, Popover } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { SeatPicker } from "../../utils/SeatPicker/SeatPicker";
-import { updateSelectedSeats, updateSelectedTickets } from "../movieSlice";
+import {
+  updateSelectedSeats,
+  updateSelectedTickets,
+  updateSelectedTicketsPriceTotal,
+} from "../movieSlice";
 
 export default function SeatingPlan(props) {
   const { pricing, availableSeatings } = props;
@@ -30,10 +34,14 @@ export default function SeatingPlan(props) {
   const [adultQuantity, setAdultQuantity] = useState(0);
   const onAdultQuantityChange = (value) => {
     setAdultQuantity(value);
+    const total = ticketPriceTotal(value, childQuantity);
+    dispatch(updateSelectedTicketsPriceTotal(total));
   };
   const [childQuantity, setChildQuantity] = useState(0);
   const onChildQuantityChange = (value) => {
     setChildQuantity(value);
+    const total = ticketPriceTotal(adultQuantity, value);
+    dispatch(updateSelectedTicketsPriceTotal(total));
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -72,6 +80,19 @@ export default function SeatingPlan(props) {
   };
   const calTotalQuantity = () => {
     return adultQuantity + childQuantity;
+  };
+
+  const ticketPriceTotal = (adultValue, childValue) => {
+    var total = 0;
+    pricing.forEach((price) => {
+      const category = price.item.toLowerCase();
+      if (category === "student" || category === "child") {
+        total += childValue * childPrice;
+      } else if (category === "adult") {
+        total += adultValue * adultPrice;
+      }
+    });
+    return total;
   };
 
   return (
@@ -124,6 +145,7 @@ export default function SeatingPlan(props) {
         <br />
         Chosen seats: {selected.join()}
       </Modal>
+      Total Ticket Price: ${ticketPriceTotal(adultQuantity, childQuantity)}
     </div>
   );
 }

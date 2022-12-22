@@ -10,6 +10,7 @@ export const movieSlice = createSlice({
     selectedCinema: initSelectedCinema,
     selectedSeats: [],
     selectedTickets: [],
+    selectedTicketsPriceTotal: 0,
     foodTotal: 0,
     showLogin: false,
   },
@@ -35,6 +36,9 @@ export const movieSlice = createSlice({
     updateSelectedTickets: (state, action) => {
       state.selectedTickets = action.payload;
     },
+    updateSelectedTicketsPriceTotal: (state, action) => {
+      state.selectedTicketsPriceTotal = action.payload;
+    },
   },
 });
 
@@ -46,6 +50,7 @@ export const {
   changeShowLogin,
   updateSelectedSeats,
   updateSelectedTickets,
+  updateSelectedTicketsPriceTotal,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

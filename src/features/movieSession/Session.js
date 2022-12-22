@@ -5,6 +5,7 @@ import { addSelectedCinema, addSelectedSession } from "../movieSlice";
 import { useNavigate } from "react-router-dom";
 import { changeShowLogin } from "../movieSlice";
 import getUser from "../../utils/getUser";
+import moment from "moment";
 
 function Session(props) {
   const navigate = useNavigate();
@@ -24,8 +25,9 @@ function Session(props) {
 
   };
   return (
-    <Button onClick={handleClick} style={{ margin: "5px" }}>
-      {date.getMonth()}/{date.getDate()}-{date.getHours()}:{date.getMinutes()}
+    <Button onClick={handleClick} style={{ margin: "5px", width: "fit-content" }}>
+      {moment(date).format('MMMM Do YYYY, h:mm a')}
+      {/* {date.getMonth()}/{date.getDate()}-{date.getHours()}:{date.getMinutes()} */}
     </Button>
   );
 }

@@ -45,7 +45,7 @@ const DisplayMovie = (props) => {
                                     </div>
                                 </Card>
                                 <div style={{textAlign: "left", marginTop:"10px"}}>
-                                    <Button onClick={handleClick}>Join our forum!</Button>
+                                    <Button onClick={handleClick} style={{width: "fit-content"}}>Join our forum!</Button>
                                 </div>
                             </Col>
                         </Row>

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Button} from "antd";
+import { Input} from "antd";
 import "./Noti.css"
 import MovieCard from "../features/movieList/MovieCard"
 import "../features/movieList/MovieList.css"
+
+const { Search } = Input;
 
 
 export const SearchMovie = (props) => {
@@ -26,16 +28,14 @@ export const SearchMovie = (props) => {
 
     setFilteredList(updatedList);
     setShowSearchResult(true);
-    setSearchText("");
+    // setSearchText("");
   };
 
 
   return (
     <div className="box">
     <div>
-    <div >Search Movies:</div>
-    <input id="search-box" value={searchText} onChange={onTextChange} />
-    <Button size="large" onClick={filterBySearch}>Search </Button>
+      <Search placeholder="Search Movies" allowClear onSearch={filterBySearch} style={{ width: "500px"}} onChange={onTextChange} value={searchText}/>
   </div>
   {!showSearchResult  ? (
            <div className="movieList">

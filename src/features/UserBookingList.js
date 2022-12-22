@@ -60,7 +60,7 @@ export default function UserBookingList() {
   };
 
   function goToTicketPage(booking) {
-    navigate("/ticket", booking);
+    navigate("/ticket", {state: {booking} });
   }
 
 

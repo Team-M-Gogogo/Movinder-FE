@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getFoods } from "../../api/movies";
 import { Card } from "antd";
-import { useLocation } from 'react-router-dom';
 
 import TicketCard from "./TicketCard";
 import {
@@ -12,29 +11,17 @@ import {
 } from "../../api/movies";
 import MovieInfoBox from "./MovieInfoBox";
 import StepBar from "../booking/bookingData";
+import { useLocation } from "react-router-dom";
 
 const gridStyle = {
   width: 300,
   textAlign: "center",
 };
 
-export default function DisplayTickets() {
-
-  const booking = useLocation().state;
-  // const booking = {
-  //   bookingId: "63a29d9fe6ca2164d8e4c5fe",
-  //   customerId: "639dab4f9370b716102e1294",
-  //   movieSessionId: "63a0543e73a0b344693a7a22",
-  //   ticketIds: ["63a29d9fe6ca2164d8e4c5fc", "63a29d9fe6ca2164d8e4c5fd"],
-  //   foodIds: [
-  //     "639dc14cb64fa559d6100d0c",
-  //     "639dc14cb64fa559d6100d0c",
-  //     "63a3cf34407860246eea0b74",
-  //   ],
-  //   bookingTime: "2022-12-21T13:46:07.908",
-  //   total: 220,
-  // };
-
+export default function DisplayTickets(props) {
+  const location = useLocation();
+  console.log(location.state);
+  const {booking} = location.state;
 
   const [foodsMap, setFoodsMap] = useState();
   const [tickets, setTickets] = useState([]);

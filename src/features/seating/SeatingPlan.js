@@ -1,24 +1,17 @@
 import { Button, InputNumber, Modal, Popover } from "antd";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { SeatPicker } from "../../utils/SeatPicker/SeatPicker";
+import { updateSelectedSeats, updateSelectedTickets } from "../movieSlice";
 
 export default function SeatingPlan(props) {
-  const { floorPlan, pricing } = props;
-  // const seats = [
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  // ];
-  const rows = floorPlan.map((row) => [
+  const { pricing, availableSeatings } = props;
+  const rows = availableSeatings.map((row, rowIndex) => [
     ...row.map((col, colIndex) => {
-      return { number: colIndex + 1, isReserved: !col };
+      return {
+        number: colIndex + 1,
+        isReserved: !col,
+      };
     }),
   ]);
   let adultPrice = 0,
@@ -48,7 +41,15 @@ export default function SeatingPlan(props) {
     setIsModalOpen(true);
   };
 
+  const dispatch = useDispatch();
   const handleOk = () => {
+    dispatch(updateSelectedSeats(selected));
+    dispatch(
+      updateSelectedTickets({
+        adult: { quantity: adultQuantity, price: adultPrice },
+        child: { quantity: childQuantity, price: childPrice },
+      })
+    );
     setIsModalOpen(false);
   };
 

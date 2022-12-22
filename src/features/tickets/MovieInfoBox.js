@@ -5,7 +5,13 @@ export default function MovieInfoBox(props) {
   const { movie, session, booking, cinema, foodsMap, foodIds } = props;
 
   const occurrences = foodIds.reduce(function (acc, curr) {
-    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+    // return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+    if (acc[curr]) {
+      ++acc[curr];
+    } else {
+      acc[curr] = 1;
+    }
+    return acc;
   }, {});
 
   var foodListData = [];
@@ -27,10 +33,18 @@ export default function MovieInfoBox(props) {
     return (
       <div>
         <h1>{movie.movieName}</h1>
-        <p><b>Show date:</b> {session.datetime}</p>
-        <p><b>Cinema</b>: {cinema.cinemaName}</p>
-        <p><b>Address</b>: {cinema.address}</p>
-        <p><b>Total</b>: {booking.total}</p>
+        <p>
+          <b>Show date:</b> {session.datetime}
+        </p>
+        <p>
+          <b>Cinema</b>: {cinema.cinemaName}
+        </p>
+        <p>
+          <b>Address</b>: {cinema.address}
+        </p>
+        <p>
+          <b>Total</b>: {booking.total}
+        </p>
         <Card title="Food orders">
           <Row justify="start">
             <Col align="start">{foodListData}</Col>

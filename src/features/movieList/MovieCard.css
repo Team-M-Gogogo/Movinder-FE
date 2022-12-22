@@ -3,6 +3,9 @@
   width: 300px;
   margin: 10px auto;
 }
+.movieCard > img {
+  height: 350px;
+}
 .movieDuration {
   color: grey;
   font-size: smaller;

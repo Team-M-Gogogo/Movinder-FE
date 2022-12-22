@@ -10,7 +10,7 @@ import {
 
 export default function SeatingPlan(props) {
   const { pricing, availableSeatings } = props;
-  const rows = availableSeatings.map((row, rowIndex) => [
+  const rows = availableSeatings.map((row) => [
     ...row.map((col, colIndex) => {
       return {
         number: colIndex + 1,

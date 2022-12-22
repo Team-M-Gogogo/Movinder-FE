@@ -1,4 +1,4 @@
-import { Button} from "antd";
+import { Button } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addSelectedCinema, addSelectedSession } from "../movieSlice";
@@ -15,18 +15,27 @@ function Session(props) {
   const user = getUser();
 
   const handleClick = () => {
-    if (user){
-    dispatch(addSelectedSession(session));
-    dispatch(addSelectedCinema(cinema));
-    navigate("/createBooking/"+session.movieId+"/"+session.cinemaId+"/"+session.sessionId);
-    }else{
+    if (user) {
+      dispatch(addSelectedSession(session));
+      dispatch(addSelectedCinema(cinema));
+      navigate(
+        "/createBooking/" +
+          session.movieId +
+          "/" +
+          session.cinemaId +
+          "/" +
+          session.sessionId
+      );
+    } else {
       dispatch(changeShowLogin(true));
     }
-
   };
   return (
-    <Button onClick={handleClick} style={{ margin: "5px", width: "fit-content" }}>
-      {moment(date).format('MMMM Do YYYY, h:mm a')}
+    <Button
+      onClick={handleClick}
+      style={{ margin: "5px", width: "fit-content" }}
+    >
+      {moment(date).format("DD/MM/YY | HH:mm")}
       {/* {date.getMonth()}/{date.getDate()}-{date.getHours()}:{date.getMinutes()} */}
     </Button>
   );

@@ -145,7 +145,11 @@ export default function SeatingPlan(props) {
         <br />
         Chosen seats: {selected.join()}
       </Modal>
-      Total Ticket Price: ${ticketPriceTotal(adultQuantity, childQuantity)}
+      <div>
+        <br />
+        Total Ticket Price: ${ticketPriceTotal(adultQuantity, childQuantity)}
+        <br />
+      </div>
     </div>
   );
 }

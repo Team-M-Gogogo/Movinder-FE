@@ -25,17 +25,11 @@ export default function BookingForm(props) {
   const selectedTickets = useSelector((state) => {
     return state.movie.selectedTickets;
   });
-
-  const ticketPriceTotal = () => {
-    var total = 0;
-    selectedTickets.forEach((ticket) => {
-      total += ticket.quantity * ticket.price;
-    });
-    return total;
-  };
-
+  const ticketPriceTotal = useSelector((state) => {
+    return state.movie.selectedTicketsPriceTotal;
+  });
   const totalPrice = () => {
-    return ticketPriceTotal() + foodPriceTotal;
+    return ticketPriceTotal + foodPriceTotal;
   };
 
   return (

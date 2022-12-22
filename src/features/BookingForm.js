@@ -22,9 +22,9 @@ export default function BookingForm(props) {
   const foodPriceTotal = useSelector((state) => {
     return state.movie.foodTotal;
   });
-  const selectedTickets = useSelector((state) => {
-    return state.movie.selectedTickets;
-  });
+  // const selectedTickets = useSelector((state) => {
+  //   return state.movie.selectedTickets;
+  // });
   const ticketPriceTotal = useSelector((state) => {
     return state.movie.selectedTicketsPriceTotal;
   });

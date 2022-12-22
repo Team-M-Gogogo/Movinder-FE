@@ -37,6 +37,7 @@ export const movieSlice = createSlice({
       state.selectedFood.splice(index, 1);
     },
     handleFinalSelectedFood: (state, action) => {
+      state.finalSelectedFood = [];
       var counts = {};
       for (var i = 0; i < state.selectedFood.length; i++) {
         counts[state.selectedFood[i]] = 1 + (counts[state.selectedFood[i]] || 0);

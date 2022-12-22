@@ -1,6 +1,6 @@
 import React from "react";
 import { Breadcrumb, Button, Divider, notification, Table } from "antd";
-import PaymentPage from "../pages/PaymentPage";
+
 import { useNavigate } from "react-router-dom";
 import FoodInfo from "./food/FoodInfo";
 import SeatingPlan from "./seating/SeatingPlan";
@@ -32,7 +32,7 @@ export default function BookingForm(props) {
         "Number of seats picked is not the same as ticket quantity!"
       );
     } else {
-      navigate(PaymentPage);
+      navigate("/payment");
     }
   };
   const [api, contextHolder] = notification.useNotification();

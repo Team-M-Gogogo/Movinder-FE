@@ -1,11 +1,12 @@
 import React from "react";
-import { Breadcrumb, Button, Divider } from "antd";
+import { Breadcrumb, Button, Divider, notification } from "antd";
 import PaymentPage from "../pages/PaymentPage";
 import { useNavigate } from "react-router-dom";
 import FoodInfo from "./food/FoodInfo";
 import SeatingPlan from "./seating/SeatingPlan";
 import StepBar from "./booking/bookingData";
 import { useSelector } from "react-redux";
+import { ExclamationCircleTwoTone } from "@ant-design/icons";
 
 export default function BookingForm(props) {
   const navigate = useNavigate();
@@ -24,12 +25,22 @@ export default function BookingForm(props) {
   );
   const handleClick = () => {
     if (selectedSeats.length !== selectedTicketsQuantity) {
+      openNotification();
       console.log("nooo");
     } else {
       navigate(PaymentPage);
     }
   };
-
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = () => {
+    api.info({
+      message: "Missing information",
+      description: "Number of seats picked is not the same as ticket quantity!",
+      placement: "top",
+      icon: <ExclamationCircleTwoTone twoToneColor={"red"} />,
+      style: { width: "600px" },
+    });
+  };
   const foodPriceTotal = useSelector((state) => {
     return state.movie.foodTotal;
   });
@@ -43,6 +54,7 @@ export default function BookingForm(props) {
   return (
     <>
       <div>
+        {contextHolder}
         <div
           style={{
             padding: 24,

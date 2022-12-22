@@ -22,9 +22,6 @@ export default function ForumPage() {
                 <Content className="site-layout" style={{ padding: "0 50px" }}>
                 <ForumRoom movieId={movieId} customerId={customerId}/>
                 <ForumInput movieId={movieId} customerId={customerId}/>
-                <Footer style={{ textAlign: "center" }}>
-                    Team M Gogogo@2022 No time to die
-                </Footer>
                 </Content>
             </Layout>
 

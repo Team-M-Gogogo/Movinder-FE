@@ -3,7 +3,7 @@ import { Menu } from "antd";
 import setting from "./image/setting.png";
 import User from "./image/user.png";
 import { useState } from "react";
-import { Modal, Button } from "antd";
+import { Modal, Button, Input } from "antd";
 import { postLogin } from "../../api/movies";
 import { useNavigate, useLocation } from "react-router-dom";
 import getUser from "../../utils/getUser";
@@ -100,13 +100,14 @@ const RightMenu = () => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        width="400px"
       >
         {user === "" ? (
           <div className="login-wrapper">
             <h1>Log In</h1>
             <label>
               <p>Username</p>
-              <input
+              <Input
                 type="text"
                 value={username || ""}
                 onChange={onUsernameChange}
@@ -115,7 +116,7 @@ const RightMenu = () => {
             <br />
             <label>
               <p>Password</p>
-              <input
+              <Input
                 type="password"
                 value={password || ""}
                 onChange={onPasswordChange}

@@ -25,10 +25,9 @@ function Food(props) {
         <Input.Group compact>
           <Button onClick={handleReduce}>-</Button>
           <Input
-            disabled
             placeholder={amount}
             style={{
-              width: "30px",
+              width: "33px",
             }}
           />
           <Button onClick={handleAdd}>+</Button>

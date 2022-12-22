@@ -34,18 +34,25 @@ export default function SeatingPlan(props) {
   const [adultQuantity, setAdultQuantity] = useState(0);
   const onAdultQuantityChange = (value) => {
     setAdultQuantity(value);
-    setDestroyModal(true);
-    setSelected([]);
-    const total = ticketPriceTotal(value, childQuantity);
-    dispatch(updateSelectedTicketsPriceTotal(total));
+    handleQuantityChange(value, childQuantity);
   };
   const [childQuantity, setChildQuantity] = useState(0);
   const onChildQuantityChange = (value) => {
     setChildQuantity(value);
+    handleQuantityChange(adultQuantity, value);
+  };
+
+  const handleQuantityChange = (adultQuantity, childQuantity) => {
     setDestroyModal(true);
     setSelected([]);
-    const total = ticketPriceTotal(adultQuantity, value);
+    const total = ticketPriceTotal(adultQuantity, childQuantity);
     dispatch(updateSelectedTicketsPriceTotal(total));
+    dispatch(
+      updateSelectedTickets([
+        { item: "adult", quantity: adultQuantity, price: adultPrice },
+        { item: "child", quantity: childQuantity, price: childPrice },
+      ])
+    );
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -59,12 +66,6 @@ export default function SeatingPlan(props) {
     setDestroyModal(false);
     setIsModalOpen(false);
     dispatch(updateSelectedSeats(selected));
-    dispatch(
-      updateSelectedTickets([
-        { item: "adult", quantity: adultQuantity, price: adultPrice },
-        { item: "child", quantity: childQuantity, price: childPrice },
-      ])
-    );
   };
 
   const [selected, setSelected] = useState([]);

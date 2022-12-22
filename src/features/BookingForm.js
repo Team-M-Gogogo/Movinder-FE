@@ -14,8 +14,20 @@ export default function BookingForm(props) {
 
   const date = new Date(session.datetime);
 
+  const selectedSeats = useSelector((state) => state.movie.selectedSeats);
+  const selectedTickets = useSelector((state) => state.movie.selectedTickets);
+  const selectedTicketsQuantity = selectedTickets.reduce(
+    (accumulator, ticket) => {
+      return accumulator + ticket.quantity;
+    },
+    0
+  );
   const handleClick = () => {
-    navigate(PaymentPage);
+    if (selectedSeats.length !== selectedTicketsQuantity) {
+      console.log("nooo");
+    } else {
+      navigate(PaymentPage);
+    }
   };
 
   const foodPriceTotal = useSelector((state) => {

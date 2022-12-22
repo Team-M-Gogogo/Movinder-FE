@@ -5,22 +5,13 @@ import { SeatPicker } from "../../utils/SeatPicker/SeatPicker";
 import { updateSelectedSeats, updateSelectedTickets } from "../movieSlice";
 
 export default function SeatingPlan(props) {
-  const { floorPlan, pricing } = props;
-  // const seats = [
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  //   [true, true, false, true, true, true, true, true, true, true, true],
-  // ];
-  const rows = floorPlan.map((row) => [
+  const { pricing, availableSeatings } = props;
+  const rows = availableSeatings.map((row, rowIndex) => [
     ...row.map((col, colIndex) => {
-      return { number: colIndex + 1, isReserved: !col };
+      return {
+        number: colIndex + 1,
+        isReserved: !col,
+      };
     }),
   ]);
   let adultPrice = 0,

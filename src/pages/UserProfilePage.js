@@ -1,6 +1,10 @@
 import React from 'react'
+import UserBookingList from '../features/UserBookingList';
 import UserProfile from "../features/UserProfile";
 
 export default function UserProfilePage() {
-  return <UserProfile />;
+  return <div>
+    <UserProfile />
+    <UserBookingList/>
+  </div>;
 }

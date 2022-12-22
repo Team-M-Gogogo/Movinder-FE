@@ -1,9 +1,17 @@
 import React from 'react';
-import { Breadcrumb, Image, Col, Row, Card } from "antd";
+import { Breadcrumb, Image, Col, Row, Card, Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const DisplayMovie = (props) => {
 
+    const navigate = useNavigate();
+
     const movie = props.selectedMovie;
+
+    const handleClick = () => {
+        console.log(movie.movieId);
+        navigate("/forum/" + movie.movieId);
+    }
 
     return (
         <>
@@ -36,6 +44,9 @@ const DisplayMovie = (props) => {
                                         </div>
                                     </div>
                                 </Card>
+                                <div style={{textAlign: "left", marginTop:"10px"}}>
+                                    <Button onClick={handleClick}>Join our forum!</Button>
+                                </div>
                             </Col>
                         </Row>
                 </div>

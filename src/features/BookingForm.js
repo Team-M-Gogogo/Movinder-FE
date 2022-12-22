@@ -1,17 +1,19 @@
-import React from 'react'
-import { Breadcrumb, Button, Divider, Input} from 'antd'
-import PaymentPage from '../pages/PaymentPage';
+import React from "react";
+import { Breadcrumb, Button, Divider, Input } from "antd";
+import PaymentPage from "../pages/PaymentPage";
 import { useNavigate } from "react-router-dom";
-import FoodInfo from './food/FoodInfo';
+import FoodInfo from "./food/FoodInfo";
+import SeatingPlan from "./seating/SeatingPlan";
+import StepBar from "./booking/bookingData";
 
 export default function BookingForm(props) {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     const {movie, cinema, session} = props;
 
-    //console.log( "*** " , movie);
+    // console.log(movie);
 
-    const date = new Date(session.datetime);
+  const date = new Date(session.datetime);
 
     const handleClick = () => {
         navigate("/payment" , {state: {movie, cinema, date} });
@@ -74,7 +76,7 @@ export default function BookingForm(props) {
                     </div>
                     <div style={{ textAlign: "right"}}>
                         <Button style={{ margin: "10px"}}> Cancel </Button>
-                        <Button  onClick={handleClick}  style={{ margin: "10px", background:"#ffa07a"}} > Buy </Button>
+                        <Button  onClick={handleClick} movie={movie} session={session} date={date}  style={{ margin: "10px", background:"#ffa07a"}} > Buy </Button>
                     </div>
                 </div>
             </div>

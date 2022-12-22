@@ -7,7 +7,7 @@ import App from "./App";
 import "antd/dist/reset.css";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-
+import "./utils/styles/seating.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

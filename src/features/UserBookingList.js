@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { List, Row, Col, Image, Button, Card, Divider } from "antd";
 import { useNavigate } from "react-router-dom";
-import {Notification} from "./Notification";
+import {Notification} from "./Reminder/Notification";
 
 import {
   getCustomerBookings,
@@ -94,10 +94,8 @@ export default function UserBookingList() {
       </Row>
       <Row >
       <p>Below are the start date of your movie tickets in this two days:</p>
-      </Row>
-      <Row>
+      </Row>   
       <Notification bookings ={userBookings}/>
-      </Row>
       </div>
       <Divider></Divider>
       <Row justify="center">

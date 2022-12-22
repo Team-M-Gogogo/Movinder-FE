@@ -53,10 +53,10 @@ export default function SeatingPlan(props) {
   const handleOk = () => {
     dispatch(updateSelectedSeats(selected));
     dispatch(
-      updateSelectedTickets({
-        adult: { quantity: adultQuantity, price: adultPrice },
-        child: { quantity: childQuantity, price: childPrice },
-      })
+      updateSelectedTickets([
+        { item: "adult", quantity: adultQuantity, price: adultPrice },
+        { item: "child", quantity: childQuantity, price: childPrice },
+      ])
     );
     setIsModalOpen(false);
   };

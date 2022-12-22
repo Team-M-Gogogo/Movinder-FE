@@ -9,6 +9,7 @@ const NotificationItem = (props) => {
     return (
     (movieStartTime.includes('Tomorrow') || movieStartTime.includes('Today'))?
     <div >
-        <p>{props.booking.movie.movieName} start at {movieStartTime}</p> </div> : <div></div>)};
+        <p>{props.booking.movie.movieName} start at {movieStartTime}</p> </div> : <div></div>)
+        };
    
-    export default NotificationItem;
+export default NotificationItem;

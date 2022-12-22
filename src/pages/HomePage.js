@@ -1,6 +1,25 @@
-import React from "react";
 import MovieList from "../features/movieList/MovieList";
+import { SearchMovie } from "../features/SearchMovie";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getMovies } from "../api/movies";
 
 export default function HomePage() {
-  return <MovieList />;
+  const [movies, setMovies] = useState([]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getMovies()
+      .then((response) => {
+        setMovies(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, [dispatch]);
+
+  localStorage.getItem("searchText");
+  return <div>
+   
+    <SearchMovie movies={movies}/>
+    </div>;
 }
+
+// <MovieList />

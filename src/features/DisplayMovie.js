@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumb, Image, Col, Row, Card, Button, Table } from "antd";
+import { Breadcrumb, Image, Col, Row, Button, Table } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const DisplayMovie = (props) => {

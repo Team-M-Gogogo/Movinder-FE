@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { List, Row, Col, Image, Button, Card, Divider } from "antd";
 import { useNavigate } from "react-router-dom";
-import { Notification } from "./Reminder/Notification";
 import moment from "moment";
 import {
   getCustomerBookings,
@@ -15,6 +14,13 @@ export default function UserBookingList() {
   const navigate = useNavigate();
 
   const [userBookings, setUserBookings] = useState([]);
+  const TOMORROW = 'Tomorrow';
+  const TODAY = 'Today';
+  const bookingTodayTmr = (booking) => moment(moment(booking.session.datetime)).subtract(0, 'days').calendar().includes(TOMORROW)
+  || moment(moment(booking.session.datetime)).subtract(0, 'days').calendar().includes(TODAY);
+
+  const filteredBooksTodayTmr = userBookings.filter(bookingTodayTmr);
+  const bookingsNotTodayTmr = userBookings.filter(booking => !filteredBooksTodayTmr.includes(booking));
 
   useEffect(() => {
     getCustomerBookings(customerId).then((response) => {
@@ -102,25 +108,25 @@ export default function UserBookingList() {
 
   return (
     <div>
-      <div className="box">
-        <Divider></Divider>
-        <Row justify="center">
-          <h1>Warm Reminder:</h1>
-        </Row>
-        <Row>
-          <p>
-            Below are the start date of your movie tickets in this two days:
-          </p>
-        </Row>
-        <Notification bookings={userBookings} />
-      </div>
+<Row justify="center">
+        <h1>My coming tickets in these two days</h1>
+      </Row>
+      <List
+        grid={{ gutter: 16, column: 3 }}
+        dataSource={filteredBooksTodayTmr}
+        renderItem={(booking) => (
+          <List.Item style={{ margin: "20px" }}>
+            <List.Item.Meta title={BookingCard(booking)} />
+          </List.Item>
+        )}
+      />
       <Divider></Divider>
       <Row justify="center">
         <h1>Booking History</h1>
       </Row>
       <List
         grid={{ gutter: 16, column: 3 }}
-        dataSource={userBookings}
+        dataSource={bookingsNotTodayTmr}
         renderItem={(booking) => (
           <List.Item style={{ margin: "20px" }}>
             <List.Item.Meta title={BookingCard(booking)} />

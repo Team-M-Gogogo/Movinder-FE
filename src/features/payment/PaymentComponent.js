@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DropIn from "braintree-web-drop-in-react";
-import { Button, Card, Descriptions, Badge } from "antd";
+import { Button, Card, Descriptions} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postBooking } from "../../api/movies";

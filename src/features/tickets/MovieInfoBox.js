@@ -31,7 +31,7 @@ export default function MovieInfoBox(props) {
 
   function MovieInfo() {
     return (
-      <div style={{margin:"10px"}}>
+      <div style={{ margin: "10px" }}>
         <h1>{movie.movieName}</h1>
         <p>
           <b>Show date:</b> {session.datetime}
@@ -46,12 +46,11 @@ export default function MovieInfoBox(props) {
           <b>Total</b>: {booking.total}
         </p>
 
-        <Row justify="center">
-            <Col align="start" span={12}>
-              <Card title="Food orders">
-              {foodListData}
-              </Card></Col>
-          </Row>
+        {foodListData.length > 0 && <Row justify="center">
+          <Col align="start" span={12}>
+            <Card title="Food orders">{foodListData}</Card>
+          </Col>
+        </Row>}
       </div>
     );
   }

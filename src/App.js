@@ -9,6 +9,7 @@ import ForumPage from "./pages/ForumPage";
 import DisplayTickets from "./features/tickets/DisplayTicket";
 // import PaymentPage from "./pages/PaymentPage";
 import UserProfilePage from "./pages/UserProfilePage";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="/userprofile" element={<UserProfilePage />} />
           <Route path="/forum/:movieId" element={<ForumPage/>}/>
           <Route path="/ticket" element={<DisplayTickets />} />
-          {/* <Route path="/payment" element={<PaymentPage />} /> */}
+          <Route path="/payment" element={<PaymentPage />} />
         </Route>
       </Routes>
     </div>

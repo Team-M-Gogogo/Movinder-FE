@@ -21,7 +21,7 @@ const gridStyle = {
 export default function DisplayTickets(props) {
   const location = useLocation();
   console.log(location.state);
-  const {booking} = location.state;
+  const booking = location.state;
 
   const [foodsMap, setFoodsMap] = useState();
   const [tickets, setTickets] = useState([]);

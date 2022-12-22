@@ -45,19 +45,20 @@ export default function UserProfile() {
 
   return (
     <Col justify="center" align="middle">
-      <Row justify="center" align="middle">
-        <h1>User Profile</h1>
-      </Row>
-      <Row justify="center" align="middle">
-        <CustomizedForm
-          fields={fields}
-          onChange={(newFields) => {
-            setFields(newFields);
-          }}
-          updateLocalUser={updateLocalUser}
-        />
-      </Row>
-    </Col>
+        <Row justify="center" align="middle">
+          <h1 style={{margin:"10px"}}>User Profile</h1>
+        </Row>
+        <Row justify="center" align="middle">
+          <CustomizedForm
+            fields={fields}
+            onChange={(newFields) => {
+              setFields(newFields);
+            }}
+            updateLocalUser={updateLocalUser}
+          />
+        </Row>
+      </Col>
+
   );
 }
 

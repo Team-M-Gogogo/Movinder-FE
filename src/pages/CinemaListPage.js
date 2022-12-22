@@ -31,7 +31,6 @@ export default function CinemaListPage() {
             <DisplayMovie selectedMovie={movie}/>
             <Divider></Divider>
             <DisplyaCinemas selectedMovie={movie}/>
-
             </Content>
         </Layout>
         </div>

@@ -4,7 +4,7 @@ import BookingForm from '../features/BookingForm';
 import { useParams } from 'react-router-dom';
 import { getCinemasById, getMovieById, getSessionById } from '../api/movies';
 
-const { Footer, Content } = Layout;
+const { Content } = Layout;
 
 export default function BookingPage() {
 
@@ -46,9 +46,6 @@ export default function BookingPage() {
         <Layout style={{ padding: "0 50px" }}>
             <Content className="site-layout" style={{ padding: "0 50px" }}>
                 {movie && cinema && session && <BookingForm movie={movie} cinema={cinema} session={session}/>}
-            <Footer style={{ textAlign: "center" }}>
-                Team M Gogogo@2022 No time to die
-            </Footer>
             </Content>
         </Layout>
     )

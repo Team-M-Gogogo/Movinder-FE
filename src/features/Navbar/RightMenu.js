@@ -3,7 +3,7 @@ import { Menu } from "antd";
 import logouts from "./image/Logout.png";
 import User from "./image/user.png";
 import { useState } from "react";
-import { Modal, Button, Input } from "antd";
+import { Modal, Input } from "antd";
 import { postLogin } from "../../api/movies";
 import { useNavigate, useLocation } from "react-router-dom";
 import getUser from "../../utils/getUser";
@@ -92,12 +92,15 @@ const RightMenu = () => {
   };
 
   const loginNav = (
-    <>
-      {/* <Button onClick={showModal}>{user === "" ? "Login" : "Logout"}</Button> */}
-      <a onClick={showModal}>
-          <img src={logouts} style={{ width: "20%" }} alt="Logo" />
-          {user === "" ? "Login" : "Logout"}
-      </a>
+    <>  
+        <span onClick={showModal}>
+        <img src={user === "" ?  User : logouts} style={{ width: "30%" }} alt="Logo" />
+        {user === "" ? "Login" : "Logout"}
+          </span>
+
+
+
+     
       
       <Modal
         title=""
@@ -137,21 +140,12 @@ const RightMenu = () => {
   );
 
   var items = [
-    {
-      label: (
-        <a href="/">
-          <img src={setting} style={{ width: "20%" }} alt="Logo" />
-          Home
-        </a>
-      ),
-      key: "Home",
-    },
   ];
   if (user) {
     items.push({
       label: user && (
         <a href="/userprofile">
-          <img src={User} style={{ width: "20%" }} alt="Logo" />
+          <img src={User} style={{ width: "30%" }} alt="Logo" />
           {user === "" ? "" : user.customerName}
         </a>
       ),

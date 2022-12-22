@@ -34,12 +34,16 @@ export default function SeatingPlan(props) {
   const [adultQuantity, setAdultQuantity] = useState(0);
   const onAdultQuantityChange = (value) => {
     setAdultQuantity(value);
+    setDestroyModal(true);
+    setSelected([]);
     const total = ticketPriceTotal(value, childQuantity);
     dispatch(updateSelectedTicketsPriceTotal(total));
   };
   const [childQuantity, setChildQuantity] = useState(0);
   const onChildQuantityChange = (value) => {
     setChildQuantity(value);
+    setDestroyModal(true);
+    setSelected([]);
     const total = ticketPriceTotal(adultQuantity, value);
     dispatch(updateSelectedTicketsPriceTotal(total));
   };
@@ -50,7 +54,10 @@ export default function SeatingPlan(props) {
   };
 
   const dispatch = useDispatch();
-  const handleOk = () => {
+
+  const handleCancel = () => {
+    setDestroyModal(false);
+    setIsModalOpen(false);
     dispatch(updateSelectedSeats(selected));
     dispatch(
       updateSelectedTickets([
@@ -58,18 +65,12 @@ export default function SeatingPlan(props) {
         { item: "child", quantity: childQuantity, price: childPrice },
       ])
     );
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
   };
 
   const [selected, setSelected] = useState([]);
   const addSeatCallback = ({ row, number, id }, addCb) => {
     setSelected((ids) => [...ids, id]);
-    const newTooltip = id;
-    addCb(row, number, id, newTooltip);
+    addCb(row, number, id);
   };
 
   const removeSeatCallback = ({ row, number, id }, removeCb) => {
@@ -94,6 +95,8 @@ export default function SeatingPlan(props) {
     });
     return total;
   };
+
+  const [destroyModal, setDestroyModal] = useState(false);
 
   return (
     <div>
@@ -127,10 +130,10 @@ export default function SeatingPlan(props) {
         </Button>
       </Popover>
       <Modal
-        title=""
+        destroyOnClose={destroyModal}
         open={isModalOpen}
-        onOk={handleOk}
         onCancel={handleCancel}
+        footer={[]}
       >
         <h1 className="screen">SCREEN</h1>
         <SeatPicker
@@ -148,6 +151,8 @@ export default function SeatingPlan(props) {
       <div>
         <br />
         Total Ticket Price: ${ticketPriceTotal(adultQuantity, childQuantity)}
+        <br />
+        Chosen seats: {selected.join()}
         <br />
       </div>
     </div>

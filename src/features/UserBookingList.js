@@ -59,7 +59,8 @@ export default function UserBookingList() {
   };
 
   function goToTicketPage(booking) {
-    navigate("/ticket", booking);
+    console.log(booking);
+    navigate("/ticket", {state: booking});
   }
 
   function BookingCard(booking) {
@@ -98,6 +99,7 @@ export default function UserBookingList() {
       <Notification bookings ={userBookings}/>
       </Row>
       </div>
+      <Divider></Divider>
       <Row justify="center">
         <h1>Booking History</h1>
       </Row>

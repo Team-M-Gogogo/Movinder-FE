@@ -31,7 +31,7 @@ export default function MovieInfoBox(props) {
 
   function MovieInfo() {
     return (
-      <div>
+      <div style={{margin:"10px"}}>
         <h1>{movie.movieName}</h1>
         <p>
           <b>Show date:</b> {session.datetime}

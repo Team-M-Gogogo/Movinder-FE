@@ -39,9 +39,6 @@ export default function MovieInfoBox(props) {
   }
 
   function MovieInfo() {
-    if (foodListData.length === 0){
-      return <div></div>
-    }
     return (
       <div style={{ margin: "10px" }}>
         <Card>

@@ -57,7 +57,7 @@ export default function PaymentComponent() {
             </Descriptions.Item>
 
             <Descriptions.Item label="Show time">
-              {moment(session.datetime).format("DD/MM/YY | HH:mm")}
+              {moment(session.datetime).format("DD/MM/YY HH:mm")}
             </Descriptions.Item>
 
             <Descriptions.Item label="Cinema">
@@ -85,7 +85,7 @@ export default function PaymentComponent() {
             </Descriptions.Item>
 
             <Descriptions.Item label="Total Price">
-              {foodTotal + selectedTicketsPriceTotal}
+              ${foodTotal + selectedTicketsPriceTotal}
             </Descriptions.Item>
           </Descriptions>
         </Card>

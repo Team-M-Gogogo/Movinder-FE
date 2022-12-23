@@ -14,13 +14,22 @@ export default function UserBookingList() {
   const navigate = useNavigate();
 
   const [userBookings, setUserBookings] = useState([]);
-  const TOMORROW = 'Tomorrow';
-  const TODAY = 'Today';
-  const bookingTodayTmr = (booking) => moment(moment(booking.session.datetime)).subtract(0, 'days').calendar().includes(TOMORROW)
-  || moment(moment(booking.session.datetime)).subtract(0, 'days').calendar().includes(TODAY);
+  const TOMORROW = "Tomorrow";
+  const TODAY = "Today";
+  const bookingTodayTmr = (booking) =>
+    moment(moment(booking.session.datetime))
+      .subtract(0, "days")
+      .calendar()
+      .includes(TOMORROW) ||
+    moment(moment(booking.session.datetime))
+      .subtract(0, "days")
+      .calendar()
+      .includes(TODAY);
 
   const filteredBooksTodayTmr = userBookings.filter(bookingTodayTmr);
-  const bookingsNotTodayTmr = userBookings.filter(booking => !filteredBooksTodayTmr.includes(booking));
+  const bookingsNotTodayTmr = userBookings.filter(
+    (booking) => !filteredBooksTodayTmr.includes(booking)
+  );
 
   useEffect(() => {
     getCustomerBookings(customerId).then((response) => {
@@ -73,7 +82,13 @@ export default function UserBookingList() {
     return (
       <div>
         <Row justify="center">
-          <Button type="primary" block onClick={() => goToTicketPage(booking.bookingObj)}>Click to view Ticket</Button>
+          <Button
+            type="primary"
+            block
+            onClick={() => goToTicketPage(booking.bookingObj)}
+          >
+            Click to view Ticket
+          </Button>
         </Row>
         <Row justify="center">
           <div>{"Movie Title: " + booking.movie.movieName}</div>
@@ -94,7 +109,10 @@ export default function UserBookingList() {
           </Col>
           <Col style={{ margin: "10px" }}>
             <div>
-              <p>Show time: {moment(booking.session.datetime).format("DD/MM/YY  HH:mm")} </p>
+              <p>
+                Show time:{" "}
+                {moment(booking.session.datetime).format("DD/MM/YY  HH:mm")}{" "}
+              </p>
               <p>Cinema: {booking.cinema.cinemaName}</p>
             </div>
           </Col>
@@ -108,7 +126,7 @@ export default function UserBookingList() {
 
   return (
     <div>
-<Row justify="center">
+      <Row justify="center">
         <h1>My coming tickets in these two days</h1>
       </Row>
       <List

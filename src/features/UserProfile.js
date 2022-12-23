@@ -21,7 +21,7 @@ export default function UserProfile() {
     },
     {
       name: ["status"],
-      value: user.status === "single" ? "single" : "occupied",
+      value: user.status === "Available" ? "single" : "occupied",
     },
   ]);
 

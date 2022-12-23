@@ -7,7 +7,6 @@ function FoodList() {
   const [foods, setfoods] = useState({});
   useEffect(() => {
     getFoods().then((response) => {
-      console.log(response.data);
       setfoods(response.data);
     });
   }, []);

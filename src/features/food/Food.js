@@ -24,7 +24,6 @@ function Food(props) {
     dispatch(changeFoodTotal(food.price));
     dispatch(addSelectedFood(food.foodId));
   };
-  console.log(food.foodId);
   return (
     <>
       <Card className="foodCard" type="inner" title={food.foodName}>
@@ -33,7 +32,6 @@ function Food(props) {
         <p>Price: ${food.price}</p>
         <Input.Group compact className="quanButton">
           <Button onClick={handleReduce}>-</Button>
-          {/* <Input disabled className="foodQuantity" placeholder={amount} /> */}
           <p className="foodQuantity">{amount}</p>
           <Button onClick={handleAdd}>+</Button>
         </Input.Group>

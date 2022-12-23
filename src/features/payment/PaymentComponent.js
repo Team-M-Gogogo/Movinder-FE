@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DropIn from "braintree-web-drop-in-react";
-import { Button, Card, Descriptions} from "antd";
+import { Button, Card, Descriptions } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postBooking } from "../../api/movies";
@@ -24,10 +24,14 @@ export default function PaymentComponent() {
   }
 
   function GetFoodTypeTotal() {
-    console.log(foodsMap)
+    console.log(foodsMap);
     var s = "";
     foods.forEach((ticket) => {
-      s += (capitalize(foodsMap[ticket.item].foodName) + ": " + ticket.quantity + ", ");
+      s +=
+        capitalize(foodsMap[ticket.item].foodName) +
+        ": " +
+        ticket.quantity +
+        ", ";
     });
 
     return s.slice(0, s.length - 2);
@@ -44,7 +48,7 @@ export default function PaymentComponent() {
       }, {});
       setFoodsMap(result);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function PaymentBox() {
@@ -52,12 +56,12 @@ export default function PaymentComponent() {
       <div style={{ textAlign: "center" }}>
         <Card>
           <Descriptions title="Billing Info" bordered column={2}>
-            <Descriptions.Item label="Movie">
+            <Descriptions.Item label="Movie" span={2} labelStyle={{"font-weight": "bold"}}  contentStyle={{"font-weight": "bold"}}>
               {movie.movieName}
             </Descriptions.Item>
 
             <Descriptions.Item label="Show time">
-              {moment(session.datetime).format("DD/MM/YY | HH:mm")}
+              {moment(session.datetime).format("DD/MM/YY HH:mm")}
             </Descriptions.Item>
 
             <Descriptions.Item label="Cinema">
@@ -84,8 +88,12 @@ export default function PaymentComponent() {
               {foodTotal}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Total Price">
-              {foodTotal + selectedTicketsPriceTotal}
+            <Descriptions.Item label="Seat number">
+              {String(seats)}
+            </Descriptions.Item>
+
+            <Descriptions.Item labelStyle={{"font-weight": "bold"}} contentStyle={{"font-weight": "bold"}} label="Total Price">
+              ${foodTotal + selectedTicketsPriceTotal}
             </Descriptions.Item>
           </Descriptions>
         </Card>
@@ -156,13 +164,16 @@ export default function PaymentComponent() {
     bookingRequestObj["foodRequestItems"] = foods;
 
     console.log(bookingRequestObj);
-    postBooking(bookingRequestObj).then((response) => {
-      console.log(response.data);
-      navigate("/ticket", { state: response.data });
-    });
+    postBooking(bookingRequestObj)
+      .then((response) => {
+        navigate("/ticket", { state: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
-  
-  if (foodsMap){
+
+  if (foodsMap) {
     return (
       <div>
         <StepBar number={1} />
@@ -170,7 +181,5 @@ export default function PaymentComponent() {
       </div>
     );
   }
-  return <div></div>
-
-
+  return <div></div>;
 }

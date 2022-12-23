@@ -80,11 +80,16 @@ export default function BookingForm(props) {
     },
     {
       key: "3",
+      name: "Address",
+      value: cinema.address,
+    },
+    {
+      key: "4",
       name: "Date",
       value: moment(ticketDate).format("DD/MM/YY"),
     },
     {
-      key: "4",
+      key: "5",
       name: "Time",
       value: moment(ticketDate).format("HH:mm"),
     },
@@ -138,7 +143,8 @@ export default function BookingForm(props) {
               movie={movie}
               session={session}
               date={date}
-              style={{ margin: "10px", background: "#ffa07a" }}
+              className="movinderBtn"
+              style={{ margin: "10px", width: "100px" }}
             >
               {" "}
               Buy{" "}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumb, Button, Divider, notification, Table } from "antd";
+import { Breadcrumb, Button, Card, Divider, notification, Table } from "antd";
 
 import { useNavigate } from "react-router-dom";
 import FoodInfo from "./food/FoodInfo";
@@ -25,18 +25,21 @@ export default function BookingForm(props) {
     0
   );
   const handleClick = () => {
-    if (selectedSeats.length !== selectedTicketsQuantity) {
-      openNotification();
-      console.log("nooo");
+    if (selectedTicketsQuantity === 0) {
+      openNotification("Ticket quantity not selected!");
+    } else if (selectedSeats.length !== selectedTicketsQuantity) {
+      openNotification(
+        "Number of seats picked is not the same as ticket quantity!"
+      );
     } else {
       navigate("/payment");
     }
   };
   const [api, contextHolder] = notification.useNotification();
-  const openNotification = () => {
+  const openNotification = (description) => {
     api.info({
       message: "Missing information",
-      description: "Number of seats picked is not the same as ticket quantity!",
+      description: description,
       placement: "top",
       icon: <ExclamationCircleTwoTone twoToneColor={"red"} />,
       style: { width: "600px" },
@@ -60,7 +63,6 @@ export default function BookingForm(props) {
       key: "name",
     },
     {
-      // title: "Age",
       dataIndex: "value",
       key: "value",
     },
@@ -82,7 +84,7 @@ export default function BookingForm(props) {
       value: moment(ticketDate).format("DD/MM/YY"),
     },
     {
-      key: "3",
+      key: "4",
       name: "Time",
       value: moment(ticketDate).format("HH:mm"),
     },
@@ -110,26 +112,27 @@ export default function BookingForm(props) {
             columns={ticketDetailCols}
             dataSource={ticketDetailData}
             pagination={false}
+            boredered
           />
 
           <Divider></Divider>
-          <div style={{ textAlign: "left" }}>
-            <h2>Ticket Price</h2>
-          </div>
+          <Card title="Ticket Price" style={{ margin: "10px" }}>
+            <div style={{ textAlign: "left" }}></div>
+            <div style={{ textAlign: "left", margin: "10px" }}>
+              <SeatingPlan
+                availableSeatings={session.availableSeatings}
+                pricing={session.pricing}
+              />
+            </div>
+          </Card>
           <Divider></Divider>
-          <div style={{ textAlign: "left", margin: "10px" }}>
-            <SeatingPlan
-              availableSeatings={session.availableSeatings}
-              pricing={session.pricing}
-            />
-          </div>
+
           <div style={{ textAlign: "left", margin: "10px" }}>
             <FoodInfo />
           </div>
-          <div style={{ textAlign: "right", margin: "10px" }}>
-            <h3>Net Total: {totalPrice()}</h3>
-          </div>
+          <div style={{ textAlign: "right", margin: "10px" }}></div>
           <div style={{ textAlign: "right" }}>
+            <h3>Total Price: ${totalPrice()}</h3>
             <Button
               onClick={handleClick}
               movie={movie}

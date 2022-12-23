@@ -46,9 +46,9 @@ export default function MovieInfoBox(props) {
           <b>Total</b>: {booking.total}
         </p>
 
-        {foodListData.length > 0 && <Row justify="center">
+        {foodListData.length > 0 && <Row justify="start">
           <Col align="start" span={12}>
-            <Card title="Food orders">{foodListData}</Card>
+            <Card title="Food Orders">{foodListData}</Card>
           </Col>
         </Row>}
       </div>

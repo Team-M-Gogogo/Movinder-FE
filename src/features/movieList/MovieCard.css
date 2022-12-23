@@ -3,6 +3,9 @@
   width: 300px;
   margin: 10px auto;
 }
+.movieCard > .ant-card-cover > img {
+  height: 400px;
+}
 .movieDuration {
   color: grey;
   font-size: smaller;

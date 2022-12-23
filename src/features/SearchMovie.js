@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Input} from "antd";
-import "./Reminder/Noti.css"
 import MovieCard from "../features/movieList/MovieCard"
 import "../features/movieList/MovieList.css"
 

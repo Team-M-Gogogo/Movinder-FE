@@ -1,19 +1,94 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DropIn from "braintree-web-drop-in-react";
-import { Button } from "antd";
+import { Button, Card, Descriptions} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postBooking } from "../../api/movies";
 import getUser from "../../utils/getUser";
 import StepBar from "../booking/bookingData";
 import { handleFinalSelectedFood } from "../movieSlice";
-
+import moment from "moment";
+import { getFoods } from "../../api/movies";
 export default function PaymentComponent() {
   const navigate = useNavigate();
+
+  const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
+
+  function GetTicketTypeTotal() {
+    var s = "";
+    selectedTickets.forEach((ticket) => {
+      s += capitalize(ticket.item) + ": " + ticket.quantity + ", ";
+    });
+
+    return s.slice(0, s.length - 2);
+  }
+
+  function GetFoodTypeTotal() {
+    console.log(foodsMap)
+    var s = "";
+    foods.forEach((ticket) => {
+      s += (capitalize(foodsMap[ticket.item].foodName) + ": " + ticket.quantity + ", ");
+    });
+
+    return s.slice(0, s.length - 2);
+  }
+
+  const [foodsMap, setFoodsMap] = useState();
+
+  useEffect(() => {
+    dispatch(handleFinalSelectedFood());
+    getFoods().then((response) => {
+      var result = response.data.reduce(function (map, obj) {
+        map[obj.foodId] = obj;
+        return map;
+      }, {});
+      setFoodsMap(result);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function PaymentBox() {
     return (
       <div style={{ textAlign: "center" }}>
+        <Card>
+          <Descriptions title="Billing Info" bordered column={2}>
+            <Descriptions.Item label="Movie">
+              {movie.movieName}
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Show time">
+              {moment(session.datetime).format("DD/MM/YY | HH:mm")}
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Cinema">
+              {cinema.cinemaName}
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Address">
+              {cinema.address}
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Tickets">
+              <GetTicketTypeTotal />
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Ticket Price">
+              {selectedTicketsPriceTotal}
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Food">
+              <GetFoodTypeTotal />
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Food Price">
+              {foodTotal}
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Total Price">
+              {foodTotal + selectedTicketsPriceTotal}
+            </Descriptions.Item>
+          </Descriptions>
+        </Card>
         <DropIn
           options={{
             authorization:
@@ -36,9 +111,23 @@ export default function PaymentComponent() {
   const tickets = useSelector((state) => {
     return state.movie.selectedTickets;
   });
-  const dispatch = useDispatch();
+  const movie = useSelector((state) => {
+    return state.movie.selectedMovie;
+  });
+  const cinema = useSelector((state) => {
+    return state.movie.selectedCinema;
+  });
+  const foodTotal = useSelector((state) => {
+    return state.movie.foodTotal;
+  });
+  const selectedTickets = useSelector((state) => {
+    return state.movie.selectedTickets;
+  });
 
-  dispatch(handleFinalSelectedFood());
+  const selectedTicketsPriceTotal = useSelector((state) => {
+    return state.movie.selectedTicketsPriceTotal;
+  });
+  const dispatch = useDispatch();
 
   const foods = useSelector((state) => {
     return state.movie.finalSelectedFood;
@@ -51,7 +140,6 @@ export default function PaymentComponent() {
       row: item.charCodeAt(0) - 65,
       column: parseInt(item.slice(1)) - 1,
     });
-    console.log(item.charCodeAt(0) - 65, item);
   });
 
   const customerId = getUser().customerId;
@@ -73,11 +161,16 @@ export default function PaymentComponent() {
       navigate("/ticket", { state: response.data });
     });
   }
+  
+  if (foodsMap){
+    return (
+      <div>
+        <StepBar number={1} />
+        <PaymentBox />
+      </div>
+    );
+  }
+  return <div></div>
 
-  return (
-    <div>
-      <StepBar number={1} />
-      <PaymentBox />
-    </div>
-  );
+
 }

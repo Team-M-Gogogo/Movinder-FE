@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "antd";
+import { Menu, Badge, Space, Popover  } from "antd";
 import logouts from "./image/Logout.png";
 import User from "./image/user.png";
 import { useState } from "react";
@@ -9,12 +9,80 @@ import { useNavigate, useLocation } from "react-router-dom";
 import getUser from "../../utils/getUser";
 import { useDispatch, useSelector } from "react-redux";
 import { changeShowLogin } from "../movieSlice";
+import {
+  getCustomerBookings,
+  getMovieById,
+  getSessionById,
+  getCinemasById,
+} from "../../api/movies";
+import { useEffect} from "react";
+import moment from 'moment';
 
 const RightMenu = () => {
   const navigate = useNavigate();
   const user = getUser();
 
   const dispatch = useDispatch();
+  const customerId = getUser().customerId;
+
+  const [userBookings, setUserBookings] = useState([]);
+
+  const TOMORROW = 'Tomorrow';
+  const TODAY = 'Today';
+  const bookingTodayTmr = (booking) => moment(moment(booking.session.datetime)).subtract(0, 'days').calendar().includes(TOMORROW)
+  || moment(moment(booking.session.datetime)).subtract(0, 'days').calendar().includes(TODAY);
+
+  const filteredBooksTodayTmr = userBookings.filter(bookingTodayTmr);
+
+
+  useEffect(() => {
+    if(customerId){
+    getCustomerBookings(customerId).then((response) => {
+      const bookingTicketsPromise = response.data.map((booking) => {
+        return getSessionById(booking.movieSessionId).then(
+          async (sessionResponse) => {
+            const session = sessionResponse.data;
+
+            const cinema = await getCinemaObj(session.cinemaId);
+            const movie = await getMovieObj(session.movieId);
+
+            return {
+              session: session,
+              cinema: cinema,
+              movie: movie,
+              bookingObj: booking,
+            };
+          }
+        );
+      });
+
+      Promise.all(bookingTicketsPromise).then((responses) => {
+        console.log(responses);
+        setUserBookings(responses);
+      });
+    });
+  }
+  }, [customerId]);
+
+  
+  const getMovieObj = (movieId) => {
+    return getMovieById(movieId).then((response) => {
+      return response.data;
+    });
+  };
+
+  const getCinemaObj = (cinemaId) => {
+    return getCinemasById(cinemaId).then((response) => {
+      return response.data;
+    });
+  };
+
+  const popoverContent = (
+    <div>
+      {filteredBooksTodayTmr.map((booking, index) => 
+      <li key={index}>{<p>{booking.movie.movieName} start at {moment(moment(booking.session.datetime)).subtract(0, 'days').calendar()} </p>}</li>)}
+    </div>
+  );
 
   const isModalOpen = useSelector((state) => {
     return state.movie.showLogin;
@@ -51,6 +119,7 @@ const RightMenu = () => {
     Modal.success({
       content: "Successfully Login.",
     });
+
   };
 
   const success_logout = () => {
@@ -143,10 +212,17 @@ const RightMenu = () => {
   if (user) {
     items.push({
       label: user && (
+        <Space size="large">
+        <Popover content={popoverContent} title="My ticket(s) that start today or tmr:">
+        <Badge count={filteredBooksTodayTmr.length}>
         <a href="/userprofile">
-          <img src={User} style={{ width: "30%" }} alt="Logo" />
-          {user === "" ? "" : user.customerName}
+        <img src={User} style={{ width: "30%" }} alt="Logo" />
+        {user === "" ? "" : user.customerName}
         </a>
+        </Badge>
+        </Popover>
+      </Space>
+
       ),
       key: "User",
     });

@@ -1,7 +1,7 @@
 .foodCard {
     margin: 15px;
     width: 300px;
-
+    margin-left: 0;
 }
 .quanButton {
     vertical-align: text-top;

@@ -5,7 +5,6 @@ import moment from "moment";
 export default function MovieInfoBox(props) {
   const { movie, session, booking, cinema, foodsMap, foodIds } = props;
 
-  console.log(props);
   function getFoodTotal(){
     const sum = foodIds.reduce((accumulator, id) => {
       return foodsMap[id].price;

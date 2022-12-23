@@ -82,22 +82,14 @@ export default function UserBookingList() {
     return (
       <div>
         <Row justify="center">
-          <Button
-            type="primary"
-            block
-            onClick={() => goToTicketPage(booking.bookingObj)}
-          >
-            Click to view Ticket
-          </Button>
-        </Row>
-        <Row justify="center">
-          <div>{"Movie Title: " + booking.movie.movieName}</div>
+          <div>{booking.movie.movieName}</div>
         </Row>
       </div>
     );
   }
 
   function BookingCard(booking) {
+    console.log(booking);
     return (
       <Card title={<MovieTicketTitle booking={booking} />}>
         <Row justify="center" align="middle">
@@ -116,9 +108,15 @@ export default function UserBookingList() {
               <p>Cinema: {booking.cinema.cinemaName}</p>
             </div>
           </Col>
-          {/* <Col span={3} color={"blue"}>
-            <Button onClick={() => goToTicketPage(booking.bookingObj)}>Click to view Ticket</Button>
-          </Col> */}
+        </Row>
+        <Row justify="center">
+          <Button
+            type="primary"
+            block
+            onClick={() => goToTicketPage(booking.bookingObj)}
+          >
+            Click to view Ticket
+          </Button>
         </Row>
       </Card>
     );

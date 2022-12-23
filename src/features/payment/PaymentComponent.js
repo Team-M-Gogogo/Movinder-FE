@@ -56,7 +56,7 @@ export default function PaymentComponent() {
       <div style={{ textAlign: "center" }}>
         <Card>
           <Descriptions title="Billing Info" bordered column={2}>
-            <Descriptions.Item label="Movie">
+            <Descriptions.Item label="Movie" span={2} labelStyle={{"font-weight": "bold"}}  contentStyle={{"font-weight": "bold"}}>
               {movie.movieName}
             </Descriptions.Item>
 
@@ -88,7 +88,11 @@ export default function PaymentComponent() {
               {foodTotal}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Total Price">
+            <Descriptions.Item label="Seat number">
+              {String(seats)}
+            </Descriptions.Item>
+
+            <Descriptions.Item labelStyle={{"font-weight": "bold"}} contentStyle={{"font-weight": "bold"}} label="Total Price">
               ${foodTotal + selectedTicketsPriceTotal}
             </Descriptions.Item>
           </Descriptions>

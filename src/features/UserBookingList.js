@@ -9,6 +9,7 @@ import {
   getCinemasById,
 } from "../api/movies";
 import getUser from "../utils/getUser";
+
 export default function UserBookingList() {
   const customerId = getUser().customerId;
   const navigate = useNavigate();
@@ -17,11 +18,11 @@ export default function UserBookingList() {
   const TOMORROW = "Tomorrow";
   const TODAY = "Today";
   const bookingTodayTmr = (booking) =>
-    moment(moment(booking.session.datetime))
+    moment(moment(booking.session.datetime).add(8, 'hours'))
       .subtract(0, "days")
       .calendar()
       .includes(TOMORROW) ||
-    moment(moment(booking.session.datetime))
+    moment(moment(booking.session.datetime).add(8, 'hours'))
       .subtract(0, "days")
       .calendar()
       .includes(TODAY);
@@ -86,7 +87,6 @@ export default function UserBookingList() {
   }
 
   function BookingCard(booking) {
-    console.log(booking);
     return (
       <Card title={<MovieTicketTitle booking={booking} />}>
         <Row justify="center" align="middle">
@@ -100,9 +100,10 @@ export default function UserBookingList() {
             <div>
               <p>
                 Show time:{" "}
-                {moment(booking.session.datetime).format("DD/MM/YY  HH:mm")}{" "}
+                {moment(booking.session.datetime).add(8, 'hours').format("DD/MM/YY  HH:mm")}{" "}
               </p>
               <p>Cinema: {booking.cinema.cinemaName}</p>
+              <p>Booking time:  {moment(booking.bookingObj.bookingTime).add(8, 'hours').format("DD/MM/YY  HH:mm a")}</p>
             </div>
           </Col>
         </Row>

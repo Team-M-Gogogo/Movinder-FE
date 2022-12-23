@@ -48,11 +48,11 @@ export default function MovieInfoBox(props) {
             </Descriptions.Item>
 
             <Descriptions.Item label="Show Date">
-              {moment(session.datetime).format("DD/MM/YY")}
+              {moment(session.datetime).add(8, 'hours').format("DD/MM/YY")}
             </Descriptions.Item>
 
             <Descriptions.Item label="Show time">
-              {moment(session.datetime).format("HH:mm")}
+              {moment(session.datetime).add(8, 'hours').format("HH:mm")}
             </Descriptions.Item>
 
             <Descriptions.Item label="Cinema">

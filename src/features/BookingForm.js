@@ -86,12 +86,12 @@ export default function BookingForm(props) {
     {
       key: "4",
       name: "Date",
-      value: moment(ticketDate).format("DD/MM/YY"),
+      value: moment(ticketDate).add(8, 'hours').format("DD/MM/YY"),
     },
     {
       key: "5",
       name: "Time",
-      value: moment(ticketDate).format("HH:mm"),
+      value: moment(ticketDate).add(8, 'hours').format("HH:mm"),
     },
   ];
   return (

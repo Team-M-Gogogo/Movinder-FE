@@ -29,8 +29,8 @@ const RightMenu = () => {
 
   const TOMORROW = 'Tomorrow';
   const TODAY = 'Today';
-  const bookingTodayTmr = (booking) => moment(moment(booking.session.datetime)).subtract(0, 'days').calendar().includes(TOMORROW)
-  || moment(moment(booking.session.datetime)).subtract(0, 'days').calendar().includes(TODAY);
+  const bookingTodayTmr = (booking) => moment(moment(booking.session.datetime).add(8, 'hours')).subtract(0, 'days').calendar().includes(TOMORROW)
+  || moment(moment(booking.session.datetime).add(8, 'hours')).subtract(0, 'days').calendar().includes(TODAY);
 
   const filteredBooksTodayTmr = userBookings.filter(bookingTodayTmr);
 
@@ -79,7 +79,7 @@ const RightMenu = () => {
   const popoverContent = (
     <div>
       {filteredBooksTodayTmr.map((booking, index) => 
-      <li key={index}>{<p>{booking.movie.movieName} start at {moment(moment(booking.session.datetime)).subtract(0, 'days').calendar()} </p>}</li>)}
+      <li key={index}>{<p>{booking.movie.movieName} start at {moment(moment(booking.session.datetime).add(8, 'hours')).subtract(0, 'days').calendar()} </p>}</li>)}
     </div>
   );
 
@@ -210,7 +210,7 @@ const RightMenu = () => {
     items.push({
       label: user && (
         <Space size="large">
-        <Popover content={popoverContent} title="My ticket(s) that start today or tmr:">
+        <Popover content={popoverContent} title="Upcoming bookings for 2 days:">
         <Badge count={filteredBooksTodayTmr.length}>
         <a href="/userprofile">
         <img src={User} style={{ width: "30%" }} alt="Logo" />

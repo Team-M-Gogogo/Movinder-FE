@@ -24,15 +24,7 @@ const DisplayMovie = (props) => {
       render: (_, record) => {
         if (record.value === "Forum") {
           return (
-            <Button
-              onClick={handleClick}
-              style={{
-                width: "fit-content",
-                background: "#fd655c",
-                color: "white",
-                fontWeight: "bold",
-              }}
-            >
+            <Button onClick={handleClick} className="movinderBtn">
               Join our forum!
             </Button>
           );

@@ -7,7 +7,6 @@ import { Route, Routes } from "react-router-dom";
 import BookingPage from "./pages/BookingPage";
 import ForumPage from "./pages/ForumPage";
 import DisplayTickets from "./features/tickets/DisplayTicket";
-// import PaymentPage from "./pages/PaymentPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import PaymentPage from "./pages/PaymentPage";
 

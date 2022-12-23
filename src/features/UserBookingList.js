@@ -53,13 +53,11 @@ export default function UserBookingList() {
       });
 
       Promise.all(bookingTicketsPromise).then((responses) => {
-        console.log(responses);
         setUserBookings(responses);
       });
     });
   }, [customerId]);
 
-  // find cinema and movie name and show time
 
   const getMovieObj = (movieId) => {
     return getMovieById(movieId).then((response) => {
@@ -74,7 +72,6 @@ export default function UserBookingList() {
   };
 
   function goToTicketPage(booking) {
-    console.log(booking);
     navigate("/ticket", { state: booking });
   }
 

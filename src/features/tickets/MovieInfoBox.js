@@ -14,7 +14,6 @@ export default function MovieInfoBox(props) {
   
 
   const occurrences = foodIds.reduce(function (acc, curr) {
-    // return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
     if (acc[curr]) {
       ++acc[curr];
     } else {
@@ -23,12 +22,10 @@ export default function MovieInfoBox(props) {
     return acc;
   }, {});
 
-  var foodListData = [];
+  let foodListData = [];
 
   for (const [key, value] of Object.entries(occurrences)) {
     const foodItem = foodsMap[key];
-    console.log(foodItem);
-    console.log(key, value);
 
     foodListData.push(
       <div>
@@ -43,7 +40,7 @@ export default function MovieInfoBox(props) {
       <div style={{ margin: "10px" }}>
         <Card>
           <Descriptions title="Booking Info" bordered column={2}>
-            <Descriptions.Item label="Movie" span={2}>
+            <Descriptions.Item label="Movie" span={2} labelStyle={{"font-weight": "bold"}}  contentStyle={{"font-weight": "bold"}}>
               {movie.movieName}
             </Descriptions.Item>
 
@@ -67,15 +64,15 @@ export default function MovieInfoBox(props) {
               {foodListData}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Food Price">
+            <Descriptions.Item label="Total Food Price">
               ${getFoodTotal()}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Ticket Price">
+            <Descriptions.Item span={2} label="Total Ticket Price">
               ${booking.total - getFoodTotal()}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Total Price">
+            <Descriptions.Item span={2} label="Total Price" labelStyle={{"font-weight": "bold"}}  contentStyle={{"font-weight": "bold"}}>
               ${booking.total}
             </Descriptions.Item>
           </Descriptions>

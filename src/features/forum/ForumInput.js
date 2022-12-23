@@ -24,10 +24,8 @@ export default function ForumInput(props) {
             message: message,
             movieId: movieId
         };
-        console.log(messageBody);
         addMessage(messageBody).then((response) => {
             setMessage("");
-            console.log(response);
         })
         .catch((error) => {
             if (getUser() === ""){

@@ -11,7 +11,7 @@ export default function HomePage() {
       .then((response) => {
         setMovies(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch(() => {});
   }, [dispatch]);
 
   localStorage.getItem("searchText");

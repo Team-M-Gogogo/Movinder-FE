@@ -16,12 +16,9 @@ export default function CinemaListPage() {
 
     useEffect(() => {
         getMovieById(movieId).then((response) => {
-            console.log(response.data);
             setMovie(response.data);
         })
-        .catch((error) => {
-            console.log(error);
-        })
+        .catch(() => {})
     }, [dispatch, movieId]);
 
     return movie.movieId && (

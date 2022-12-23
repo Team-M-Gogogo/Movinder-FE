@@ -9,7 +9,6 @@ export default function Cinema(props) {
   const movie = props.movie;
 
   const onChange = (key) => {
-    console.log(key);
   };
 
   return (

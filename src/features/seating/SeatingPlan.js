@@ -85,7 +85,7 @@ export default function SeatingPlan(props) {
   };
 
   const ticketPriceTotal = (adultValue, childValue) => {
-    var total = 0;
+    let total = 0;
     pricing.forEach((price) => {
       const category = price.item.toLowerCase();
       if (category === "student" || category === "child") {

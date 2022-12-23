@@ -46,7 +46,7 @@ export default function MovieInfoBox(props) {
       <div style={{ margin: "10px" }}>
         <Card>
           <Descriptions title="Booking Info" bordered column={2}>
-            <Descriptions.Item label="Movie" span={2}>
+            <Descriptions.Item label="Movie" span={2} labelStyle={{"font-weight": "bold"}}  contentStyle={{"font-weight": "bold"}}>
               {movie.movieName}
             </Descriptions.Item>
 
@@ -70,15 +70,15 @@ export default function MovieInfoBox(props) {
               {foodListData}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Food Price">
+            <Descriptions.Item label="Total Food Price">
               ${getFoodTotal()}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Ticket Price">
+            <Descriptions.Item span={2} label="Total Ticket Price">
               ${booking.total - getFoodTotal()}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Total Price">
+            <Descriptions.Item span={2} label="Total Price" labelStyle={{"font-weight": "bold"}}  contentStyle={{"font-weight": "bold"}}>
               ${booking.total}
             </Descriptions.Item>
           </Descriptions>

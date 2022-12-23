@@ -67,12 +67,12 @@ export default function PaymentComponent() {
         {contextHolder}
         <Card>
           <Descriptions title="Billing Info" bordered column={2}>
-            <Descriptions.Item label="Movie">
+            <Descriptions.Item label="Movie" span={2} labelStyle={{"font-weight": "bold"}}  contentStyle={{"font-weight": "bold"}}>
               {movie.movieName}
             </Descriptions.Item>
 
             <Descriptions.Item label="Show time">
-              {moment(session.datetime).format("DD/MM/YY | HH:mm")}
+              {moment(session.datetime).format("DD/MM/YY HH:mm")}
             </Descriptions.Item>
 
             <Descriptions.Item label="Cinema">
@@ -99,8 +99,12 @@ export default function PaymentComponent() {
               {foodTotal}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Total Price">
-              {foodTotal + selectedTicketsPriceTotal}
+            <Descriptions.Item label="Seat number">
+              {String(seats)}
+            </Descriptions.Item>
+
+            <Descriptions.Item labelStyle={{"font-weight": "bold"}} contentStyle={{"font-weight": "bold"}} label="Total Price">
+              ${foodTotal + selectedTicketsPriceTotal}
             </Descriptions.Item>
           </Descriptions>
         </Card>

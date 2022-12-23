@@ -61,7 +61,7 @@ export default function PaymentComponent() {
             </Descriptions.Item>
 
             <Descriptions.Item label="Show time">
-              {moment(session.datetime).format("DD/MM/YY HH:mm")}
+              {moment(session.datetime).add(8, 'hours').format("DD/MM/YY HH:mm")}
             </Descriptions.Item>
 
             <Descriptions.Item label="Cinema">

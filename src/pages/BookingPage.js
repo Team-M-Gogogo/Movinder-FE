@@ -16,30 +16,20 @@ export default function BookingPage() {
 
     useEffect(() => {
         getMovieById(movieId).then((response) => {
-            console.log(response.data);
             setMovie(response.data);
         })
-        .catch((error) => {
-            console.log(error);
-        });
+        .catch(() => {});
         getSessionById(sessionId).then((response) => {
-            console.log(response.data);
             setSession(response.data);
         })
-        .catch((error) => {
-            console.log(error);
+        .catch(() => {
         });
         getCinemasById(cinemaId).then((response) =>{
-            console.log(response.data);
             setCinema(response.data);
         })
-        .catch((error) => {
-            console.log(error);
-        });
+        .catch(() => {});
         
     }, [movieId, sessionId, cinemaId]);
-
-    console.log(movie, session, cinema);
 
 
     return (    

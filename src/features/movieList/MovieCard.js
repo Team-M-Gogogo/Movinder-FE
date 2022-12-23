@@ -12,7 +12,6 @@ export default function MovieCard(props) {
   const dispatch = useDispatch();
   const onClickMovie = () => {
     dispatch(addSelectedMovie(movie));
-    // navigate("/cinema");
     navigate("/chooseCinema/"+movie.movieId);
   };
   return (

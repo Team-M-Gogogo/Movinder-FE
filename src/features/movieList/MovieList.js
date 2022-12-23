@@ -10,10 +10,9 @@ export default function MovieList() {
   useEffect(() => {
     getMovies()
       .then((response) => {
-        console.log(response.data);
         setMovies(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch(() => {});
   }, [dispatch]);
 
   const movieCards =

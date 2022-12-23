@@ -20,7 +20,6 @@ const gridStyle = {
 
 export default function DisplayTickets(props) {
   const location = useLocation();
-  console.log(location.state);
   const booking = location.state;
 
   const [foodsMap, setFoodsMap] = useState();
@@ -41,7 +40,7 @@ export default function DisplayTickets(props) {
     });
 
     getFoods().then((response) => {
-      var result = response.data.reduce(function (map, obj) {
+      let result = response.data.reduce(function (map, obj) {
         map[obj.foodId] = obj;
         return map;
       }, {});

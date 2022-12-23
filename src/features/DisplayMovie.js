@@ -8,7 +8,6 @@ const DisplayMovie = (props) => {
   const movie = props.selectedMovie;
 
   const handleClick = () => {
-    console.log(movie.movieId);
     navigate("/forum/" + movie.movieId);
   };
   const movieCols = [

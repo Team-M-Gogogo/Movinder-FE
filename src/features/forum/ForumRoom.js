@@ -18,12 +18,10 @@ export default function ForumRoom(props) {
 
     useEffect(() =>{
         getMovieById(movieId).then((response) => {
-            console.log(response.data);
             setMovie(response.data);
             setMovieName(response.data.movieName);
         })
         getRoomMessage(movieId).then((response) => {
-            console.log(response.data);
             setRoomMessage(response.data);
         })
     }, [movieId]);

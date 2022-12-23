@@ -30,12 +30,11 @@ export default function UserProfile() {
   }
 
   function updateLocalUser(formData) {
-    var user = getUser();
+    let user = getUser();
     user.customerName = formData[0].value;
     user.password = formData[1].value;
     user.status = formData[2].value;
 
-    console.log(user);
     updateUserInfo(user).then((response) => {
       localStorage.setItem("User", JSON.stringify(response.data));
       setuser(response.data);
@@ -70,7 +69,7 @@ const CustomizedForm = ({ onChange, fields, updateLocalUser }) => (
       onChange(allFields);
     }}
   >
-    <Form.Item // username
+    <Form.Item
       name="username"
       label="Username"
       rules={[
@@ -82,7 +81,7 @@ const CustomizedForm = ({ onChange, fields, updateLocalUser }) => (
     >
       <Input />
     </Form.Item>
-    <Form.Item // password
+    <Form.Item
       name="password"
       label="Password"
       rules={[
@@ -94,7 +93,7 @@ const CustomizedForm = ({ onChange, fields, updateLocalUser }) => (
     >
       <Input.Password />
     </Form.Item>
-    <Form.Item //Status
+    <Form.Item
       name="status"
       label="Status"
       rules={[
@@ -110,7 +109,7 @@ const CustomizedForm = ({ onChange, fields, updateLocalUser }) => (
       </Select>
     </Form.Item>
 
-    <Form.Item //button
+    <Form.Item
       wrapperCol={{
         offset: 8,
         span: 16,

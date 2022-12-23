@@ -179,7 +179,7 @@ export default function PaymentComponent() {
       .then((response) => {
         navigate("/ticket", { state: response.data });
       })
-      .catch((error) => {
+      .catch(() => {
         if (error.response.status === 400) {
           openNotification(
             "Oops",

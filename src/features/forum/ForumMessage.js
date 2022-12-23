@@ -12,11 +12,9 @@ export default function ForumMessage(props) {
     useEffect(() => {
         getCustomerById(props.message.customerId)
         .then((response)=> {
-            console.log(response.data);
             setCustomer(response.data);
         })
         .catch((error) => {
-            console.log(error);
         })
     }, [props.message.customerId])
 

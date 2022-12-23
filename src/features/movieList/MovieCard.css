@@ -3,8 +3,8 @@
   width: 300px;
   margin: 10px auto;
 }
-.movieCard > img {
-  height: 350px;
+.movieCard > .ant-card-cover > img {
+  height: 400px;
 }
 .movieDuration {
   color: grey;

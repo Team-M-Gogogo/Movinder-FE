@@ -108,7 +108,7 @@ export default function UserBookingList() {
                 Booking time:{" "}
                 {moment(booking.bookingObj.bookingTime)
                   .add(8, "hours")
-                  .format("DD/MM/YY  HH:mm a")}
+                  .format("DD/MM/YY  HH:mm")}
               </p>
 
               <Button

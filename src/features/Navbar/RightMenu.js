@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Badge, Space, Popover  } from "antd";
+import { Menu, Badge, Space, Popover, Button } from "antd";
 import logouts from "./image/Logout.png";
 import User from "./image/user.png";
 import { useState } from "react";
@@ -15,8 +15,8 @@ import {
   getSessionById,
   getCinemasById,
 } from "../../api/movies";
-import { useEffect} from "react";
-import moment from 'moment';
+import { useEffect } from "react";
+import moment from "moment";
 
 const RightMenu = () => {
   const navigate = useNavigate();
@@ -27,44 +27,49 @@ const RightMenu = () => {
 
   const [userBookings, setUserBookings] = useState([]);
 
-  const TOMORROW = 'Tomorrow';
-  const TODAY = 'Today';
-  const bookingTodayTmr = (booking) => moment(moment(booking.session.datetime).add(8, 'hours')).subtract(0, 'days').calendar().includes(TOMORROW)
-  || moment(moment(booking.session.datetime).add(8, 'hours')).subtract(0, 'days').calendar().includes(TODAY);
+  const TOMORROW = "Tomorrow";
+  const TODAY = "Today";
+  const bookingTodayTmr = (booking) =>
+    moment(moment(booking.session.datetime).add(8, "hours"))
+      .subtract(0, "days")
+      .calendar()
+      .includes(TOMORROW) ||
+    moment(moment(booking.session.datetime).add(8, "hours"))
+      .subtract(0, "days")
+      .calendar()
+      .includes(TODAY);
 
   const filteredBooksTodayTmr = userBookings.filter(bookingTodayTmr);
 
-
   useEffect(() => {
-    if(customerId){
-    getCustomerBookings(customerId).then((response) => {
-      const bookingTicketsPromise = response.data.map((booking) => {
-        return getSessionById(booking.movieSessionId).then(
-          async (sessionResponse) => {
-            const session = sessionResponse.data;
+    if (customerId) {
+      getCustomerBookings(customerId).then((response) => {
+        const bookingTicketsPromise = response.data.map((booking) => {
+          return getSessionById(booking.movieSessionId).then(
+            async (sessionResponse) => {
+              const session = sessionResponse.data;
 
-            const cinema = await getCinemaObj(session.cinemaId);
-            const movie = await getMovieObj(session.movieId);
+              const cinema = await getCinemaObj(session.cinemaId);
+              const movie = await getMovieObj(session.movieId);
 
-            return {
-              session: session,
-              cinema: cinema,
-              movie: movie,
-              bookingObj: booking,
-            };
-          }
-        );
+              return {
+                session: session,
+                cinema: cinema,
+                movie: movie,
+                bookingObj: booking,
+              };
+            }
+          );
+        });
+
+        Promise.all(bookingTicketsPromise).then((responses) => {
+          console.log(responses);
+          setUserBookings(responses);
+        });
       });
-
-      Promise.all(bookingTicketsPromise).then((responses) => {
-        console.log(responses);
-        setUserBookings(responses);
-      });
-    });
-  }
+    }
   }, [customerId]);
 
-  
   const getMovieObj = (movieId) => {
     return getMovieById(movieId).then((response) => {
       return response.data;
@@ -79,8 +84,18 @@ const RightMenu = () => {
 
   const popoverContent = (
     <div>
-      {filteredBooksTodayTmr.map((booking, index) => 
-      <li key={index}>{<p>{booking.movie.movieName} start at {moment(moment(booking.session.datetime).add(8, 'hours')).subtract(0, 'days').calendar()} </p>}</li>)}
+      {filteredBooksTodayTmr.map((booking, index) => (
+        <li key={index}>
+          {
+            <p>
+              {booking.movie.movieName} start at{" "}
+              {moment(moment(booking.session.datetime).add(8, "hours"))
+                .subtract(0, "days")
+                .calendar()}{" "}
+            </p>
+          }
+        </li>
+      ))}
     </div>
   );
 
@@ -119,9 +134,7 @@ const RightMenu = () => {
     Modal.success({
       content: "Successfully Login.",
     });
-
   };
-
   const success_logout = () => {
     Modal.success({
       content: "Successfully Logout.",
@@ -177,6 +190,19 @@ const RightMenu = () => {
         onOk={handleOk}
         onCancel={handleCancel}
         width="600px"
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button
+            className="movinderBtn"
+            key="submit"
+            type="primary"
+            onClick={handleOk}
+          >
+            {user === "" ? "Login" : "Yes"}
+          </Button>,
+        ]}
       >
         {user === "" ? (
           <div className="login-wrapper">
@@ -213,16 +239,18 @@ const RightMenu = () => {
     items.push({
       label: user && (
         <Space size="large">
-        <Popover content={popoverContent} title="Upcoming bookings for 2 days:">
-        <Badge count={filteredBooksTodayTmr.length}>
-        <a href="/userprofile">
-        <img src={User} style={{ width: "30%" }} alt="Logo" />
-        {user === "" ? "" : user.customerName}
-        </a>
-        </Badge>
-        </Popover>
-      </Space>
-
+          <Popover
+            content={popoverContent}
+            title="Upcoming bookings for 2 days:"
+          >
+            <Badge count={filteredBooksTodayTmr.length}>
+              <a href="/userprofile">
+                <img src={User} style={{ width: "30%" }} alt="Logo" />
+                {user === "" ? "" : user.customerName}
+              </a>
+            </Badge>
+          </Popover>
+        </Space>
       ),
       key: "User",
     });

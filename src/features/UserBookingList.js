@@ -106,24 +106,27 @@ export default function UserBookingList() {
                 {moment(booking.session.datetime).format("DD/MM/YY  HH:mm")}{" "}
               </p>
               <p>Cinema: {booking.cinema.cinemaName}</p>
+
+              <Button
+                type="primary"
+                block
+                onClick={() => goToTicketPage(booking.bookingObj)}
+                className="movinderBtn"
+                size="large"
+              >
+                Click to view Ticket
+              </Button>
             </div>
           </Col>
         </Row>
-        <Row justify="center">
-          <Button
-            type="primary"
-            block
-            onClick={() => goToTicketPage(booking.bookingObj)}
-          >
-            Click to view Ticket
-          </Button>
-        </Row>
+        <Row justify="center"></Row>
       </Card>
     );
   }
 
   return (
     <div>
+      <Divider />
       <Row justify="center">
         <h1>My coming tickets in these two days</h1>
       </Row>

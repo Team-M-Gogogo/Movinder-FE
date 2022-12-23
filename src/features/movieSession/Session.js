@@ -35,7 +35,7 @@ function Session(props) {
       onClick={handleClick}
       style={{ margin: "5px", width: "fit-content" }}
     >
-      {moment(date).format("DD/MM/YY | HH:mm")}
+      {moment(date).add(8, 'hours').format("DD/MM/YY | HH:mm")}
       {/* {date.getMonth()}/{date.getDate()}-{date.getHours()}:{date.getMinutes()} */}
     </Button>
   );

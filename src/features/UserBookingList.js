@@ -58,7 +58,6 @@ export default function UserBookingList() {
     });
   }, [customerId]);
 
-
   const getMovieObj = (movieId) => {
     return getMovieById(movieId).then((response) => {
       return response.data;
@@ -132,7 +131,7 @@ export default function UserBookingList() {
     <div>
       <Divider />
       <Row justify="center">
-        <h1>My coming tickets in these two days</h1>
+        <h1>Upcoming bookings in 2 days</h1>
       </Row>
       <List
         grid={{ gutter: 16, column: 3 }}

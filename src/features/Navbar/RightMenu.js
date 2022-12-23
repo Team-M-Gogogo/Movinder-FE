@@ -87,7 +87,7 @@ const RightMenu = () => {
         <li key={index}>
           {
             <p>
-              {booking.movie.movieName} start at{" "}
+              {booking.movie.movieName}:{" "}
               {moment(moment(booking.session.datetime).add(8, "hours"))
                 .subtract(0, "days")
                 .calendar()}{" "}
@@ -236,10 +236,7 @@ const RightMenu = () => {
     items.push({
       label: user && (
         <Space size="large">
-          <Popover
-            content={popoverContent}
-            title="Upcoming bookings for 2 days:"
-          >
+          <Popover content={popoverContent} title="Upcoming bookings in 2 days">
             <Badge count={filteredBooksTodayTmr.length}>
               <a href="/userprofile">
                 <img src={User} style={{ width: "30%" }} alt="Logo" />

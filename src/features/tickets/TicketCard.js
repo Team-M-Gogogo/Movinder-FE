@@ -3,13 +3,11 @@ import { Row, Col, Space } from "antd";
 import { QRCode } from "antd";
 
 export default function TicketCard(props) {
-  const { ticketID, ticketType, price, row, col} = props;
-
+  const { ticketID, ticketType, price, row, col } = props;
 
   let seatName = "";
   seatName += String.fromCharCode(65 + row);
   seatName += col;
-
 
   return (
     <Row>
@@ -18,8 +16,14 @@ export default function TicketCard(props) {
           <div className="space-align-block">
             <Space align="center" direction="vertical">
               <QRCode value={ticketID} />
-              <div><b>Ticket type: </b>{ticketType}</div>
-              <div><b>Price: </b>{price}</div>
+              <div>
+                <b>Ticket Type: </b>
+                {ticketType}
+              </div>
+              <div>
+                <b>Price: </b>
+                {price}
+              </div>
               <div>
                 <b>Seat:</b> {seatName}
               </div>

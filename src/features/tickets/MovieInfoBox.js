@@ -5,13 +5,12 @@ import moment from "moment";
 export default function MovieInfoBox(props) {
   const { movie, session, booking, cinema, foodsMap, foodIds } = props;
 
-  function getFoodTotal(){
+  function getFoodTotal() {
     const sum = foodIds.reduce((accumulator, id) => {
       return foodsMap[id].price;
     }, 0);
-    return sum
+    return sum;
   }
-  
 
   const occurrences = foodIds.reduce(function (acc, curr) {
     if (acc[curr]) {
@@ -29,8 +28,8 @@ export default function MovieInfoBox(props) {
 
     foodListData.push(
       <div>
-        <b>{foodItem.foodName} </b>
-        {"x " + value}
+        {foodItem.foodName}
+        {" x " + value}
       </div>
     );
   }
@@ -40,16 +39,21 @@ export default function MovieInfoBox(props) {
       <div style={{ margin: "10px" }}>
         <Card>
           <Descriptions title="Booking Info" bordered column={2}>
-            <Descriptions.Item label="Movie" span={2} labelStyle={{"font-weight": "bold"}}  contentStyle={{"font-weight": "bold"}}>
+            <Descriptions.Item
+              label="Movie"
+              span={2}
+              labelStyle={{ "font-weight": "bold" }}
+              contentStyle={{ "font-weight": "bold" }}
+            >
               {movie.movieName}
             </Descriptions.Item>
 
             <Descriptions.Item label="Show Date">
-              {moment(session.datetime).add(8, 'hours').format("DD/MM/YY")}
+              {moment(session.datetime).add(8, "hours").format("DD/MM/YY")}
             </Descriptions.Item>
 
             <Descriptions.Item label="Show time">
-              {moment(session.datetime).add(8, 'hours').format("HH:mm")}
+              {moment(session.datetime).add(8, "hours").format("HH:mm")}
             </Descriptions.Item>
 
             <Descriptions.Item label="Cinema">
@@ -72,7 +76,12 @@ export default function MovieInfoBox(props) {
               ${booking.total - getFoodTotal()}
             </Descriptions.Item>
 
-            <Descriptions.Item span={2} label="Total Price" labelStyle={{"font-weight": "bold"}}  contentStyle={{"font-weight": "bold"}}>
+            <Descriptions.Item
+              span={2}
+              label="Total Price"
+              labelStyle={{ "font-weight": "bold" }}
+              contentStyle={{ "font-weight": "bold" }}
+            >
               ${booking.total}
             </Descriptions.Item>
           </Descriptions>

@@ -131,12 +131,12 @@ const RightMenu = () => {
 
   const success = () => {
     Modal.success({
-      content: "Successfully Login.",
+      content: "Successfully login.",
     });
   };
   const success_logout = () => {
     Modal.success({
-      content: "Successfully Logout.",
+      content: "Successfully logout.",
     });
   };
 
@@ -224,7 +224,7 @@ const RightMenu = () => {
           </div>
         ) : (
           <h1>
-            Hi {user === "" ? "" : user.customerName}, Are you sure to logout?{" "}
+            Hi {user === "" ? "" : user.customerName}, are you sure to logout?{" "}
           </h1>
         )}
       </Modal>

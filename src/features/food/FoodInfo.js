@@ -10,7 +10,7 @@ function FoodInfo() {
   return (
     <>
       <Card title="Food Menu">
-        <FoodList/>
+        <FoodList />
         <div>Total Food Price: ${foodTotal}</div>
       </Card>
     </>

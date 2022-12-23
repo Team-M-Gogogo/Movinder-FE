@@ -98,14 +98,14 @@ export default function UserBookingList() {
           <Col style={{ margin: "10px" }}>
             <div>
               <p>
-                Show time:{" "}
+                Movie Time:{" "}
                 {moment(booking.session.datetime)
                   .add(8, "hours")
                   .format("DD/MM/YY  HH:mm")}{" "}
               </p>
               <p>Cinema: {booking.cinema.cinemaName}</p>
               <p>
-                Booking time:{" "}
+                Booking Time:{" "}
                 {moment(booking.bookingObj.bookingTime)
                   .add(8, "hours")
                   .format("DD/MM/YY  HH:mm")}

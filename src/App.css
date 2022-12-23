@@ -4,3 +4,11 @@
   color: white;
   font-weight: bold;
 }
+
+.box {
+  padding: 3%;
+}
+
+.movieList {
+  margin-top: 1%
+}

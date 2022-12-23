@@ -5,6 +5,15 @@ import moment from "moment";
 export default function MovieInfoBox(props) {
   const { movie, session, booking, cinema, foodsMap, foodIds } = props;
 
+  console.log(props);
+  function getFoodTotal(){
+    const sum = foodIds.reduce((accumulator, id) => {
+      return foodsMap[id].price;
+    }, 0);
+    return sum
+  }
+  
+
   const occurrences = foodIds.reduce(function (acc, curr) {
     // return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
     if (acc[curr]) {
@@ -38,12 +47,16 @@ export default function MovieInfoBox(props) {
       <div style={{ margin: "10px" }}>
         <Card>
           <Descriptions title="Booking Info" bordered column={2}>
-            <Descriptions.Item label="Movie">
+            <Descriptions.Item label="Movie" span={2}>
               {movie.movieName}
             </Descriptions.Item>
 
+            <Descriptions.Item label="Show Date">
+              {moment(session.datetime).format("DD/MM/YY")}
+            </Descriptions.Item>
+
             <Descriptions.Item label="Show time">
-              {moment(session.datetime).format("DD/MM/YY HH:mm")}
+              {moment(session.datetime).format("HH:mm")}
             </Descriptions.Item>
 
             <Descriptions.Item label="Cinema">
@@ -58,7 +71,15 @@ export default function MovieInfoBox(props) {
               {foodListData}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Price">
+            <Descriptions.Item label="Food Price">
+              ${getFoodTotal()}
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Ticket Price">
+              ${booking.total - getFoodTotal()}
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Total Price">
               ${booking.total}
             </Descriptions.Item>
           </Descriptions>

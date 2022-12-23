@@ -14,7 +14,6 @@ export default function MovieInfoBox(props) {
   
 
   const occurrences = foodIds.reduce(function (acc, curr) {
-    // return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
     if (acc[curr]) {
       ++acc[curr];
     } else {
@@ -23,12 +22,10 @@ export default function MovieInfoBox(props) {
     return acc;
   }, {});
 
-  var foodListData = [];
+  let foodListData = [];
 
   for (const [key, value] of Object.entries(occurrences)) {
     const foodItem = foodsMap[key];
-    console.log(foodItem);
-    console.log(key, value);
 
     foodListData.push(
       <div>
@@ -39,9 +36,6 @@ export default function MovieInfoBox(props) {
   }
 
   function MovieInfo() {
-    if (foodListData.length === 0){
-      return <div></div>
-    }
     return (
       <div style={{ margin: "10px" }}>
         <Card>

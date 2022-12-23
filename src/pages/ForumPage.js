@@ -11,8 +11,6 @@ export default function ForumPage() {
 
     const { Content } = Layout;
     const movieId = useParams().movieId;
-    // const movieId = '63a2a24c71be3f089398b531';
-    // const customerId = '63a17b96630a66688ff94ac5';
     const customerId = user.customerId;
     
 

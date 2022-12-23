@@ -6,7 +6,7 @@ export default function TicketCard(props) {
   const { ticketID, ticketType, price, row, col} = props;
 
 
-  var seatName = "";
+  let seatName = "";
   seatName += String.fromCharCode(65 + row);
   seatName += col;
 

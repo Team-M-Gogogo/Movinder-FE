@@ -57,7 +57,6 @@ const RightMenu = () => {
       });
 
       Promise.all(bookingTicketsPromise).then((responses) => {
-        console.log(responses);
         setUserBookings(responses);
       });
     });
@@ -147,12 +146,10 @@ const RightMenu = () => {
     postLogin(loginInfo)
       .then((response) => {
         localStorage.setItem("User", JSON.stringify(response.data));
-        console.log(localStorage.getItem("User"));
         success();
         navigate(location.pathname);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
         warning();
       });
 
@@ -208,7 +205,7 @@ const RightMenu = () => {
     </>
   );
 
-  var items = [];
+  let items = [];
   if (user) {
     items.push({
       label: user && (

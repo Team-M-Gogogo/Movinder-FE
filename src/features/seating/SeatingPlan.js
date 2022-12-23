@@ -149,11 +149,11 @@ export default function SeatingPlan(props) {
         />
         No. of tickets: {selected.length}/{calTotalQuantity()}
         <br />
-        Chosen seats: {selected.join()}
+        Chosen seats: {selected.length === 0 ? "None" : selected.join()}
       </Modal>
       <div>
         <br />
-        Chosen seats: {selected.join()}
+        Chosen seats: {selected.length === 0 ? "None" : selected.join()}
         <br />
         Total Ticket Price: ${ticketPriceTotal(adultQuantity, childQuantity)}
         <br />

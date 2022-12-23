@@ -59,7 +59,7 @@ export default function DisplayTickets(props) {
         }
       );
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ticketCardGrid = tickets.map((ticket) => {

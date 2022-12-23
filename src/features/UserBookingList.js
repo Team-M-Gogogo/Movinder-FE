@@ -18,11 +18,11 @@ export default function UserBookingList() {
   const TOMORROW = "Tomorrow";
   const TODAY = "Today";
   const bookingTodayTmr = (booking) =>
-    moment(moment(booking.session.datetime).add(8, 'hours'))
+    moment(moment(booking.session.datetime).add(8, "hours"))
       .subtract(0, "days")
       .calendar()
       .includes(TOMORROW) ||
-    moment(moment(booking.session.datetime).add(8, 'hours'))
+    moment(moment(booking.session.datetime).add(8, "hours"))
       .subtract(0, "days")
       .calendar()
       .includes(TODAY);
@@ -103,21 +103,29 @@ export default function UserBookingList() {
             <div>
               <p>
                 Show time:{" "}
-                {moment(booking.session.datetime).add(8, 'hours').format("DD/MM/YY  HH:mm")}{" "}
+                {moment(booking.session.datetime)
+                  .add(8, "hours")
+                  .format("DD/MM/YY  HH:mm")}{" "}
               </p>
               <p>Cinema: {booking.cinema.cinemaName}</p>
-              <p>Booking time:  {moment(booking.bookingObj.bookingTime).add(8, 'hours').format("DD/MM/YY  HH:mm a")}</p>
+              <p>
+                Booking time:{" "}
+                {moment(booking.bookingObj.bookingTime)
+                  .add(8, "hours")
+                  .format("DD/MM/YY  HH:mm a")}
+              </p>
+
+              <Button
+                type="primary"
+                block
+                onClick={() => goToTicketPage(booking.bookingObj)}
+                className="movinderBtn"
+                size="large"
+              >
+                Click to view Ticket
+              </Button>
             </div>
           </Col>
-        </Row>
-        <Row justify="center">
-          <Button
-            type="primary"
-            block
-            onClick={() => goToTicketPage(booking.bookingObj)}
-          >
-            Click to view Ticket
-          </Button>
         </Row>
       </Card>
     );
@@ -125,6 +133,7 @@ export default function UserBookingList() {
 
   return (
     <div>
+      <Divider />
       <Row justify="center">
         <h1>My coming tickets in these two days</h1>
       </Row>

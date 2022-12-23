@@ -3,9 +3,7 @@ import { Select, Row, Col, Form, Input, Button } from "antd";
 import { updateUserInfo } from "../api/movies";
 import getUser from "../utils/getUser";
 
-
 const { Option } = Select;
-
 
 export default function UserProfile() {
   const [user, setuser] = useState(getUser());
@@ -45,20 +43,19 @@ export default function UserProfile() {
 
   return (
     <Col justify="center" align="middle">
-        <Row justify="center" align="middle">
-          <h1 style={{margin:"10px"}}>User Profile</h1>
-        </Row>
-        <Row justify="center" align="middle">
-          <CustomizedForm
-            fields={fields}
-            onChange={(newFields) => {
-              setFields(newFields);
-            }}
-            updateLocalUser={updateLocalUser}
-          />
-        </Row>
-      </Col>
-
+      <Row justify="center" align="middle">
+        <h1 style={{ margin: "10px" }}>User Profile</h1>
+      </Row>
+      <Row justify="center" align="middle">
+        <CustomizedForm
+          fields={fields}
+          onChange={(newFields) => {
+            setFields(newFields);
+          }}
+          updateLocalUser={updateLocalUser}
+        />
+      </Row>
+    </Col>
   );
 }
 
@@ -69,6 +66,7 @@ const CustomizedForm = ({ onChange, fields, updateLocalUser }) => (
     onFieldsChange={(_, allFields) => {
       onChange(allFields);
     }}
+    style={{ width: "300px" }}
   >
     <Form.Item // username
       name="username"
@@ -116,7 +114,12 @@ const CustomizedForm = ({ onChange, fields, updateLocalUser }) => (
         span: 16,
       }}
     >
-      <Button type="primary" onClick={() => updateLocalUser(fields)}>
+      <Button
+        className="movinderBtn"
+        type="primary"
+        onClick={() => updateLocalUser(fields)}
+        style={{ width: "200px" }}
+      >
         Update
       </Button>
     </Form.Item>
